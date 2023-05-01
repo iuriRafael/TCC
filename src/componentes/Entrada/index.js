@@ -4,7 +4,6 @@ import Igrejinha from "../img/lixo3.jpg";
 import { useNavigate } from 'react-router-dom';
 
 
-
 function Inicio(props){
   const navigate=useNavigate();
 
