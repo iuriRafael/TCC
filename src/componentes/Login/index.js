@@ -7,6 +7,8 @@ const Login = ()=>{
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
+
+  const navigate = useNavigate();
  
 
 const handleNomeChange = (event) => {
@@ -31,10 +33,10 @@ const handleNomeChange = (event) => {
     navigate('/Cadastro');
   }
   function handleClicks(){
-    navigate('./Inicio');
+    navigate('/Inicio');
   }
 
-  const navigate=useNavigate();
+  
 
     return(
         <div className="App">

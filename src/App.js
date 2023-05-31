@@ -19,7 +19,7 @@ function App() {
         <Route path="/explicacao" element={<Explicacao />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/Cadastro" element={<Cadastro/>} />
-        <Route path="Inicio" element={<Inicio/>} />
+        <Route path="/Inicio" element={<Inicio/>} />
       </Routes>
     </BrowserRouter>
   </div>
