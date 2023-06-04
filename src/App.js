@@ -1,7 +1,7 @@
 import React from "react";
 import './App.css';
 import Entrada from "./componentes/Entrada/index";
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
 import Explicacao from "./componentes/Explicacao";
 import Login from "./componentes/Login";
 import Cadastro from "./componentes/Cadastro";
@@ -9,7 +9,10 @@ import Inicio from "./componentes/Inicio";
 
 
 
+
 function App() {
+
+  // const navigate = useNavigate();
 
   return (
     <div>
