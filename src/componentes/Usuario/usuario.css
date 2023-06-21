@@ -1,0 +1,38 @@
+* {
+    padding: 0;
+    margin: 0;
+  }
+  
+  .Container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15%;
+  }
+  
+  .perfil {
+    display: flex;
+    width: 40vw;
+    margin-bottom: 35px; 
+    border-radius: 100px;
+  }
+  
+  .user-buttons {
+    display: flex;
+    flex-direction: column;
+    margin-top: 35px; 
+    
+  }
+  
+  h2 {
+    margin-top: 15px; 
+  }
+
+  .preto{
+    border: solid #000 2px;
+    width: 80vw;
+    margin-bottom: 30px;
+    height: 6vh;
+    border-radius: 10px;
+  }

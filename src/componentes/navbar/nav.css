@@ -27,3 +27,7 @@
   .navbar a.active {
     color: #ff0000; /* Cor para indicar a página ativa */
   }
+
+  button{
+    border: none;
+  }

@@ -5,37 +5,7 @@ body {
   }
   
 
-.tudo{
-    display: flex;
-    justify-content: center;
-    align-items: center;
 
-}
-
-.Previsão {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(255, 255, 255, 0.8);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    height: 10vh;
-    width: 80vw;
-    margin: 0 auto;
-    border-radius: 30px;
-    margin-top: 20px;
-  }
-  
-  .marco {
-    text-align: center;
-  }
-  
-  h2 {
-    margin: 0;
-  }
-  
-  h3 {
-    margin: 0;
-  }
 
 .fotos4 {
     display: flex;

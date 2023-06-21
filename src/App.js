@@ -7,13 +7,11 @@ import Login from "./componentes/Login";
 import Cadastro from "./componentes/Cadastro";
 import Inicio from "./componentes/Inicio";
 import CameraPage from "./componentes/Camera";
-
-
-
+import Usuario from "./componentes/Usuario";
 
 function App() {
 
-  // const navigate = useNavigate();
+
 
   return (
     <div>
@@ -25,6 +23,7 @@ function App() {
         <Route path="/Cadastro" element={<Cadastro/>} />
         <Route path="/Inicio" element={<Inicio/>} />
         <Route path="/Camera" element={<CameraPage />} />
+        <Route path="/Usuario" element={<Usuario />}/>
       </Routes>
     </BrowserRouter>
   </div>
