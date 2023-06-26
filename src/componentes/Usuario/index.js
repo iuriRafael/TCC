@@ -1,25 +1,35 @@
 import React from "react";
 import "./usuario.css";
 import Navbar from "../navbar";
-import perfil from "../img/938bdbce6a7bca524f2607d340115145.jpg";
+import perfil from "../img/noImage.png";
+import { useNavigate } from 'react-router-dom';
 
 import Previsao from "../Previsão";
 
-function Usuario() {
+function Usuario(props) {
+  const navigate = useNavigate();
+
+  function handleClick(){
+    navigate('/Finalizado')
+  }
+  function andamento(){
+    navigate('/Andamento')
+  }
   return (
     <div>
       <Previsao />
       <div className="Container">
         <img className="perfil" src={perfil}></img>
-        <h2>Iuri</h2>
+        <h2 id="nomeUsuario">Iuri Dutra</h2>
 
         <div className="user-buttons">
-          <button className="preto">Andamento</button>
-          <button className="preto">Concluindo</button>
+          <button id="btnAndamento" onClick={andamento} disabled={false}>Em andamento</button>
+          <button id="btnFinalizado" onClick={handleClick} disabled={false}>Tarefas finalizadas</button>
         </div>
       </div>
 
       <Navbar />
+      <div id="espaco"></div>
     </div>
   );
 }

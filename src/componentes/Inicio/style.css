@@ -1,48 +1,65 @@
 body {
-    height: 100vh;
-    margin: 0;
-    padding: 0;
-  }
-  
-
-
-
-.fotos4 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    margin-top: 40px;
-  }
-  
-.lixo {
-    margin: 0 auto;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
 }
 
-.escrever {
-    margin-top: 10px;
+.fotos4 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.lixo {
+  margin: 0 auto;
+  width: 60vw;
+  border-radius: 15px;
+}
+
+.endereco {
+  margin-top: 10px;
 }
 
 .botao-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 30px;
-  }
-  
-  .botao {
-    margin: 0 5px;
-    padding: 10px 20px;
-    background-color: #4F5285;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-  }
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+}
 
-  .botao:hover {
-    background-color: #45a049;
-  }
-  
-  .botao:focus {
-    outline: none;
-  }
+.localizacao{
+  background-color: #4F5285;
+}
+
+.concluir{
+  background-color: #AAA4F2;
+}
+.localizacao , .concluir{
+  margin: 0 5px;
+  width: 40vw;
+  padding: 1.5vh 0;
+  color: #ffffff;
+  border: none;
+  border-radius: 15px;
+  font-weight: 600;
+  cursor:pointer ;
+}
+
+.localizacao:hover , .concluir:hover {
+  background-color: #45a049;
+}
+
+.localizacao:focus , .concluir:focus {
+  outline: none;
+}
+
+.imagens2{
+  align-items: center;
+  width: 100VW;
+  margin-left: 5VW;
+}
+
+#espaco{
+  height: 10vh;
+}

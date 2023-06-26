@@ -6,11 +6,16 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background-color: #fff;
+    background-color: #ffffff;
     height: 60px;
     box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
   }
   
+  .icones{
+    background: #ffffff;
+    cursor: pointer;
+  }
+
   .navbar a {
     display: flex;
     flex-direction: column;

@@ -2,7 +2,9 @@
     padding: 0;
     margin: 0;
   }
-  
+  body{
+    height: 100vh;
+  }
   .Container {
     display: flex;
     flex-direction: column;
@@ -13,26 +15,54 @@
   
   .perfil {
     display: flex;
-    width: 40vw;
+    width: 17rem;
     margin-bottom: 35px; 
-    border-radius: 100px;
+    border-radius: 50%;
+    border: 2px dashed #000;
   }
-  
+
   .user-buttons {
     display: flex;
     flex-direction: column;
     margin-top: 35px; 
-    
   }
   
   h2 {
     margin-top: 15px; 
   }
 
-  .preto{
-    border: solid #000 2px;
-    width: 80vw;
+  #btnFinalizado , #btnAndamento{
+    width: 30rem;
     margin-bottom: 30px;
     height: 6vh;
     border-radius: 10px;
+    cursor: pointer;
+  }
+  
+  #btnAndamento{
+    background-color: #ffac3f;
+    color: #fff;
+    font-weight: 600;
+    border: 1.8px dotted #ffffff;
+  }
+
+  #btnAndamento:hover{
+    background-color: #ffffff;
+    color: #ffac3f;
+    font-weight: 600;
+    border: 2.4px dotted #ffac3f;
+  }
+
+  #btnFinalizado{
+    background-color: #AAA4F2;
+    color: #fff;
+    font-weight: 600;
+    border: 1.8px dotted #ffffff;
+  }
+
+  #btnFinalizado:hover{
+    background-color: #ffffff;
+    color: #AAA4F2;
+    font-weight: 600;
+    border: 2.4px dotted #AAA4F2;
   }

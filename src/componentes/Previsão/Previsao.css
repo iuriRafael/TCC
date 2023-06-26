@@ -25,10 +25,12 @@
     margin-top: -15px;
   }
   
-  h2 {
+  #temperatura {
     margin: 0;
   }
-  
-  h3 {
-    margin: 0;
+  h2{
+    margin-bottom: 30px;
+  }
+  #city {
+    margin-bottom:10px;
   }

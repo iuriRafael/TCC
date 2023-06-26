@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './style.css';
+import './login.css';
 import Logos from "../img/default_765x625 2.png";
+import Fundo from "../img/fundo.jpeg"
 
 const Login = ()=>{
   const [nome, setNome] = useState('');
@@ -11,7 +12,7 @@ const Login = ()=>{
   const navigate = useNavigate();
  
 
-const handleNomeChange = (event) => {
+  const handleNomeChange = (event) => {
     setNome(event.target.value);
   };
 
@@ -35,9 +36,6 @@ const handleNomeChange = (event) => {
   function handleClicks(){
     navigate('/Inicio');
   }
-
-  
-
     return(
         <div className="App">
              <img className="imagens2" src={Logos} />
@@ -45,26 +43,27 @@ const handleNomeChange = (event) => {
              <form className='formulario' onSubmit={handleSubmit}>
              <input
                 type="text"
-                placeholder="Nome"
+                placeholder="Nome:"
                 value={nome}
                 onChange={handleNomeChange}
             />
             <input
                 type="email"
-                placeholder="Email"
+                placeholder="E-mail:"
                 value={email}
                 onChange={handleEmailChange}
             />
             <input
                 type="password"
-                placeholder="Senha"
+                placeholder="Senha:"
                 value={senha}
                 onChange={handleSenhaChange}
              />
              
-            <div className='Botões'>
-              <button className= "botão1" onClick={handleClicks} disabled={false} type="submit">Login</button>
-              <button className="botão1" onClick={handleClick} disabled={false} type="submit">Cadastro</button>
+            <div className='btns'>
+              <button className= "botaoLogin" onClick={handleClicks} disabled={false} type="submit">Login</button>
+              <p id='ou'>ou</p>
+              <button className="botaoCadastro" onClick={handleClick} disabled={false} type="submit">Cadastro</button>
             </div>
             
          </form>     

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './style.css';
 import lixos1 from "../img/itemImg.png";
+import lixos2 from "../img/residuo2.jpg"
+import lixos3 from "../img/residuos3.webp"
 import Navbar from '../navbar';
 import Previsao from "../Previsão";
 
@@ -12,40 +14,36 @@ function Inicio(){
             <Previsao/>
              <div className='fotos4'>
                 <img className="lixo" src={lixos1} />
-                <h2 className='escrever'>Rua Ilsa Becker 04</h2>
+                <h2 className='endereco'>Rua Ilsa Becker, 04</h2>
              </div>
 
              <div className="botao-container">
-                 <button className="botao">Localização</button>
-                 <button className="botao">Concluir</button>
+                 <button className="localizacao">Localização</button>
+                 <button className="concluir">Concluir</button>
              </div>
 
              <div className='fotos4'>
-                <img className="lixo" src={lixos1} />
-                <h2 className='escrever'>Rua Ilsa Becker 04</h2>
+                <img className="lixo" src={lixos2} />
+                <h2 className='endereco'>Av. Pres. Castelo Branco, 488 - Centro, Igrejinha</h2>
              </div>
 
              <div className="botao-container">
-                 <button className="botao">Localização</button>
-                 <button className="botao">Concluir</button>
+                 <button className="localizacao">Localização</button>
+                 <button className="concluir">Concluir</button>
              </div>
 
              <div className='fotos4'>
-                <img className="lixo" src={lixos1} />
-                <h2 className='escrever'>Rua Ilsa Becker 04</h2>
+                <img className="lixo" src={lixos3} />
+                <h2 className='endereco'>Rua 7 de Setembro, 399 - Centro, Igrejinha</h2>
              </div>
 
              <div className="botao-container">
-                 <button className="botao">Localização</button>
-                 <button className="botao">Concluir</button>
+                 <button className="localizacao">Localização</button>
+                 <button className="concluir">Concluir</button>
              </div>
 
-             
-
-             <Navbar/>
-
-            
-             
+             <Navbar/>    
+            <div id='espaco'></div>
         </div>
     )
 }

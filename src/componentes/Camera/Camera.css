@@ -1,3 +1,50 @@
+h2{
+  text-align: center;
+}
+
+.btnsOps{
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 1vh;
+}
+
+#tirarFoto{
+  padding: 3vh 10vw;
+  background-color: #AAA4F2;
+  color:#fff;
+}
+
+#tirarFoto:hover{
+  background-color: #e5d9ff;
+  color: #AAA4F2;
+}
+
+#escolherFoto{
+  padding: 3vh 10vw;
+}
+
+#escolherFoto:hover , .btnVoltar:hover{
+  background-color: #b4b4b4;
+  color:#000;
+}
+
+#tirarFoto , #escolherFoto{
+  margin-top: 2vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  cursor: pointer;
+  border-radius: 15px;
+}
+
+.btnVoltar{
+  margin: 1vh 0 0 1vh;
+  padding: 1vh 5vw;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
 .camera-container {
     display: flex;
     flex-direction: column;
@@ -5,7 +52,11 @@
     justify-content: center;
     height: 100vh;
   }
-  
+  .cxTudo{
+    display: flex;
+    justify-content: center;
+    
+  }
   .video-container {
     position: relative;
     width: 100%;

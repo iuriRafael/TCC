@@ -1,10 +1,8 @@
-
 import React from 'react';
 import './style.css';
 import Logo from "../img/lixos2.jpg";
-import Celular from "../img/celular.png";
+import Celular from "../img/pngwing.com.png";
 import { useNavigate } from 'react-router-dom';
-
 
 function Explicacao(props) {
   const navigate=useNavigate();
@@ -13,19 +11,18 @@ function Explicacao(props) {
     navigate('/Login');
   }
     return (
-      <div>
-        <img className='imagens' src={Logo}></img>
+      <div id='cxTudo'>
+        <img className='banner' src={Logo}></img>
         <div className='container'>
-          <h2>COMO FUNCIONA</h2>
+          <h2>COMO FUNCIONA O CLEANMAP ?</h2>
           <img className='celular' src={Celular}></img>
-          <p>1. Abra no seu celular o app</p>
+          <p id='fraseExplicacao'>1º Abra o App no seu celular.</p>
         </div>
 
         <div className='botão'> 
-             <button className="meu-botao" onClick={handleClick} disabled={false} type="submit">Conhecer Mais</button>
+             <button className="btnContinuar" onClick={handleClick} disabled={false} type="submit">Continuar</button>
           </div>
-        
-
+      
       </div>
     );
   }
