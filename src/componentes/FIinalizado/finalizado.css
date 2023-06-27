@@ -3,7 +3,7 @@ h2 {
 }
 
 #acompanhamento {
-    height: 2vh;
+    height: 0.5vh;
     background-color: #AAA4F2;
     margin: 0 2rem 0 2rem;
     display: flex;
@@ -17,8 +17,8 @@ h2 {
 #item4 {
     background-color: #AAA4F2;
     border-radius: 50%;
-    padding: 3em;
-    margin-top: -2.1em;
+    padding: 1em;
+    margin-top:0.01em;
     display: flex;
     align-items: center;
 }

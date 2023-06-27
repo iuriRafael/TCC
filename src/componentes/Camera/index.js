@@ -72,7 +72,7 @@ function CameraPage() {
         </svg>
       </button>
       <h2>Tire uma foto ou carregue-a!</h2>
-      <div className='cxTudo'>
+      <div className='cxTudo cameraContainer'>
         <video ref={videoRef} autoPlay></video>
         <canvas ref={canvasRef} style={{ display: 'none' }}></canvas>
       </div>

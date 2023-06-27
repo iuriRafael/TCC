@@ -15,7 +15,7 @@
   
   .perfil {
     display: flex;
-    width: 17rem;
+    width: 9rem;
     margin-bottom: 35px; 
     border-radius: 50%;
     border: 2px dashed #000;
@@ -32,9 +32,9 @@
   }
 
   #btnFinalizado , #btnAndamento{
-    width: 30rem;
+    width: 20rem;
     margin-bottom: 30px;
-    height: 6vh;
+    height: 5.5vh;
     border-radius: 10px;
     cursor: pointer;
   }
