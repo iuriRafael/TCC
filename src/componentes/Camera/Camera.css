@@ -2,6 +2,14 @@ h2 {
   text-align: center;
 }
 
+#imgCap{
+  display: flex;
+  align-items: center;
+  width: 30vw;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 .btnsOps {
   display: flex;
   justify-content: space-evenly;
@@ -9,7 +17,8 @@ h2 {
 }
 
 #tirarFoto {
-  padding: 3vh 10vw;
+  text-align: center;
+  padding: 3vh 8rem;
   background-color: #AAA4F2;
   color: #fff;
 }
@@ -20,7 +29,7 @@ h2 {
 }
 
 #escolherFoto {
-  padding: 3vh 10vw;
+  padding: 3vh 8rem;
 }
 
 #escolherFoto:hover,
@@ -38,6 +47,7 @@ h2 {
   justify-content: space-evenly;
   cursor: pointer;
   border-radius: 15px;
+  width: 6rem;
 }
 
 .btnVoltar {
@@ -49,6 +59,7 @@ h2 {
 
 video {
   width: 100vw;
+  margin-top: 1.5vh;
 }
 
 .camera-container {
@@ -84,6 +95,8 @@ video {
 
 .button-container {
   margin-top: 16px;
+  display: flex;
+  justify-content: space-around;
 }
 
 .button-container button {
