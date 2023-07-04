@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './style.css';
-import lixos1 from "../img/itemImg.png";
+import lixos1 from "../img/e5a09f73b89138f33fd71d18b967fe9c.jpg";
 import lixos2 from "../img/residuo2.jpg"
 import lixos3 from "../img/residuos3.webp"
 import Navbar from '../navbar';

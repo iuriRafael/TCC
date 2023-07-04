@@ -15,7 +15,7 @@ function CameraPage() {
   useEffect(() => {
     const accessCamera = async () => {
       try {
-        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+        const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
         const videoElement = videoRef.current;
         if (videoElement) {
           videoElement.srcObject = stream;
@@ -24,9 +24,10 @@ function CameraPage() {
         console.log('Erro ao acessar a câmera:', error);
       }
     };
-
+  
     accessCamera();
   }, []);
+  
 
   const takePhoto = () => {
     const videoElement = videoRef.current;
@@ -82,7 +83,7 @@ function CameraPage() {
             <path d="M10.5 8.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
             <path d="M2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2zm.5 2a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm9 2.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0z" />
           </svg>Tirar Foto
-          </button>
+        </button>
         <button id='escolherFoto' onClick={chooseFromLibrary}>
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-upload" viewBox="0 0 16 16">
             <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />

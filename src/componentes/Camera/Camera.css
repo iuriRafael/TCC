@@ -1,34 +1,36 @@
-h2{
+h2 {
   text-align: center;
 }
 
-.btnsOps{
+.btnsOps {
   display: flex;
   justify-content: space-evenly;
   margin-top: 1vh;
 }
 
-#tirarFoto{
+#tirarFoto {
   padding: 3vh 10vw;
   background-color: #AAA4F2;
-  color:#fff;
+  color: #fff;
 }
 
-#tirarFoto:hover{
+#tirarFoto:hover {
   background-color: #e5d9ff;
   color: #AAA4F2;
 }
 
-#escolherFoto{
+#escolherFoto {
   padding: 3vh 10vw;
 }
 
-#escolherFoto:hover , .btnVoltar:hover{
+#escolherFoto:hover,
+.btnVoltar:hover {
   background-color: #b4b4b4;
-  color:#000;
+  color: #000;
 }
 
-#tirarFoto , #escolherFoto{
+#tirarFoto,
+#escolherFoto {
   margin-top: 2vh;
   display: flex;
   flex-direction: column;
@@ -38,49 +40,56 @@ h2{
   border-radius: 15px;
 }
 
-.btnVoltar{
+.btnVoltar {
   margin: 1vh 0 0 1vh;
   padding: 1vh 5vw;
   border-radius: 10px;
   cursor: pointer;
 }
 
-video{
+video {
   width: 100vw;
 }
 
 .camera-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100vw;
-  }
-  .cxTudo{
-    display: flex;
-    justify-content: center;
-    width: 100vw;
-    
-  }
-  .video-container {
-    position: relative;
-    width: 100%;
-    height: 0;
-    padding-bottom: 75%; /* Define a proporção de aspecto 4:3 (altere conforme necessário) */
-  }
-  
-  .video-container video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
-  
-  .button-container {
-    margin-top: 16px;
-  }
-  
-  .button-container button {
-    margin-right: 8px;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+}
+
+.cxTudo {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+
+}
+
+.video-container {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 75%;
+  /* Define a proporção de aspecto 4:3 (altere conforme necessário) */
+}
+
+.video-container video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.button-container {
+  margin-top: 16px;
+}
+
+.button-container button {
+  margin-right: 8px;
+}
+
+.cxTudo cameraContainer{
+  width: 100vw;
+}
