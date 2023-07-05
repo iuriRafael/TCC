@@ -4,11 +4,11 @@ import Logo from "../img/lixos2.jpg";
 import Igrejinha from "../img/lixo3.jpg";
 import { useNavigate } from 'react-router-dom';
 
-function Inicio(props) {
+function Entrada(props) {
   const navigate = useNavigate();
 
   function handleClick() {
-    navigate('/explicacao');
+    navigate('/Explicacao');
   }
 
   return (
@@ -23,11 +23,8 @@ function Inicio(props) {
         </div>
       </div>
       <img className='logoIgrejinha' src={Igrejinha} />
-
     </div>
-
-
   )
 }
 
-export default Inicio
+export default Entrada;

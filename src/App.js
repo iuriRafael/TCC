@@ -11,26 +11,28 @@ import Usuario from "./componentes/Usuario";
 import Mapa from "./componentes/Mapa";
 import Finalizado from "./componentes/FIinalizado";
 import Andamento from "./componentes/Andamento";
+import Concluir from "./componentes/Concluir";
 
 function App() {
 
   return (
     <div>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Entrada />} />
-        <Route path="/explicacao" element={<Explicacao />} />
-        <Route path="/Login" element={<Login />} />
-        <Route path="/Cadastro" element={<Cadastro/>} />
-        <Route path="/Inicio" element={<Inicio/>} />
-        <Route path="/Camera" element={<CameraPage />} />
-        <Route path="/Mapa" element={<Mapa/>} />
-        <Route path="/Usuario" element={<Usuario />}/>
-        <Route path="/Finalizado" element={<Finalizado />}/>
-        <Route path="/Andamento" element={<Andamento />}/>
-      </Routes>
-    </BrowserRouter>
-  </div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Entrada />} />
+          <Route path="/Explicacao" element={<Explicacao />} />
+          <Route path="/Login" element={<Login />} />
+          <Route path="/Cadastro" element={<Cadastro />} />
+          <Route path="/Inicio" element={<Inicio />} />
+          <Route path="/Camera" element={<CameraPage />} />
+          <Route path="/Mapa" element={<Mapa />} />
+          <Route path="/Usuario" element={<Usuario />} />
+          <Route path="/Finalizado" element={<Finalizado />} />
+          <Route path="/Andamento" element={<Andamento />} />
+          <Route path="/Concluir" element={<Concluir />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 }
 

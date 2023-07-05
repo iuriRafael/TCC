@@ -1,36 +1,25 @@
-.tudo{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-
+.Previsão {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  height: 10vh;
+  width: 80vw;
+  margin: 0 auto;
+  border-radius: 30px;
+  margin-top: 40px;
 }
 
-.Previsão {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(255, 255, 255, 0.8);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    height: 10vh;
-    width: 80vw;
-    margin: 0 auto;
-    border-radius: 30px;
-    margin-top: 40px;
+.marco {
+  text-align: center;
+  margin-top: -15px;
+}
 
-  }
-  
-  .marco {
-    text-align: center;
-    margin-top: -15px;
-  }
-  
-  #temperatura {
-    margin: 0;
-  }
-  h2{
-    margin-bottom: 30px;
-  }
-  #city {
-    margin-bottom:10px;
-  }
+#temp {
+  margin: 0;
+}
+
+#city {
+  margin: 0;
+}

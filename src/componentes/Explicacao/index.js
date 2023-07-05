@@ -14,7 +14,7 @@ function Explicacao(props) {
       <div id='cxTudo'>
         <img className='banner' src={Logo}></img>
         <div className='container'>
-          <h2>COMO FUNCIONA O CLEANMAP ?</h2>
+          <h2 id='exp'>COMO FUNCIONA O CLEANMAP ?</h2>
           <img className='celular' src={Celular}></img>
           <p id='fraseExplicacao'>1º Abra o App no seu celular.</p>
         </div>

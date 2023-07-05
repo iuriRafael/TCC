@@ -39,7 +39,7 @@ const Login = ()=>{
     return(
         <div className="App">
              <img className="imagens2" src={Logos} />
-             <h3>1° APP para mapeamento de resíduos sólidos no mundo</h3>
+             <h3 id='frase'>1° APP para mapeamento de resíduos sólidos no mundo</h3>
              <form className='formulario' onSubmit={handleSubmit}>
              <input
                 type="text"

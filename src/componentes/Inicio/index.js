@@ -8,7 +8,10 @@ import Navbar from '../navbar';
 import Previsao from "../Previsão";
 
 function Inicio(){
-
+    const navigate = useNavigate()
+    function handleClickConcluir(){
+        navigate('/Concluir');
+    }
     return(
         <div>
             <Previsao/>
@@ -19,7 +22,7 @@ function Inicio(){
 
              <div className="botao-container">
                  <button className="localizacao">Localização</button>
-                 <button className="concluir">Concluir</button>
+                 <button className="concluir" onClick={handleClickConcluir}>Concluir</button>
              </div>
 
              <div className='fotos4'>

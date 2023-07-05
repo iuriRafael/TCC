@@ -22,7 +22,7 @@ function Usuario(props) {
       <Previsao />
       <div className="Container">
         <img className="perfil" src={perfil}></img>
-        <h2 id="nomeUsuario">VALENTINA</h2>
+        <h2 id="nomeUsuario">Iuri R. Dutra</h2>
 
         <div className="user-buttons">
           <button id="btnAndamento" onClick={andamento} disabled={false}>

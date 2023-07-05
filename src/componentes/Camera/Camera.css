@@ -18,7 +18,7 @@ h2 {
 
 #tirarFoto {
   text-align: center;
-  padding: 3vh 8rem;
+  padding: 3vh 6rem;
   background-color: #AAA4F2;
   color: #fff;
 }
@@ -29,7 +29,7 @@ h2 {
 }
 
 #escolherFoto {
-  padding: 3vh 8rem;
+  padding: 3vh 6rem;
 }
 
 #escolherFoto:hover,
