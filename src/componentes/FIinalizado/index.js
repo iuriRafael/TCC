@@ -9,8 +9,42 @@ import local from "../img/botoes/localizacao.png";
 
 import Previsao from "../Previsão";
 
+function OrderProgress({ progress }) {
+  return (
+    <div id="acompanhamento">
+      <div id="item">
+        <img
+          className={`enviado ${progress > 0 ? "active" : ""}`}
+          src={send}
+          alt="Enviado"
+        />
+      </div>
+      <div id="item2">
+        <img
+          className={`localizado ${progress > 1 ? "active" : ""}`}
+          src={local}
+          alt="Localizado"
+        />
+      </div>
+      <div id="item3">
+        <img
+          className={`remocao ${progress > 2 ? "active" : ""}`}
+          src={remocao}
+          alt="Remoção"
+        />
+      </div>
+      <div id="item4">
+        <img
+          className={`removido ${progress > 3 ? "active" : ""}`}
+          src={check}
+          alt="Removido"
+        />
+      </div>
+    </div>
+  );
+}
+
 function Finalizado() {
-  // Exemplo de progresso
   const progress = 2; // Pode variar de 0 a 3 (representando as 4 etapas)
 
   return (
@@ -20,20 +54,7 @@ function Finalizado() {
         <img className="perfil" src={perfil} alt="Perfil" />
         <h2 id="nomeUsuario">Tarefas finalizadas</h2>
       </div>
-      <div id="acompanhamento">
-        <div id="item">
-          <img className={`enviado ${progress > 0 ? "active" : ""}`} src={send} alt="Enviado" />
-        </div>
-        <div id="item2">
-          <img className={`localizado ${progress > 1 ? "active" : ""}`} src={local} alt="Localizado" />
-        </div>
-        <div id="item3">
-          <img className={`remocao ${progress > 2 ? "active" : ""}`} src={remocao} alt="Remoção" />
-        </div>
-        <div id="item4">
-          <img className={`removido ${progress > 3 ? "active" : ""}`} src={check} alt="Removido" />
-        </div>
-      </div>
+      <OrderProgress progress={progress} /> {/* Adiciona o componente OrderProgress */}
       <div id="fases">
         <div className={`fase ${progress > 0 ? "active" : ""}`}>
           <h5>Postagem enviada</h5>
