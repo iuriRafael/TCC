@@ -25,7 +25,8 @@ body {
 .botao-container {
   display: flex;
   justify-content: center;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 .localizacao{

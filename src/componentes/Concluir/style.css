@@ -2,9 +2,11 @@
     width: 100vw;
 }
 
-.logo{
+#iconOlho{
+    position: absolute;
+    top: 55vh;
+    right: 20vw;
 }
-
 #imgLogo{
     width: 85vw;
 }

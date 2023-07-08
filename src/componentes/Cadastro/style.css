@@ -33,3 +33,9 @@ body{
     color: #AAA4F2;
     border:2px dotted #AAA4F2;
 }
+
+.btnCadastrar{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}

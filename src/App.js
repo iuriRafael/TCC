@@ -1,4 +1,5 @@
 import React from "react";
+
 import './App.css';
 import Entrada from "./componentes/Entrada/index";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';

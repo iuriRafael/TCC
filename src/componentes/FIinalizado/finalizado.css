@@ -1,41 +1,40 @@
 h2 {
-    margin-top: 3vh;
-  }
-  
-  #acompanhamento {
-    height: 20px;
-    width: 80vw;
-    background-color: #AAA4F2;
-    margin: 0 2rem;
-    display: flex;
-    justify-content: space-between;
-    border-radius: 25px 25px 0 0;
-  }
-  
-  #item,
-  #item2,
-  #item3,
-  #item4 {
-    background-color: #AAA4F2;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    padding: 0.3em;
-    align-items: center;
-    margin-bottom: 25%;
-  }
-  
-  .localizado,
-  .enviado,
-  .remocao,
-  .removido {
-    height: 2.5vh;
-    color: #fff;
-  }
-  
-  #fases {
-    display: flex;
-    justify-content: space-between;
-    margin: 5vh 2rem 0 2rem;
-  }
-  
+  margin-top: 3vh;
+}
+
+#acompanhamento {
+  height: 20px;
+  width: 80vw;
+  background-color: #AAA4F2;
+  margin: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 25px 25px 0 0;
+}
+
+#item,
+#item2,
+#item3,
+#item4 {
+  background-color: #AAA4F2;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  padding: 0.3em;
+  align-items: center;
+  margin-bottom: 25%;
+}
+
+.localizado,
+.enviado,
+.remocao,
+.removido {
+  height: 2.5vh;
+  color: #fff;
+}
+
+#fases {
+  display: flex;
+  justify-content: space-between;
+  margin: 5vh 2rem 0 2rem;
+}
