@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './style.css';
 import Logos from "../img/default_765x625 2.png";
+import axios from 'axios';
 
 const Cadastro = () => {
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
-  const [cep, setCep] = useState('');
 
   const handleNomeChange = (event) => {
     setNome(event.target.value);
@@ -21,15 +21,11 @@ const Cadastro = () => {
     setSenha(event.target.value);
   };
 
-  const handleCepChange = (event) => {
-    setCep(event.target.value);
-  };
-
-  const handleSubmit = (event) => {
+  const handleSubmit =  async(event) => {
     event.preventDefault();
 
     // Verificar se todos os campos foram preenchidos
-    if (!nome || !email || !senha || !cep) {
+    if (!nome || !email || !senha ) {
       console.log('Por favor, preencha todos os campos do formulário');
       return;
     }
@@ -40,26 +36,25 @@ const Cadastro = () => {
       return;
     }
 
-    // Verificar se o email já existe no Local Storage
-    const storedEmail = localStorage.getItem('email');
-    if (storedEmail && storedEmail === email) {
-      alert('O email já está cadastrado');
-      return;
+    try{
+      const response = await axios.post('http://localhost:3000/Usuario/cadastro',{
+        nome,
+        email,
+        senha
+      });
+      if(response.status === 201){
+        console.log('Usuário cadastrado com sucesso');
+
+        // Redirecionar para outra página após o cadastro
+        navigate('/Inicio');
+      }else{
+        console.log('Erro ao cadastrar usuário:', response.data.error);
+      }
+    }catch(erro){
+      console.error('Erro ao cadastrar usuário:', erro);
     }
 
-    // Salvar os valores no Local Storage
-    localStorage.setItem('nome', nome);
-    localStorage.setItem('email', email);
-    localStorage.setItem('senha', senha);
-    localStorage.setItem('cep', cep);
-
-    // Aqui você pode fazer algo com os valores do formulário, como enviar para o servidor
-    console.log('Valores do formulário:', { nome, email, senha, cep });
-
-    // Redirecionar para outra página após o cadastro
-    navigate('/Inicio');
   };
-
 
   const navigate = useNavigate();
 
@@ -96,13 +91,7 @@ const Cadastro = () => {
           onChange={handleSenhaChange}
           required
         />
-        <input
-          type="text"
-          placeholder="CEP"
-          value={cep}
-          onChange={handleCepChange}
-          required
-        />
+        
         <div className='Btns'>
           <button className="btnCadastrar" disabled={false} type="submit">
           Cadastrar

@@ -2,19 +2,14 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './login.css';
 import Logos from "../img/default_765x625 2.png";
-import Fundo from "../img/fundo.jpeg"
+import axios from 'axios';
 
 const Login = ()=>{
-  const [nome, setNome] = useState('');
+  
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
 
   const navigate = useNavigate();
- 
-
-  const handleNomeChange = (event) => {
-    setNome(event.target.value);
-  };
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -24,29 +19,43 @@ const Login = ()=>{
     setSenha(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Aqui você pode fazer algo com os valores do formulário, como enviar para o servidor
-    console.log('Valores do formulário:', { nome, email, senha });
+
+    if (!email || !senha) {
+      alert('Por favor, preencha todos os campos do formulário');
+      return;
+    }
+
+    try{
+      const response = await axios.post('http://localhost:3000/Usuario/login',{
+        email,
+        senha
+      });
+
+      if(response.status === 200){
+        const { nome } = response.data; 
+        console.log('Login realizado com sucesso');
+        alert(`Bem-vindo, ${nome}!`);
+        navigate('/Inicio');
+      }else{
+        console.log('Erro ao realizar login:', response.data.error);
+      }
+    }catch(erro){
+      console.error('Erro ao realizar login:', erro);
+    }
   };
 
   function handleClick(){
     navigate('/Cadastro');
   }
-  function handleClicks(){
-    navigate('/Inicio');
-  }
+  
     return(
         <div className="App">
              <img className="imagens2" src={Logos} />
              <h3 id='frase'>1° APP para mapeamento de resíduos sólidos no mundo</h3>
              <form className='formulario' onSubmit={handleSubmit}>
-             <input
-                type="text"
-                placeholder="Nome:"
-                value={nome}
-                onChange={handleNomeChange}
-            />
+             
             <input
                 type="email"
                 placeholder="E-mail:"
@@ -61,7 +70,7 @@ const Login = ()=>{
              />
              
             <div className='btns'>
-              <button className= "botaoLogin" onClick={handleClicks} disabled={false} type="submit">Login</button>
+              <button className= "botaoLogin"  disabled={false} type="submit">Login</button>
               <p id='ou'>ou</p>
               <button className="botaoCadastro" onClick={handleClick} disabled={false} type="submit">Cadastro</button>
             </div>
