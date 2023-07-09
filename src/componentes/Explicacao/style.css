@@ -49,18 +49,20 @@ body{
 }
 
 .btnContinuar{
-    padding: 10px 45px;
+    padding: 10px 10rem;
     border-radius: 25px;
     margin-top: 26px;
     background-color: #b6b9ff;
     color: #fff;
-    border: 1.8px solid #fff;
+    border: 2px solid #fff;
+    font-weight: 800;
 }
 
 .btnContinuar:hover	{
-    background-color: #43456e;
-    color: #000000;
-    border: #000000;
+    background-color: #ffffff;
+    color: #43456e;
+    border:2px dotted #43456e;
+    cursor: pointer;
 }
 
 #radios{

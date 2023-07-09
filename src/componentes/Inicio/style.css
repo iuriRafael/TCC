@@ -23,20 +23,53 @@ body {
 }
 
 .botao-container {
+  gap: 5px;
+  margin-top: 15px;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   align-items: center;
 }
 
-.localizacao{
+.localizacao {
   background-color: #4F5285;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  color: #fff;
+  padding: 12px;
+  border: 2px dotted #AAA4F2;
+  border-radius: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-out;
 }
 
-.concluir{
-  background-color: #AAA4F2;
+.localizacao:hover {
+  background-color: #31344e;
+  transition: background-color 0.3s ease-in;
 }
-.localizacao , .concluir{
+
+.concluir {
+  background-color: #AAA4F2;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  color: #fff;
+  padding: 12px;
+  border: 2px dotted #AAA4F2;
+  border-radius: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-out;
+}
+
+.concluir:hover {
+  background-color: #e5d9ff;
+  transition: background-color 0.3s ease-in;
+}
+
+
+.localizacao,
+.concluir {
   margin: 0 5px;
   width: 40vw;
   padding: 1.5vh 0;
@@ -44,23 +77,20 @@ body {
   border: none;
   border-radius: 15px;
   font-weight: 600;
-  cursor:pointer ;
+  cursor: pointer;
 }
 
-.localizacao:hover , .concluir:hover {
-  background-color: #45a049;
-}
-
-.localizacao:focus , .concluir:focus {
+.localizacao:focus,
+.concluir:focus {
   outline: none;
 }
 
-.imagens2{
+.imagens2 {
   align-items: center;
   width: 100VW;
   margin-left: 5VW;
 }
 
-#espaco{
+#espaco {
   height: 10vh;
 }

@@ -16,26 +16,87 @@ body{
     justify-content: center;
 }
 
-.btnCadastrar{
-    border-radius: 15px;
-    color: #fff;
+.btnCadastrar {
+  position: relative;
+  display: inline-block;
+  padding: 12px;
+  width: 20rem;
+  border-radius: 18px;
+  cursor: pointer;
+  border: 2px solid #AAA4F2;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  background-color: #AAA4F2;
+  color: #fff;
+  overflow: hidden;
+  transition: background-color 0.3s ease-out;
+}
+
+.btnCadastrar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+}
+
+.btnCadastrar:hover {
+  background-color: #fff;
+  color: #AAA4F2;
+  border: 2px dotted #AAA4F2;
+  transition: background-color 0.3s ease-in;
+}
+
+.btnCadastrar:hover::after {
+  opacity: 1;
+  transition: opacity 0.8s ease-in;
+}
+
+.btnsVoltar{
     width: 20rem;
-    margin-top: 3px;
     padding: 12px;
-    background-color: #AAA4F2;
-    margin-top: 2px;
+    border-radius: 18px;
     cursor: pointer;
-    border: 2px solid #AAA4F2;
-}
-
-.btnCadastrar:hover{
-    background-color: #fff;
-    color: #AAA4F2;
-    border:2px dotted #AAA4F2;
-}
-
-.btnCadastrar{
+    border: 2px solid #fafafa;
     align-items: center;
     display: flex;
     justify-content: center;
+    position: relative;
+    background-color: #e6e6e6;
+    color: #000000;
+    cursor: pointer;
+    overflow: hidden;
+    transition: background-color 0.3s ease-out;
+}
+
+.btnsVoltar:hover{
+    background-color: #b1b1b1;
+    color: #ffffff;
+    border: 2px solid #fdfcff;
+    transition: background-color 0.3s ease-in;
+}
+.btnsVoltars::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    background-color: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
+}
+
+.btnsVoltarhover::after{
+    opacity: 1;
+    transition: opacity 0.8s ease-in;
+}
+
+.Btns{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
