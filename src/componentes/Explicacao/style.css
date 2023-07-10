@@ -17,6 +17,7 @@ body{
 .banner {
     max-width: 100vw;
     border-radius: 25px;
+    /* margin-bottom: 25vh; */
 }
 
 #exp{
@@ -42,10 +43,17 @@ body{
 
 .frases{
     align-items: center;
-    color: #b6b9ff;
-    font-weight: 700;
+    color: #000000;
+    font-weight: 850;
 }
 
+#terceiraFrase{
+    align-items: center;
+}
+
+.botao{
+    margin-bottom: -0.001vh;
+}
 .celular {
     max-width: 50%;
     align-items: center;
@@ -55,6 +63,9 @@ body{
     border-radius: 5px;
 }
 
+#cel2{
+    height: 43vh;
+}
 #cxCelular > .celular{
     display: flex !important;
     justify-content: center;
@@ -68,7 +79,7 @@ body{
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: #000000;
+    background-color: #b6b9ff;
     border-radius: 5px;
     padding-bottom: 2vh;
 }
@@ -76,8 +87,7 @@ body{
     align-items: center;
     padding: 10px 5rem;
     border-radius: 25px;
-    margin-top: 26px;
-    background-color: #b6b9ff;
+    background-color: #43456e;
     color: #fff;
     border: 2px solid #fff;
     font-weight: 800;
@@ -91,6 +101,10 @@ body{
 }
 
 .carousel-indicators {
-    background-color: #000000;
+    background-color: #b6b9ff;
     border-radius: 5px;
+}
+
+.carousel-conntrol-next-icon{
+    color:#000 !important;
 }
