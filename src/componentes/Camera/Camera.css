@@ -16,9 +16,10 @@ h2 {
 
 }
 
-.d-block w-100{
+.d-block w-100 {
   margin: 5px;
 }
+
 @media (max-width: 768px) {
   #imgCap img {
     flex: 0 0 50%;
@@ -85,7 +86,7 @@ h2 {
   width: 4.5em;
 }
 
-.btnVoltar{
+.btnVoltar {
   width: 8rem;
   padding: 10px;
   border-radius: 10px;
@@ -101,13 +102,14 @@ h2 {
   transition: background-color 0.3s ease-out;
 }
 
-.btnsoltar:hover{
+.btnsoltar:hover {
   background-color: #b1b1b1;
   color: #ffffff;
   border: 2px solid #fdfcff;
   transition: background-color 0.3s ease-in;
 }
-.btnVoltars::after{
+
+.btnVoltars::after {
   content: '';
   position: absolute;
   top: 0;
@@ -117,7 +119,7 @@ h2 {
   transition: opacity 0.3s ease-out;
 }
 
-.btnVoltarhover::after{
+.btnVoltarhover::after {
   opacity: 1;
   transition: opacity 0.8s ease-in;
 }
@@ -166,10 +168,19 @@ video {
   margin-right: 8px;
 }
 
-.carousel-control-next-icon{
+.carousel-control-next-icon {
   color: #4F5285 !important;
 }
 
-.visually-hidden{
+.visually-hidden {
   color: #4F5285;
+}
+
+.remove-button {
+  position: relative;
+  bottom: 1.5rem;
+}
+
+#iconDeletar{
+border-radius: 25px;
 }
