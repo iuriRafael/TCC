@@ -35,7 +35,7 @@ body {
   background-color: #4F5285;
   align-items: center;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   color: #fff;
   padding: 12px;
   border: 2px dotted #AAA4F2;
@@ -53,7 +53,7 @@ body {
   background-color: #AAA4F2;
   align-items: center;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   color: #fff;
   padding: 12px;
   border: 2px dotted #AAA4F2;

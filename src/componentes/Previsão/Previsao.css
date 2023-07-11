@@ -1,4 +1,4 @@
-.Previsão {
+.Previsao {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -18,10 +18,26 @@
 
 #temp {
   margin: 0;
+  font-weight: 650;
 }
 
 #city {
   margin: 0;
+  font-weight: 700;
+}
+
+.cxItens > #state{
+  font-size: 14px !important;
+  color:#4F5285;
+  text-align: center;
+  font-weight: 700;
+}
+
+.cxItens{
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 1.6vh;
 }
 
 .clima-icon{

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './Camera.css';
 import { useNavigate } from 'react-router-dom';
+import { Carousel } from 'react-bootstrap';
 
 function CameraPage() {
   const videoRef = useRef(null);
@@ -106,11 +107,13 @@ function CameraPage() {
       {capturedImagesList.length > 0 && (
         <div>
           <h2>Imagens capturadas:</h2>
-          <div id="imgCap">
+          <Carousel>
             {capturedImagesList.map((image, index) => (
-              <img key={index} src={image} alt={`Captured Image ${index + 1}`} />
+              <Carousel.Item key={index}>
+                <img className="d-block w-100" id='' src={image} alt={`Captured Image ${index + 1}`} />
+              </Carousel.Item>
             ))}
-          </div>
+          </Carousel>
         </div>
       )}
     </div>
