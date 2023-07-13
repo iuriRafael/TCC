@@ -86,9 +86,10 @@ body{
     border-radius: 25px;
     background-color: #43456e;
     color: #fff;
-    border: 2px solid #fff;
+    border: 2px solid #ff0000;
     font-weight: 800;
-    margin-bottom:5vh ;
+    margin-bottom:7vh ;
+    
 }
 
 .btnContinuar:hover	{
