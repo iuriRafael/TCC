@@ -1,29 +1,44 @@
-*{
+* {
     margin: 0;
     padding: 0;
 }
 
-body{
+.formas {
+    border-radius: 40% 60% 39% 61% / 80% 36% 64% 20%;
+    background: -webkit-linear-gradient(left, #aaa4f2, #4f5285);
+    background: -moz-linear-gradient(left, #aaa4f2, #4f5285);
+    background: -ms-linear-gradient(left, #aaa4f2, #4f5285);
+    background: -o-linear-gradient(left, #aaa4f2, #4f5285);
+    background: linear-gradient(to right, #aaa4f2, #4f5285);    height: 293px;
+    width: 293px;
+    left: -10%;
+    top: -5%;
+    position: absolute;
+    z-index: -1;
+}
+
+body {
     width: 100vw;
     overflow-x: hidden;
 
 }
 
-.App{
+.App {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-#frase{
+#frase {
     text-align: center;
     font-size: 18px;
+    font-weight: 700;
     margin-top: -35px;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-.formulario{
+.formulario {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -31,21 +46,21 @@ body{
     margin-top: 10px;
 }
 
-input{
+input {
     padding: 10px;
     border-radius: 15px;
     margin: 12px;
-    width:16rem;
+    width: 16rem;
 }
 
-.btns{
+.btns {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-.botaoLogin{
+.botaoLogin {
     border-radius: 15px;
     color: #fff;
     width: 20rem;
@@ -57,17 +72,19 @@ input{
     cursor: pointer;
 }
 
-.botaoLogin:hover{
+.botaoLogin:hover {
     background-color: #fff;
     color: #4F5285;
-    border:2px dotted #4F5285;
+    border: 2px dotted #4F5285;
 }
-.botaoCadastro:hover{
+
+.botaoCadastro:hover {
     background-color: #fff;
     color: #AAA4F2;
-    border:2px dotted #AAA4F2;
+    border: 2px dotted #AAA4F2;
 }
-.botaoCadastro{
+
+.botaoCadastro {
     border-radius: 15px;
     color: #fff;
     width: 20rem;
@@ -79,13 +96,13 @@ input{
     border: 2px solid #AAA4F2;
 }
 
-#ou{
+#ou {
     padding-top: 4px;
     font-weight: 600;
     margin-bottom: 3px;
 }
 
-.imagens2{
+.imagens2 {
     max-width: 21rem;
     margin-right: 2.5vw;
 }

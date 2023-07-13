@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './login.css';
+import './styles/login.css';
 import Logos from '../img/default_765x625 2.png';
 import axios from 'axios';
 import { Modal, Button } from 'react-bootstrap';
@@ -61,6 +61,7 @@ const Login = () => {
       <img className="imagens2" src={Logos} alt="Logo" />
       <h3 id="frase">1° APP para mapeamento de resíduos sólidos no mundo</h3>
       <form className="formulario" onSubmit={handleSubmit}>
+        <div className='formas'></div>
         <input
           type="email"
           placeholder="E-mail:"
@@ -86,7 +87,10 @@ const Login = () => {
       </form>
 
       {/* Modal de boas-vindas */}
-      <Modal show={showWelcomeModal} onHide={handleCloseWelcomeModal}>
+      <Modal
+        show={showWelcomeModal}
+        onHide={handleCloseWelcomeModal}
+      >
         <Modal.Header closeButton>
           <Modal.Title>Boas-vindas!</Modal.Title>
         </Modal.Header>
@@ -104,3 +108,4 @@ const Login = () => {
 };
 
 export default Login;
+
