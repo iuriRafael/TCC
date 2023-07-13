@@ -10,6 +10,8 @@ function CameraPage() {
 
   const [capturedImage, setCapturedImage] = useState(null);
   const [capturedImagesList, setCapturedImagesList] = useState([]);
+  const [showButton, setShowButton] = useState(false); // Estado para controlar a exibição do botão "Avançar"
+  const [selectedImageIndex, setSelectedImageIndex] = useState(-1); // Estado para controlar o índice da imagem selecionada
 
   const retornar = () => {
     navigate('/Inicio');
@@ -43,8 +45,9 @@ function CameraPage() {
 
       // Adiciona a imagem à lista de imagens capturadas
       setCapturedImagesList((prevList) => [...prevList, dataURL]);
-
       setCapturedImage(dataURL);
+
+      setShowButton(true); // Exibe o botão "Avançar"
     }
   };
 
@@ -64,6 +67,7 @@ function CameraPage() {
 
           // Adiciona a imagem à lista de imagens capturadas
           setCapturedImagesList((prevList) => [...prevList, dataURL]);
+          setShowButton(true); // Exibe o botão "Avançar"
 
           console.log('Foto escolhida:', dataURL);
         };
@@ -75,11 +79,38 @@ function CameraPage() {
   };
 
   const removeImage = (index) => {
+    setSelectedImageIndex(index); // Define o índice da imagem selecionada para exclusão
+
+    if (capturedImagesList.length === 1) {
+      // Caso seja a última imagem, remove diretamente
+      setCapturedImagesList([]);
+      setShowButton(false);
+    }
+  };
+
+  const handleDeleteConfirm = () => {
+    // Remove a imagem selecionada com base no índice
     setCapturedImagesList((prevList) => {
       const updatedList = [...prevList];
-      updatedList.splice(index, 1);
+      updatedList.splice(selectedImageIndex, 1);
       return updatedList;
     });
+
+    setSelectedImageIndex(-1); // Redefine o índice da imagem selecionada para -1
+    setShowButton(capturedImagesList.length > 1); // Exibe o botão "Avançar" se ainda houver mais imagens
+
+    console.log('Imagem removida com sucesso');
+  };
+
+  const handleDeleteCancel = () => {
+    setSelectedImageIndex(-1); // Redefine o índice da imagem selecionada para -1
+
+    console.log('Remoção de imagem cancelada');
+  };
+
+  const handleAvancar = () => {
+    // Implemente a lógica para avançar para a próxima tela aqui
+    navigate("/Postar");
   };
 
   return (
@@ -120,13 +151,32 @@ function CameraPage() {
               <Carousel.Item key={index}>
                 <img className="d-block w-100" src={image} alt={`Captured Image ${index + 1}`} />
                 <button className="remove-button" onClick={() => removeImage(index)}>
-                  <svg id='iconDeletar' xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#4F5285" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                  <svg id="iconDeletar" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#4F5285" className="bi bi-trash-fill" viewBox="0 0 16 16">
                     <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
                   </svg>
                 </button>
               </Carousel.Item>
             ))}
           </Carousel>
+          {showButton && (
+            <>
+              {selectedImageIndex === -1 ? (
+                <button className="avancar-button" onClick={handleAvancar}>
+                  Avançar
+                </button>
+              ) : (
+                <div className="delete-confirmation">
+                  <p>Deseja realmente excluir esta imagem?</p>
+                  <button className="delete-confirm" onClick={handleDeleteConfirm}>
+                    Confirmar
+                  </button>
+                  <button className="delete-cancel" onClick={handleDeleteCancel}>
+                    Cancelar
+                  </button>
+                </div>
+              )}
+            </>
+          )}
         </div>
       )}
     </div>

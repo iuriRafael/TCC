@@ -32,7 +32,7 @@ body{
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 135vh;
+    height: 125vh;
 }
 
 #fraseExplicacao {
@@ -42,31 +42,28 @@ body{
 }
 
 .frases{
+    color: #ffffff;
+    font-weight: 900;
+    font-size: 25px;
+    width: 80vw;
     align-items: center;
-    color: #000000;
-    font-weight: 850;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 4vh;
 }
 
 #terceiraFrase{
     align-items: center;
 }
 
-.botao{
-    margin-bottom: -0.001vh;
-}
 .celular {
-    max-width: 50%;
+    height: 50vh;
     align-items: center;
     margin-top: 20px;
     background-color: #ffffff;
     /*border: 1.3px dashed #000000; */
     border-radius: 5px;
-}
-
-#cel2{
-    height: 43vh;
-}
-#cxCelular > .celular{
     display: flex !important;
     justify-content: center;
     align-items: center;
@@ -91,6 +88,7 @@ body{
     color: #fff;
     border: 2px solid #fff;
     font-weight: 800;
+    margin-bottom:5vh ;
 }
 
 .btnContinuar:hover	{
@@ -107,4 +105,14 @@ body{
 
 .carousel-conntrol-next-icon{
     color:#000 !important;
+}
+
+.cxBtnContinuar{
+    display: flex;
+    justify-content: center;
+}
+
+#car{
+    background-color: #b6b9ff;
+    border-radius: 25px;
 }

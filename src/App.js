@@ -13,6 +13,7 @@ import Mapa from "./componentes/Mapa";
 import Finalizado from "./componentes/FIinalizado";
 import Andamento from "./componentes/Andamento";
 import Concluir from "./componentes/Concluir";
+import Postar from "./componentes/Postar";
 
 function App() {
 
@@ -31,6 +32,7 @@ function App() {
           <Route path="/Finalizado" element={<Finalizado />} />
           <Route path="/Andamento" element={<Andamento />} />
           <Route path="/Concluir" element={<Concluir />} />
+          <Route path="/Postar" element={<Postar />} />
         </Routes>
       </BrowserRouter>
     </div>

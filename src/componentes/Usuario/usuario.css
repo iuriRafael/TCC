@@ -1,86 +1,161 @@
 * {
-    padding: 0;
-    margin: 0;
-  }
-  body{
-    height: 100vh;
-  }
-  .Container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 15%;
-  }
-  
-  .perfil {
-    display: flex;
-    width: 9rem;
-    margin-bottom: 35px; 
-    border-radius: 50%;
-    border: 2px solid #000;
-  }
+  padding: 0;
+  margin: 0;
+}
 
-  .perfil:hover{
-    border: 2px dashed #000;
+body {
+  height: 100vh;
+}
 
-  }
+.Container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15%;
+}
 
-  .iconFinal{
-    width: 1.8rem;
-    color: #fff;
-    background-color: #ffac3f;
-    border-radius: 25px;
-  }
+.perfil {
+  display: flex;
+  width: 9rem;
+  margin-bottom: 35px;
+  border-radius: 50%;
+  border: 2px solid #000;
+}
 
-  .iconAndamento{
-    width: 1.8rem;
-    background-color: #AAA4F2;
-    border-radius: 25px;
-  }
-  .user-buttons {
-    display: flex;
-    flex-direction: column;
-    margin-top: 35px; 
-  }
-  
-  h2 {
-    margin-top: 15px; 
-  }
+.perfil:hover {
+  border: 2px dashed #000;
 
-  #btnAndamento, #btnFinalizado {
-    width: 20rem;
-    height: 6.5vh;
-    margin-bottom: 30px;
-    border-radius: 10px;
-    cursor: pointer;
-  }
-  
-  #btnAndamento {
-    background-color: #ffac3f;
-    color: #fff;
-    font-weight: 600;
-    border: 1.8px solid #ffffff;
-  }
-  
-  #btnAndamento:hover {
-    background-color: #ffffff;
-    color: #ffac3f;
-    font-weight: 600;
-    border: 2.4px dotted #ffac3f;
-  }
-  
-  #btnFinalizado {
-    background-color: #AAA4F2;
-    color: #fff;
-    font-weight: 600;
-    border: 1.8px solid #ffffff;
-  }
-  
-  #btnFinalizado:hover {
-    background-color: #ffffff;
-    color: #AAA4F2;
-    font-weight: 600;
-    border: 2.4px dotted #AAA4F2;
-  }
-  
+}
+
+.iconFinal {
+  width: 1.8rem;
+  color: #fff;
+  background-color: #ffac3f;
+  border-radius: 25px;
+}
+
+.iconAndamento {
+  width: 1.8rem;
+  background-color: #AAA4F2;
+  border-radius: 25px;
+}
+
+.user-buttons {
+  display: flex;
+  flex-direction: column;
+  margin-top: 35px;
+}
+
+h2 {
+  margin-top: 15px;
+}
+
+#btnAndamento,
+#btnFinalizado,
+#btnSair {
+  width: 20rem;
+  height: 6.5vh;
+  margin-bottom: 30px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+#btnAndamento {
+  background-color: #ffac3f;
+  color: #fff;
+  font-weight: 600;
+  border: 1.8px solid #ffffff;
+}
+
+#btnAndamento:hover {
+  background-color: #ffffff;
+  color: #ffac3f;
+  font-weight: 600;
+  border: 2.4px dotted #ffac3f;
+}
+
+#btnFinalizado {
+  background-color: #AAA4F2;
+  color: #fff;
+  font-weight: 600;
+  border: 1.8px solid #ffffff;
+}
+
+#btnFinalizado:hover {
+  background-color: #ffffff;
+  color: #AAA4F2;
+  font-weight: 600;
+  border: 2.4px dotted #AAA4F2;
+}
+
+#btnSair {
+  background-color: #ff5e5e;
+  color: #ffffff;
+  font-weight: 600;
+  border: 1.8px solid #ffffff;
+}
+
+#btnSair:hover {
+  background-color: #ffffff;
+  color: #ff5e5e;
+  font-weight: 600;
+  border: 2.4px dotted #ff5e5e;
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 16px;
+  width: 325px;
+  max-width: 95%;
+  max-height: 28vh;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal h3 {
+  margin-bottom: 16px;
+}
+
+.modal-buttons button {
+  margin-right: 8px;
+}
+
+#btnCancelar{
+  background-color: #e4e0e0;
+  border: none;
+  color: #000;
+}
+
+#btnConfirmar{
+  background-color: #ff5e5e;
+  border: none;
+}
+
+#btnsModal{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#pergunta{
+  align-items: center;
+  text-align: center;
+  font-weight: 750;
+}

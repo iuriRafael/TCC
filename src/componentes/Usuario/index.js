@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { Modal, Button } from 'react-bootstrap';
 import "./usuario.css";
 import Navbar from "../navbar";
 import perfil from "../img/noImage.png";
-import finalizado from "../img/botoes/relogio.png";
-import andamentos from "../img/botoes/verificacao-da-lista-da-area-de-transferencia.png";
 import { useNavigate } from 'react-router-dom';
 
 import Previsao from "../Previsão";
@@ -11,31 +10,44 @@ import Previsao from "../Previsão";
 function Usuario(props) {
   const navigate = useNavigate();
   const [nomeUsuario, setNomeUsuario] = useState('');
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   useEffect(() => {
-    // Chamar uma função assíncrona que busca o nome do usuário logado
     fetchNomeUsuario();
   }, []);
 
   async function fetchNomeUsuario() {
     try {
-      // Fazer uma chamada para a API para obter o nome do usuário logado
       const response = await fetch("http://localhost:3000/Usuario/nomeUsuario");
       const data = await response.json();
+      console.log("alguma coisa", data);
       const nomeUsuario = data.nomeUsuario;
 
-      setNomeUsuario(nomeUsuario);
+      setNomeUsuario(data.nomeUsuario);
     } catch (error) {
       console.error('Erro ao obter o nome do usuário:', error);
     }
   }
 
-  function handleClick() {
-    navigate('/Finalizado');
+  function handleSair() {
+    setModalIsOpen(true);
   }
 
-  function andamento() {
+  function handleConfirmarSair() {
+    setModalIsOpen(false);
+    navigate('/Login');
+  }
+
+  function handleCancelarSair() {
+    setModalIsOpen(false);
+  }
+
+  function handleAndamento() {
     navigate('/Andamento');
+  }
+
+  function handleClick() {
+    navigate('/Finalizado');
   }
 
   return (
@@ -43,10 +55,10 @@ function Usuario(props) {
       <Previsao />
       <div className="Container">
         <img className="perfil" src={perfil} alt="Perfil" />
-        <h2 id="nomeUsuario">Nome do user{nomeUsuario}</h2>
+        <h2 id="nomeUsuario">{localStorage.getItem("nome")}</h2>
 
         <div className="user-buttons">
-          <button id="btnAndamento" onClick={andamento} disabled={false}>
+          <button id="btnAndamento" onClick={handleAndamento} disabled={false}>
             <div id="iconAndamento">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
                 <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
@@ -65,11 +77,35 @@ function Usuario(props) {
             </div>
             Tarefas finalizadas
           </button>
+
+          <button id="btnSair" onClick={handleSair} disabled={false}>
+            <div>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z" />
+                <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z" />
+              </svg>
+            </div>
+            Sair da conta
+          </button>
         </div>
       </div>
 
       <Navbar />
       <div id="espaco"></div>
+
+      <Modal show={modalIsOpen} onHide={() => setModalIsOpen(false)}>
+        <Modal.Header>
+          <Modal.Title id="pergunta">Tem certeza que deseja sair da conta?</Modal.Title>
+        </Modal.Header>
+        <Modal.Footer id="btnsModal">
+          <Button id="btnCancelar" variant="secondary" onClick={handleCancelarSair}>
+            Cancelar
+          </Button>
+          <Button id="btnConfirmar" variant="primary" onClick={handleConfirmarSair}>
+            Confirmar
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 }

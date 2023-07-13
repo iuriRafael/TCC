@@ -13,11 +13,10 @@ h2 {
   margin: 5px;
   max-width: 98%;
   border-radius: 15px;
-
 }
 
-.d-block w-100 {
-  margin: 5px;
+.d-block.w-100 {
+  border-radius: 5px;
 }
 
 @media (max-width: 768px) {
@@ -54,7 +53,6 @@ h2 {
   color: #AAA4F2;
   transition: background-color 0.3s ease-in, color 0.3s ease-in;
 }
-
 
 #escolherFoto {
   padding: 3vh 4.5rem;
@@ -181,6 +179,5 @@ video {
   bottom: 1.5rem;
 }
 
-#iconDeletar{
-border-radius: 25px;
+#iconDeletar {
 }
