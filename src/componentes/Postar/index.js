@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { Carousel } from 'react-bootstrap';
 import './postar.css';
+import axios from 'axios';
 
 const Postar = () => {
   const location = useLocation();
-  const capturedImagesList = location?.state || [];
+  const capturedImagesList = location.state || [];
   const navigate = useNavigate();
 
   const [texto, setTexto] = useState('');
   const [enderecoAtual, setEnderecoAtual] = useState('');
+  const [latitude, setLatitude] = useState(null);
+  const [longitude, setLongitude] = useState(null);
 
   const handleChangeTexto = (event) => {
     setTexto(event.target.value);
@@ -26,36 +30,57 @@ const Postar = () => {
   };
 
   useEffect(() => {
-    const getCurrentAddress = async () => {
-      try {
-        const response = await fetch(
-          'https://api.geoapify.com/v1/ipinfo?apiKey=dd881df269ee42f192ef6f0fc012465d'
+    const getCurrentLocation = () => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            setLatitude(position.coords.latitude);
+            setLongitude(position.coords.longitude);
+          },
+          (error) => {
+            console.log('Erro ao obter a localização atual:', error);
+          }
         );
-        const data = await response.json();
-        const {
-          city,
-          state,
-          country,
-          postcode,
-          street,
-          house_number,
-        } = data;
-        const address = `${street} ${house_number}, ${postcode} ${city}, ${state}, ${country.name}`;
-        setEnderecoAtual(address);
-      } catch (error) {
-        console.log('Erro ao obter o endereço atual:', error);
+      } else {
+        console.log('Geolocalização não suportada pelo navegador.');
+      }
+    };
+
+    getCurrentLocation();
+  }, []);
+
+  useEffect(() => {
+    const getCurrentAddress = async () => {
+      if (latitude && longitude) {
+        try {
+          const response = await axios.get('https://places-dsn.algolia.net/1/places/reverse', {
+            params: {
+              latlng: `${latitude},${longitude}`,
+              language: 'pt-BR',
+            },
+          });
+
+          const data = response.data;
+          const { road, house_number, neighborhood } = data.address;
+          const address = `${road} ${house_number}, ${neighborhood}`;
+
+          setEnderecoAtual(address);
+        } catch (error) {
+          console.log('Erro ao obter o endereço atual:', error);
+        }
       }
     };
 
     getCurrentAddress();
-  }, []);
+  }, [latitude, longitude]);
 
   return (
     <div className="postar-container">
       <h2>Postar</h2>
       <form className="postar-form" onSubmit={handleSubmit}>
         <textarea
-          className="postar-textarea" resize="none"
+          className="postar-textarea"
+          resize="none"
           placeholder="Digite o seu texto"
           value={texto}
           onChange={handleChangeTexto}
@@ -65,9 +90,14 @@ const Postar = () => {
           {enderecoAtual || 'Carregando endereço...'}
         </div>
         <div className="captured-images">
-          {capturedImagesList.map((image, index) => (
-            <img key={index} src={image} alt={`Captured Image ${index + 1}`} />
-          ))}
+          <h2>Imagens capturadas:</h2>
+          <Carousel>
+            {capturedImagesList.map((image, index) => (
+              <Carousel.Item key={index}>
+                <img className="d-block w-100" src={image} alt={`Captured Image ${index + 1}`} />
+              </Carousel.Item>
+            ))}
+          </Carousel>
         </div>
         <div className="postar-buttons">
           <button type="submit" className="postar-button">

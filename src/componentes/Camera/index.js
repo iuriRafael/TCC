@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useLocation } from 'react';
 import './Camera.css';
 import { useNavigate } from 'react-router-dom';
-import { Carousel } from 'react-bootstrap';
+import { Carousel, Modal, Button } from 'react-bootstrap';
 
 function CameraPage() {
   const videoRef = useRef(null);
@@ -9,9 +9,11 @@ function CameraPage() {
   const navigate = useNavigate();
 
   const [capturedImage, setCapturedImage] = useState(null);
-  const [capturedImagesList, setCapturedImagesList] = useState([]);
-  const [showButton, setShowButton] = useState(false); // Estado para controlar a exibição do botão "Avançar"
-  const [selectedImageIndex, setSelectedImageIndex] = useState(-1); // Estado para controlar o índice da imagem selecionada
+  const [showButton, setShowButton] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [showCarousel, setShowCarousel] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   const retornar = () => {
     navigate('/Inicio');
@@ -33,6 +35,18 @@ function CameraPage() {
     accessCamera();
   }, []);
 
+  const MAX_IMAGES = 4;
+
+  const [capturedImagesList, setCapturedImagesList] = useState(() => {
+    const savedImages = localStorage.getItem('capturedImages');
+    return savedImages ? JSON.parse(savedImages) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem('capturedImages', JSON.stringify(capturedImagesList));
+    setShowButton(capturedImagesList.length > 1);
+  }, [capturedImagesList]);
+
   const takePhoto = () => {
     const videoElement = videoRef.current;
     const canvasElement = canvasRef.current;
@@ -43,11 +57,13 @@ function CameraPage() {
 
       const dataURL = canvasElement.toDataURL('image/jpeg');
 
-      // Adiciona a imagem à lista de imagens capturadas
-      setCapturedImagesList((prevList) => [...prevList, dataURL]);
-      setCapturedImage(dataURL);
-
-      setShowButton(true); // Exibe o botão "Avançar"
+      setCapturedImagesList((prevList) => {
+        const updatedList = [...prevList];
+        if (updatedList.length < MAX_IMAGES) {
+          updatedList.push(dataURL);
+        }
+        return updatedList;
+      });
     }
   };
 
@@ -65,9 +81,8 @@ function CameraPage() {
         reader.onload = (e) => {
           const dataURL = e.target.result;
 
-          // Adiciona a imagem à lista de imagens capturadas
           setCapturedImagesList((prevList) => [...prevList, dataURL]);
-          setShowButton(true); // Exibe o botão "Avançar"
+          setCapturedImage(dataURL);
 
           console.log('Foto escolhida:', dataURL);
         };
@@ -79,45 +94,55 @@ function CameraPage() {
   };
 
   const removeImage = (index) => {
-    setSelectedImageIndex(index); // Define o índice da imagem selecionada para exclusão
-
-    if (capturedImagesList.length === 1) {
-      // Caso seja a última imagem, remove diretamente
-      setCapturedImagesList([]);
-      setShowButton(false);
-    }
+    setSelectedImage(index);
+    setShowDeleteModal(true);
   };
 
   const handleDeleteConfirm = () => {
-    // Remove a imagem selecionada com base no índice
     setCapturedImagesList((prevList) => {
       const updatedList = [...prevList];
-      updatedList.splice(selectedImageIndex, 1);
+      updatedList.splice(selectedImage, 1);
       return updatedList;
     });
-
-    setSelectedImageIndex(-1); // Redefine o índice da imagem selecionada para -1
-    setShowButton(capturedImagesList.length > 1); // Exibe o botão "Avançar" se ainda houver mais imagens
+    setSelectedImage(null);
+    setShowDeleteModal(false);
 
     console.log('Imagem removida com sucesso');
   };
 
   const handleDeleteCancel = () => {
-    setSelectedImageIndex(-1); // Redefine o índice da imagem selecionada para -1
+    setSelectedImage(null);
+    setShowDeleteModal(false);
 
     console.log('Remoção de imagem cancelada');
   };
 
   const handleAvancar = () => {
-    // Implemente a lógica para avançar para a próxima tela aqui
-    navigate("/Postar");
+    setShowCarousel(true);
+    navigate('/Postar');
+  };
+
+  const handleModalKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      handleDeleteConfirm();
+    }
   };
 
   return (
     <div>
       <button className="btnVoltar" onClick={retornar} disabled={false} type="submit">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-left" viewBox="0 0 16 16">
-          <path fillRule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          className="bi bi-arrow-left"
+          viewBox="0 0 16 16"
+        >
+          <path
+            fillRule="evenodd"
+            d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"
+          />
         </svg>
         Voltar
       </button>
@@ -128,57 +153,127 @@ function CameraPage() {
         </div>
         <div className="button-container">
           <button id="tirarFoto" onClick={takePhoto}>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-camera-fill" viewBox="0 0 16 16">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              className="bi bi-camera-fill"
+              viewBox="0 0 16 16"
+            >
               <path d="M10.5 8.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
-              <path d="M2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2zm.5 2a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm9 2.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0z" />
+              <path
+                d="M2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2zm.5 2a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm9 2.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0z"
+              />
             </svg>
             Tirar Foto
           </button>
           <button id="escolherFoto" onClick={chooseFromLibrary}>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-upload" viewBox="0 0 16 16">
-              <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
-              <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              className="bi bi-upload"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"
+              />
+              <path
+                d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"
+              />
             </svg>
             Carregar imagem
           </button>
+          {capturedImagesList.length > 0 && (
+            <button className="avancarButton" onClick={handleAvancar}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="white"
+                className="bi bi-send-fill"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855H.766l-.452.18a.5.5 0 0 0-.082.887l.41.26.001.002 4.995 3.178 3.178 4.995.002.002.26.41a.5.5 0 0 0 .886-.083l6-15Zm-1.833 1.89L6.637 10.07l-.215-.338a.5.5 0 0 0-.154-.154l-.338-.215 7.494-7.494 1.178-.471-.47 1.178Z"
+                />
+              </svg>
+              Avançar
+            </button>
+          )}
         </div>
       </div>
       {capturedImagesList.length > 0 && (
         <div>
           <h2>Imagens capturadas:</h2>
-          <Carousel>
-            {capturedImagesList.map((image, index) => (
-              <Carousel.Item key={index}>
-                <img className="d-block w-100" src={image} alt={`Captured Image ${index + 1}`} />
-                <button className="remove-button" onClick={() => removeImage(index)}>
-                  <svg id="iconDeletar" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#4F5285" className="bi bi-trash-fill" viewBox="0 0 16 16">
-                    <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
-                  </svg>
-                </button>
-              </Carousel.Item>
-            ))}
-          </Carousel>
-          {showButton && (
+          {showCarousel ? (
+            <Carousel>
+              {capturedImagesList.map((image, index) => (
+                <Carousel.Item key={index}>
+                  <img className="d-block w-100" src={image} alt={`Captured Image ${index + 1}`} />
+                </Carousel.Item>
+              ))}
+            </Carousel>
+          ) : (
             <>
-              {selectedImageIndex === -1 ? (
-                <button className="avancar-button" onClick={handleAvancar}>
-                  Avançar
-                </button>
-              ) : (
-                <div className="delete-confirmation">
-                  <p>Deseja realmente excluir esta imagem?</p>
-                  <button className="delete-confirm" onClick={handleDeleteConfirm}>
-                    Confirmar
-                  </button>
-                  <button className="delete-cancel" onClick={handleDeleteCancel}>
-                    Cancelar
-                  </button>
-                </div>
-              )}
+              <div id="imgCap">
+                {capturedImagesList.map((image, index) => (
+                  <div key={index}>
+                    <img className="captured-image" src={image} alt={`Captured Image ${index + 1}`} />
+                    <button
+                      className="remove-button"
+                      onClick={() => removeImage(index)}
+                      onMouseEnter={() => setIsHovered(true)}
+                      onMouseLeave={() => setIsHovered(false)}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="#ff5e5e"
+                        className="bi bi-trash-fill"
+                        viewBox="0 0 16 16"
+                      >
+                        <path
+                          d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"
+                        />
+                      </svg>
+                      {isHovered && <p>Deletar?</p>}
+                    </button>
+                  </div>
+                ))}
+              </div>
             </>
           )}
         </div>
       )}
+
+      <Modal
+        show={showDeleteModal}
+        onHide={() => setShowDeleteModal(false)}
+        onKeyDown={handleModalKeyDown}
+        tabIndex={-1}
+      >
+        <Modal.Header closeButton
+          show={showDeleteModal}
+          onHide={() => setShowDeleteModal(false)}
+          onKeyDown={handleModalKeyDown}
+          tabIndex={-1}
+        >
+          <Modal.Title id="pergunta">Tem certeza que deseja remover a imagem?</Modal.Title>
+        </Modal.Header>
+        <Modal.Footer id="btnsModal">
+          <Button id="btnCancelar" variant="secondary" onClick={handleDeleteCancel}>
+            Cancelar
+          </Button>
+          <Button
+            id="btnConfirmar" variant="primary" onClick={handleDeleteConfirm}>
+            Remover
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 }

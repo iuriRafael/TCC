@@ -13,20 +13,36 @@
 
 .btnConhecerMais {
   cursor: pointer;
-  padding: 15px 55px;
+  padding: 15px 0;
+  width: 50vw;
   border-radius: 25px;
   margin-top: 4vh;
-  border: 1.8px solid #fff;
+  border: 2px solid #fff;
   color: #fff;
   background-color: #4F5285;
 }
 
 .btnConhecerMais:hover {
-  background-color: #43456e;
-  border: 1.8px solid #43456e;
-  color: #000;
+  background-color: #ffffff;
+  border: 2px dashed #43456e;
+  color: #43456e;
   margin-top: 4vh;
+}
 
+.btnLogar{
+  cursor: pointer;
+  padding: 15px 0;
+  width: 50vw;
+  border-radius: 25px;
+  border: 2px solid #fff;
+  color: #fff;
+  background-color: #AAA4F2;
+}
+
+.btnLogar:hover{
+  background-color: #ffffff;
+  border: 2px dashed #AAA4F2;
+  color: #AAA4F2;
 }
 
 .titulo {

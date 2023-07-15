@@ -110,11 +110,13 @@ h2 {
   transform: translate(-50%, -50%);
   background-color: #fff;
   border-radius: 8px;
-  padding: 16px;
+  padding: 8px;
   width: 325px;
+  height: 325px;
   max-width: 95%;
   max-height: 28vh;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow-y: hidden;
 }
 
 .modal-overlay {

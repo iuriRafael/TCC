@@ -73,28 +73,42 @@ const Cadastro = () => {
       <h3 id='frase'>1° APP para mapeamento de resíduos sólidos no mundo</h3>
 
       <form className='formulario' onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Nome"
-          value={nome}
-          onChange={handleNomeChange}
-          required
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={handleEmailChange}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Senha"
-          value={senha}
-          onChange={handleSenhaChange}
-          required
-        />
-
+        <div className='cxInput'>
+          <input
+            className='inputForm'
+            type="text"
+            placeholder="Nome:"
+            value={nome}
+            onChange={handleNomeChange}
+            required
+          />
+        </div>
+        <div className='cxInput'>
+          <input
+            className='inputForm'
+            type="email"
+            placeholder="E-mail:"
+            value={email}
+            onChange={handleEmailChange}
+            required
+          />
+        </div>
+        <div className='cxInput'>
+          <input
+            className='inputForm'
+            type="password"
+            placeholder="Senha:"
+            value={senha}
+            onChange={handleSenhaChange}
+            required
+          />
+          <div id='eyeIcon'>
+            <svg id='iconOlho' xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+              <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
+              <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
+            </svg>
+          </div>
+        </div>
         <div className='Btns'>
           <button className="btnCadastrar" disabled={false} type="submit">
             Cadastrar
