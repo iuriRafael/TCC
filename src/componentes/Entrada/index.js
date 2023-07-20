@@ -27,7 +27,7 @@ function Entrada(props) {
             Conhecer Mais
           </button>
         </div>
-        <p id='ou'>ou</p>
+        <p className='ou'>ou</p>
         <div className='logar'>
           <button className="btnLogar" onClick={handleClickLogin} disabled={false} type="submit">
             Logar

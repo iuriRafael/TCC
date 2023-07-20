@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './style.css';
 import Logos from "../img/default_765x625 2.png";
+import logolat from "../img/Humaaans - Space (1).png"
 import axios from 'axios';
 
 const Cadastro = () => {
@@ -69,11 +70,21 @@ const Cadastro = () => {
 
   return (
     <div className="App">
+      <div id='esquerda'>
+        <div id='itensEsquerda'>
+          <img className="imagens2" src={logolat} alt="Logo"/>
+        <h3 id='titleExp'>Olá ! caso já tenha conta acesse o botão abaixo.</h3>
+        <button className="botaoLogin" type="submit"  onClick={retornar}>
+            Login
+          </button>
+        </div>
+      </div>
+      <div id='formsDireita'>
       <img className="imagens2" src={Logos} alt="Logo" />
       <h3 id='frase'>1° APP para mapeamento de resíduos sólidos no mundo</h3>
 
       <form className='formulario' onSubmit={handleSubmit}>
-        <div className='cxInput'>
+    
           <input
             className='inputForm'
             type="text"
@@ -82,8 +93,7 @@ const Cadastro = () => {
             onChange={handleNomeChange}
             required
           />
-        </div>
-        <div className='cxInput'>
+  
           <input
             className='inputForm'
             type="email"
@@ -92,8 +102,7 @@ const Cadastro = () => {
             onChange={handleEmailChange}
             required
           />
-        </div>
-        <div className='cxInput'>
+
           <input
             className='inputForm'
             type="password"
@@ -102,13 +111,7 @@ const Cadastro = () => {
             onChange={handleSenhaChange}
             required
           />
-          <div id='eyeIcon'>
-            <svg id='iconOlho' xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
-              <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
-              <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
-            </svg>
-          </div>
-        </div>
+     
         <div className='Btns'>
           <button className="btnCadastrar" disabled={false} type="submit">
             Cadastrar
@@ -125,6 +128,7 @@ const Cadastro = () => {
           </button>
         </div>
       </form>
+      </div>
     </div>
   );
 };

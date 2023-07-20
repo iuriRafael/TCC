@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Modal, Button } from 'react-bootstrap';
+import { Modal, Button, Spinner } from 'react-bootstrap';
 import "./usuario.css";
 import Navbar from "../navbar";
 import perfil from "../img/noImage.png";
@@ -11,6 +11,7 @@ function Usuario(props) {
   const navigate = useNavigate();
   const [nomeUsuario, setNomeUsuario] = useState('');
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [isSaindo, setIsSaindo] = useState(false);
 
   useEffect(() => {
     fetchNomeUsuario();
@@ -20,7 +21,6 @@ function Usuario(props) {
     try {
       const response = await fetch("http://localhost:3000/Usuario/nomeUsuario");
       const data = await response.json();
-      console.log("alguma coisa", data);
       const nomeUsuario = data.nomeUsuario;
 
       setNomeUsuario(data.nomeUsuario);
@@ -34,8 +34,12 @@ function Usuario(props) {
   }
 
   function handleConfirmarSair() {
-    setModalIsOpen(false);
-    navigate('/Login');
+    setIsSaindo(true);
+    setTimeout(() => {
+      setIsSaindo(false);
+      setModalIsOpen(false);
+      navigate('/Login');
+    }, 2500);
   }
 
   function handleCancelarSair() {
@@ -102,7 +106,7 @@ function Usuario(props) {
             Cancelar
           </Button>
           <Button id="btnConfirmar" variant="primary" onClick={handleConfirmarSair}>
-            Confirmar
+            {isSaindo ? <Spinner animation="border" size="sm" /> : "Confirmar"}
           </Button>
         </Modal.Footer>
       </Modal>
