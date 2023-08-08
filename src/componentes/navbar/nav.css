@@ -14,6 +14,7 @@
   .icones{
     background: #ffffff;
     cursor: pointer;
+    height: 2vh;
   }
 
   .navbar a {

@@ -1,39 +1,39 @@
-*{
-    margin: 0;
-    padding: 0;
+* {
+  margin: 0;
+  padding: 0;
 }
 
-body{
-    width: 100vw;
-    overflow-x: hidden;
+body {
+  width: 100%;
+  overflow-x: hidden;
 
 }
 
-.App{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.App {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-#titleExp{
+#titleExp {
   text-align: center;
   margin: 0 3vw;
   color: #fff;
   font-weight: 650;
-  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
-#itensEsquerda{
+#itensEsquerda {
   align-items: center;
   display: flex;
   flex-direction: column;
 }
 
-#itensEsquerda > button {
+#itensEsquerda>button {
   margin-top: 6em;
 }
 
-#esquerda{
+#esquerda {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -43,14 +43,14 @@ body{
   margin-right: 0;
 }
 
-#formsDireita{
+#formsDireita {
   width: 50vw;
   display: flex;
   align-items: center;
   justify-content: space-around;
   flex-direction: column;
   margin-bottom: 5rem;
-  
+
 }
 
 .btnCadastrar {
@@ -58,7 +58,7 @@ body{
   display: inline-block;
   padding: 12px;
   width: 20rem;
-  border-radius: 18px;
+  border-radius: 10px;
   cursor: pointer;
   border: 2px solid #AAA4F2;
   align-items: center;
@@ -92,64 +92,60 @@ body{
   transition: opacity 0.8s ease-in;
 }
 
-.btnsVoltar{
-    width: 20rem;
-    padding: 12px;
-    border-radius: 18px;
-    cursor: pointer;
-    border: 2px solid #fafafa;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    position: relative;
-    background-color: #e6e6e6;
-    color: #000000;
-    cursor: pointer;
-    overflow: hidden;
-    transition: background-color 0.3s ease-out;
+.btnsVoltar {
+  width: 20rem;
+  padding: 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  border: 2px solid #fafafa;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  background-color: #e6e6e6;
+  color: #000000;
+  cursor: pointer;
+  overflow: hidden;
+  transition: background-color 0.3s ease-out;
 }
 
-.btnsVoltar:hover{
-    background-color: #b1b1b1;
-    color: #ffffff;
-    border: 2px solid #fdfcff;
-    transition: background-color 0.3s ease-in;
-}
-.btnsVoltars::after{
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    background-color: rgba(255, 255, 255, 0.5);
-    opacity: 0;
-    transition: opacity 0.3s ease-out;
+.btnsVoltar:hover {
+  background-color: #b1b1b1;
+  color: #ffffff;
+  border: 2px solid #fdfcff;
+  transition: background-color 0.3s ease-in;
 }
 
-.btnsVoltarhover::after{
-    opacity: 1;
-    transition: opacity 0.8s ease-in;
+.btnsVoltars::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  background-color: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
 }
 
-.Btns{
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+.btnsVoltarhover::after {
+  opacity: 1;
+  transition: opacity 0.8s ease-in;
 }
 
-.cxInput{
+.Btns {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cxInput {
   display: flex;
   justify-content: center;
 }
 
-.inputForm{
-  border-radius: 12px;
-  font-weight: 600;
-}
-
-@media (max-width: 815px){
-  #esquerda{
+@media (max-width: 815px) {
+  #esquerda {
     display: none;
   }
 }

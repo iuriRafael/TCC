@@ -4,6 +4,46 @@ body {
   padding: 0;
 }
 
+#mais{
+  background-color: #fff;
+  margin-top: 3.5vw;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.maisBtn{
+  background-color: #4F5285;
+  padding: 1rem;
+  position: relative;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 5px;
+  transition: opacity 0.2s ease-in-out;
+}
+
+#botaoMais{
+  max-width: 8vw;
+  background-color: #4F5285;
+}
+
+.menssagemBtn{
+  background-color: #4F5285;
+  padding-left: 1.5rem;
+  color: #fff;
+  display: none;
+}
+
+.maisBtn:hover .menssagemBtn {
+  display: block;
+}
+
+.maisBtn:not(:hover) .menssagemBtn {
+  display: none;
+}
+
+
 .fotos4 {
   display: flex;
   flex-direction: column;

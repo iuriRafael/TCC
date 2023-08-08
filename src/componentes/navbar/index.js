@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { NavLink, useNavigate, } from 'react-router-dom';
 
-import homeIcon from "../img/casa.png";
-import cameraIcon from "../img/botoes/camera.png";
-import mapIcon from "../img/botoes/map.png";
-import userIcon from "../img/botoes/person.png";
+import homeIcon from "../img/botoes/casa.png";
+import cameraIcon from "../img/botoes/camera-foto.png";
+import mapIcon from "../img/botoes/mundo.png";
+import userIcon from "../img/botoes/do-utilizador.png";
 
 import './nav.css';
 

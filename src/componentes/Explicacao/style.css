@@ -57,13 +57,12 @@ body{
     align-items: center;
 }
 
-.celular {
-    height: 50vh;
+.celular , .celular2 , .celular3{
+    margin-left: 5%;
+    margin-right: 5%;
     align-items: center;
     margin-top: 20px;
-    background-color: #ffffff;
-    /*border: 1.3px dashed #000000; */
-    border-radius: 5px;
+    border-radius: 2px;
     display: flex !important;
     justify-content: center;
     align-items: center;

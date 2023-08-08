@@ -38,7 +38,7 @@ const Cadastro = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:3000/Usuario/cadastro', {
+      const response = await axios.post('http://localhost:4000/Usuario/cadastro', {
         nome,
         email,
         senha
@@ -69,7 +69,7 @@ const Cadastro = () => {
   };
 
   return (
-    <div className="App">
+    <div className="App" id='bodyCadastro'>
       <div id='esquerda'>
         <div id='itensEsquerda'>
           <img className="imagens2" src={logolat} alt="Logo"/>
@@ -86,7 +86,7 @@ const Cadastro = () => {
       <form className='formulario' onSubmit={handleSubmit}>
     
           <input
-            className='inputForm'
+            className='iptLoginForm'
             type="text"
             placeholder="Nome:"
             value={nome}
@@ -95,7 +95,7 @@ const Cadastro = () => {
           />
   
           <input
-            className='inputForm'
+            className='iptLoginForm'
             type="email"
             placeholder="E-mail:"
             value={email}
@@ -104,7 +104,7 @@ const Cadastro = () => {
           />
 
           <input
-            className='inputForm'
+            className='iptLoginForm'
             type="password"
             placeholder="Senha:"
             value={senha}

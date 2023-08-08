@@ -34,7 +34,7 @@ function Explicacao(props) {
         </Carousel.Item>
         <Carousel.Item id='car'>
           <div id='cxCelular'>
-            <img className='celular' src={Celular2} alt="Celular" />
+            <img className='celular2' src={Celular2} alt="Celular" />
           </div>
           <div className='frases'>
               <p>2º Bata uma foto com seu celular.</p>
@@ -47,7 +47,7 @@ function Explicacao(props) {
         </Carousel.Item>
         <Carousel.Item id='car'> 
           <div id='cxCelular'>
-            <img className='celular' src={Celular3} alt="Celular" />
+            <img className='celular3' src={Celular3} alt="Celular" />
           </div>
           <div className='frases' id='terceiraFrase'>
               <p>3º Faça a postagem do resíduo!</p>

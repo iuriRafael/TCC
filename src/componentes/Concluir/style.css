@@ -1,22 +1,26 @@
-.container{
-    width: 100vw;
-}
-
-#iconOlho{
-    position: absolute;
-    top: 55vh;
-    right: 20vw;
-}
-#imgLogo{
-    width: 85vw;
-}
-
-.btnVoltar{
+#restante{
+    width: 100%;
     display: flex;
-    margin: 1vh 0 0 1vh;
-  padding: 1vh 5vw;
+    flex-wrap: wrap;
+    justify-content: center
 }
 
-.eye{
-    width: 24px;
+#imgLogo{
+    width: 31em;
+}
+
+.logo{
+    max-width: 70vw;
+}
+
+#btnVoltarCont{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.campoSenha{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

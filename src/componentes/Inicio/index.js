@@ -4,17 +4,30 @@ import './style.css';
 import lixos1 from "../img/e5a09f73b89138f33fd71d18b967fe9c.jpg";
 import lixos2 from "../img/residuo2.jpg"
 import lixos3 from "../img/residuos3.webp"
+import mais from "../img/botoes/mais.png"
 import Navbar from '../navbar';
 import Previsao from "../Previsão";
 
 function Inicio() {
+
     const navigate = useNavigate()
+    
     function handleClickConcluir() {
         navigate('/Concluir');
     }
+
     return (
         <div>
             <Previsao />
+
+            <div id='mais'>
+                <button class="maisBtn">
+                    <img id='botaoMais' src={mais} alt="Mais" />
+                    <span class="menssagemBtn" id="hidden-span">Criar Postagem</span>
+                </button>
+            </div>
+
+
             <div className='fotos4'>
                 <img className="lixo" src={lixos1} />
                 <h2 className='endereco'>Rua Ilsa Becker, 04</h2>

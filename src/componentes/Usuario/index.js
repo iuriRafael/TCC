@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Modal, Button, Spinner } from 'react-bootstrap';
 import "./usuario.css";
 import Navbar from "../navbar";
-import perfil from "../img/noImage.png";
+import perfil from "../img/botoes/do-utilizador.png";
 import { useNavigate } from 'react-router-dom';
 
 import Previsao from "../Previsão";
@@ -58,7 +58,9 @@ function Usuario(props) {
     <div>
       <Previsao />
       <div className="Container">
+        <div id="cxPerfil">
         <img className="perfil" src={perfil} alt="Perfil" />
+        </div>
         <h2 id="nomeUsuario">{localStorage.getItem("nome")}</h2>
 
         <div className="user-buttons">
@@ -95,7 +97,6 @@ function Usuario(props) {
       </div>
 
       <Navbar />
-      <div id="espaco"></div>
 
       <Modal show={modalIsOpen} onHide={() => setModalIsOpen(false)}>
         <Modal.Header>

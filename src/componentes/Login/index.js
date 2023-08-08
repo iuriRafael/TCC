@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './styles/login.css';
+import './login.css';
 import Logos from '../img/default_765x625 2.png';
-import onda from '../img/Captura_de_tela_2023-07-19_210142-removebg-preview/Captura_de_tela_2023-07-19_210142-removebg-preview.png';
 import logolat from "../img/Humaaans - 2 Characters.png";
 import axios from 'axios';
 import { Modal, Button } from 'react-bootstrap'; // Importe o Modal e o Button do Bootstrap
@@ -35,7 +34,7 @@ const Login = () => {
     setLoading(true);
     setTimeout(async () => {
       try {
-        const response = await axios.post('http://localhost:3000/Usuario/login', {
+        const response = await axios.post('http://localhost:4000/Usuario/login', {
           email,
           senha,
         });
@@ -70,6 +69,7 @@ const Login = () => {
         <h3 id="frase">1° APP para mapeamento de resíduos sólidos no mundo</h3>
         <form className="formulario" onSubmit={handleSubmit}>
           <input
+            className='iptLoginForm'
             type="email"
             placeholder="E-mail:"
             value={email}
@@ -78,6 +78,7 @@ const Login = () => {
           />
 
           <input
+            className='iptLoginForm'
             type="password"
             placeholder="Senha:"
             value={senha}
@@ -94,22 +95,13 @@ const Login = () => {
               )}
             </button>
             <p id="ou">ou</p>
-            <button className="botaoCadastro" onClick={handleClick} type="button">
+            <button className="botaoCadastro" id='btnCad' onClick={handleClick} type="button">
               Cadastro
             </button>
           </div>
         </form>
       </div>
       <div id='esquerda' className="wave-border">
-      {/* <div className="wave" style={{
-              height: '100px',
-              width: '200px',
-              backgroundImage: `url(${onda})`,
-              backgroundPosition: 'center bottom',
-              backgroundRepeat: 'no-repeat',
-              animation: 'wave 2s linear infinite',
-            }}>
-            </div> */}
         <div id='itensEsquerda'>
           <img className="imagens2" id='rot' src={logolat} alt="Logo" />
           <h3 id='titleExp'>Olá! Caso não tenha conta, acesse o botão abaixo.</h3>

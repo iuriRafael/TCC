@@ -12,30 +12,42 @@ import Previsao from "../Previsão";
 function OrderProgress({ progress }) {
   return (
     <div id="acompanhamento">
-      <div id="item">
+      <div
+        className={`item ${progress > 0 ? "active" : ""}`}
+        id="item1"
+      >
         <img
-          className={`enviado ${progress > 0 ? "active" : ""}`}
+          className="enviado"
           src={send}
           alt="Enviado"
         />
       </div>
-      <div id="item2">
+      <div
+        className={`item ${progress > 1 ? "active" : ""}`}
+        id="item2"
+      >
         <img
-          className={`localizado ${progress > 1 ? "active" : ""}`}
+          className="localizado"
           src={local}
           alt="Localizado"
         />
       </div>
-      <div id="item3">
+      <div
+        className={`item ${progress > 2 ? "active" : ""}`}
+        id="item3"
+      >
         <img
-          className={`remocao ${progress > 2 ? "active" : ""}`}
+          className="remocao"
           src={remocao}
           alt="Remoção"
         />
       </div>
-      <div id="item4">
+      <div
+        className={`item ${progress > 3 ? "active" : ""}`}
+        id="item4"
+      >
         <img
-          className={`removido ${progress > 3 ? "active" : ""}`}
+          className="removido"
           src={check}
           alt="Removido"
         />
@@ -56,18 +68,7 @@ function Finalizado() {
       </div>
       <OrderProgress progress={progress} /> {/* Adiciona o componente OrderProgress */}
       <div id="fases">
-        <div className={`fase ${progress > 0 ? "active" : ""}`}>
-          <h5>Postagem enviada</h5>
-        </div>
-        <div className={`fase2 ${progress > 1 ? "active" : ""}`}>
-          <h5>Resíduo confirmado!</h5>
-        </div>
-        <div className={`fase3 ${progress > 2 ? "active" : ""}`}>
-          <h5>Em remoção</h5>
-        </div>
-        <div className={`fase4 ${progress > 3 ? "active" : ""}`}>
-          <h5>Resíduo removido</h5>
-        </div>
+        {/* ... mantenha o restante do código como está ... */}
       </div>
       <Navbar />
       <div id="espaco"></div>

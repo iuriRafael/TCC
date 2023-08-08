@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Carousel } from 'react-bootstrap';
-import './postar.css';
+import { Carousel, Modal, Button } from 'react-bootstrap';
 import axios from 'axios';
+import './postar.css';
 
 const Postar = () => {
   const location = useLocation();
@@ -13,6 +13,14 @@ const Postar = () => {
   const [enderecoAtual, setEnderecoAtual] = useState('');
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  // Adicione esta constante para atualizar o estado das imagens capturadas
+  const setCapturedImagesList = (updatedList) => {
+    localStorage.setItem('capturedImages', JSON.stringify(updatedList));
+    capturedImagesList(updatedList);
+  };
 
   const handleChangeTexto = (event) => {
     setTexto(event.target.value);
@@ -20,13 +28,38 @@ const Postar = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Lógica para postar o texto
+    // Lógica para postar o texto e as imagens
     console.log('Texto postado:', texto);
+    console.log('Imagens postadas:', capturedImagesList);
     setTexto('');
   };
 
   const handleVoltar = () => {
     navigate('/Camera');
+  };
+
+  const removeImage = (index) => {
+    setSelectedImage(index);
+    setShowDeleteModal(true);
+  };
+
+  const handleDeleteConfirm = () => {
+    setCapturedImagesList((prevList) => {
+      const updatedList = [...prevList];
+      updatedList.splice(selectedImage, 1);
+      return updatedList;
+    });
+    setSelectedImage(null);
+    setShowDeleteModal(false);
+
+    console.log('Imagem removida com sucesso');
+  };
+
+  const handleDeleteCancel = () => {
+    setSelectedImage(null);
+    setShowDeleteModal(false);
+
+    console.log('Remoção de imagem cancelada');
   };
 
   useEffect(() => {
@@ -76,7 +109,7 @@ const Postar = () => {
 
   return (
     <div className="postar-container">
-      <h2>Postar</h2>
+<h2>Postagem</h2>
       <form className="postar-form" onSubmit={handleSubmit}>
         <textarea
           className="postar-textarea"
@@ -90,11 +123,14 @@ const Postar = () => {
           {enderecoAtual || 'Carregando endereço...'}
         </div>
         <div className="captured-images">
-          <h2>Imagens capturadas:</h2>
+          <h4 id='cap'>Imagens capturadas:</h4>
           <Carousel>
             {capturedImagesList.map((image, index) => (
               <Carousel.Item key={index}>
                 <img className="d-block w-100" src={image} alt={`Captured Image ${index + 1}`} />
+                <button className="remove-button" onClick={() => removeImage(index)}>
+                  Remover
+                </button>
               </Carousel.Item>
             ))}
           </Carousel>
@@ -108,7 +144,21 @@ const Postar = () => {
           </button>
         </div>
       </form>
-    </div>
+
+      <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)} tabIndex={-1}>
+        <Modal.Header closeButton>
+          <Modal.Title>Tem certeza que deseja remover a imagem?</Modal.Title>
+        </Modal.Header>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleDeleteCancel}>
+            Cancelar
+          </Button>
+          <Button variant="primary" onClick={handleDeleteConfirm}>
+            Remover
+          </Button>
+        </Modal.Footer>
+      </Modal>   
+       </div>
   );
 };
 
