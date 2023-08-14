@@ -1,0 +1,193 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.formas {
+    border-radius: 40% 60% 39% 61% / 80% 36% 64% 20%;
+    background: -webkit-linear-gradient(left, #aaa4f2, #4f5285);
+    background: -moz-linear-gradient(left, #aaa4f2, #4f5285);
+    background: -ms-linear-gradient(left, #aaa4f2, #4f5285);
+    background: -o-linear-gradient(left, #aaa4f2, #4f5285);
+    background: linear-gradient(to right, #aaa4f2, #4f5285);    height: 293px;
+    width: 293px;
+    left: -10%;
+    top: -5%;
+    position: absolute;
+    z-index: -1;
+}
+
+body {
+    width: 100vw;
+
+}
+
+.App{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#titleExp{
+  text-align: center;
+  margin: 0 3vw;
+  color: #fff;
+  font-weight: 650;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+#itensEsquerda{
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+#itensDireita > button {
+  margin-top: 6em;
+}
+
+#direita{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 50vw;
+  height: 100vh;
+  background-color: #AAA4F2;
+  margin-right: 0;
+}
+
+#formsDireita{
+  width: 50vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  margin-bottom: 5rem;
+  
+}
+
+#frase {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 700;
+    margin-top: -35px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+input {
+    padding: 10px;
+    border-radius: 15px;
+    margin: 12px;
+    width: 16rem;
+}
+
+.btns {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.botaoLogin {
+    border-radius: 15px;
+    color: #fff;
+    width: 20rem;
+    margin-top: 3px;
+    padding: 12px;
+    background-color: #4F5285;
+    border: 2px solid #4F5285;
+    margin-top: 2px;
+    cursor: pointer;
+}
+
+.botaoLogin:hover {
+    background-color: #fff;
+    color: #4F5285;
+    border: 2px dotted #4F5285;
+}
+
+.botaoCadastro:hover {
+    background-color: #fff;
+    color: #AAA4F2;
+    border: 2px dotted #AAA4F2;
+}
+
+.botaoCadastro {
+    display: none;
+    border-radius: 15px;
+    color: #fff;
+    width: 20rem;
+    margin-top: 3px;
+    padding: 12px;
+    background-color: #AAA4F2;
+    margin-top: 2px;
+    cursor: pointer;
+    border: 2px solid #AAA4F2;
+}
+
+#ou {
+
+    display: none;
+}
+
+.ou{
+    padding-top: 4px;
+    font-weight: 600;
+    margin-bottom: 3px;
+}
+
+.imagens2 {
+    max-width: 21rem;
+    margin-right: 2.5vw;
+}
+
+.botaoCadastro2:hover {
+    background-color: #fff;
+    color: #4f5285;
+    border: 2px dotted #AAA4F2;
+}
+
+.botaoCadastro2 {
+    border-radius: 15px;
+    color: #fff;
+    width: 20rem;
+    margin-top: 3px;
+    padding: 12px;
+    background-color: #4f5285;
+    margin-top: 2px;
+    cursor: pointer;
+    border: 2px solid #4f5285;
+}
+
+#rot{
+    transform: rotatey(180deg);
+}
+
+#onda{
+    display: flex;
+}
+
+.ondaImg{
+    transform: rotatex(125deg);
+    width: 100vw;
+    z-index: 2;
+    border: 2px solid #000;
+}
+
+@media (max-width: 835px){
+    #direita{
+      display: none;
+    }
+
+    .botaoCadastro , #ou {
+        display: block ;   
+    }
+  }

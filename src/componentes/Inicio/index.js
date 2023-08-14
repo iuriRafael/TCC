@@ -20,14 +20,6 @@ function Inicio() {
         <div>
             <Previsao />
 
-            <div id='mais'>
-                <button class="maisBtn">
-                    <img id='botaoMais' src={mais} alt="Mais" />
-                    <span class="menssagemBtn" id="hidden-span">Criar Postagem</span>
-                </button>
-            </div>
-
-
             <div className='fotos4'>
                 <img className="lixo" src={lixos1} />
                 <h2 className='endereco'>Rua Ilsa Becker, 04</h2>

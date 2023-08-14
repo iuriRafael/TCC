@@ -16,12 +16,6 @@ const Postar = () => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
 
-  // Adicione esta constante para atualizar o estado das imagens capturadas
-  const setCapturedImagesList = (updatedList) => {
-    localStorage.setItem('capturedImages', JSON.stringify(updatedList));
-    capturedImagesList(updatedList);
-  };
-
   const handleChangeTexto = (event) => {
     setTexto(event.target.value);
   };
@@ -44,11 +38,9 @@ const Postar = () => {
   };
 
   const handleDeleteConfirm = () => {
-    setCapturedImagesList((prevList) => {
-      const updatedList = [...prevList];
-      updatedList.splice(selectedImage, 1);
-      return updatedList;
-    });
+    const updatedList = [...capturedImagesList];
+    updatedList.splice(selectedImage, 1);
+    localStorage.setItem('capturedImages', JSON.stringify(updatedList));
     setSelectedImage(null);
     setShowDeleteModal(false);
 
@@ -109,7 +101,7 @@ const Postar = () => {
 
   return (
     <div className="postar-container">
-<h2>Postagem</h2>
+      <h2>Postagem</h2>
       <form className="postar-form" onSubmit={handleSubmit}>
         <textarea
           className="postar-textarea"
@@ -158,7 +150,7 @@ const Postar = () => {
           </Button>
         </Modal.Footer>
       </Modal>   
-       </div>
+    </div>
   );
 };
 
