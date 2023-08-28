@@ -1,8 +1,54 @@
-
 h2 {
   text-align: center;
 }
+.btnVoltar {
+  width: 8rem;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  border: 2px solid #fafafa;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  background-color: #e6e6e6;
+  color: #000000;
+  overflow: hidden;
+  transition: background-color 0.3s ease-out;
+}
 
+.btnVoltar:hover {
+  background-color: #b1b1b1;
+  color: #ffffff;
+  border: 2px solid #fdfcff;
+  transition: background-color 0.3s ease-in;
+}
+
+.btnVoltar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+}
+
+.btnVoltar {
+  width: 8rem;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  border: 2px solid #fafafa;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  background-color: #e6e6e6;
+  color: #000000;
+  overflow: hidden;
+  transition: background-color 0.3s ease-out;
+}
 #imgCap {
   display: flex;
   align-items: center;
@@ -86,9 +132,13 @@ h2 {
   color: #ffffff;
 }
 
-#tirarFoto,
+#tirarFoto, 
 #escolherFoto,
 .avancarButton {
+  width: 8rem;
+  padding: 10px;
+  border-radius: 10px;
+  padding: 4.5rem;
   margin-top: 2.5vh;
   display: flex;
   flex-direction: column;
@@ -99,59 +149,10 @@ h2 {
   width: 4.8em;
 }
 
-.btnVoltar {
-  width: 8rem;
-  padding: 10px;
-  border-radius: 10px;
-  cursor: pointer;
-  border: 2px solid #fafafa;
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  position: relative;
-  background-color: #e6e6e6;
-  color: #000000;
-  overflow: hidden;
-  transition: background-color 0.3s ease-out;
-}
-
-.btnVoltar:hover {
-  background-color: #b1b1b1;
-  color: #ffffff;
-  border: 2px solid #fdfcff;
-  transition: background-color 0.3s ease-in;
-}
-
-.btnVoltar::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-color: rgba(255, 255, 255, 0.5);
-  opacity: 0;
-  transition: opacity 0.3s ease-out;
-}
-
-.btnVoltar {
-  width: 8rem;
-  padding: 10px;
-  border-radius: 10px;
-  cursor: pointer;
-  border: 2px solid #fafafa;
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  position: relative;
-  background-color: #e6e6e6;
-  color: #000000;
-  overflow: hidden;
-  transition: background-color 0.3s ease-out;
-}
-
 .avancarButton {
   background-color: #fc4747;
   color: #fff;
-  padding:4.5rem ;
+  padding: 3vh 4.5rem;
 }
 
 .avancarButton:hover {
@@ -218,10 +219,6 @@ video {
   flex-wrap: wrap;
 }
 
-.button-container button {
-  margin-right: 10px;
-}
-
 .carousel-control-next-icon {
   color: #4F5285 !important;
 }
@@ -233,10 +230,7 @@ video {
 .remove-button {
   align-items: center;
   background-color: #b1b1b1;
-  margin-left: 5px;
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
+  color:#fff;
 }
 
 .remove-button p {

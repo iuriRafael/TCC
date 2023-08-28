@@ -2,17 +2,19 @@
   width: 100%;
   height: 100%;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   flex-wrap: wrap;
 }
 
 .postar-form {
-  border: 1px solid #ffffff;
   background-color: #AAA4F2;
   border-radius: 10px;
   padding: 10px;
+  width: 95vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-left: 2.4vw;
 }
 
 .postar-textarea {
@@ -30,6 +32,7 @@
 .captured-images {
   width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
   align-items: center;
 }
@@ -47,18 +50,47 @@
   height: 2.5em;
   border: 1px solid #ffffff;
   color: #ffffff;
-  background-color: blue;
+  background-color: #4F5285;
 }
 
-.voltar-button {
-  width: 8rem;
-  height: 2.5em;
-  border: 1px solid rgb(255, 255, 255);
-  color: rgb(255, 255, 255);
+.remove-button{
+  margin-bottom: 1em;
+  display: flex;
+  justify-content: space-around;
+  padding: 1rem 0;
   background-color: #ff5e5e;
+  width: 40%;
+  border-radius: 5px;
+}
+
+#cxBtnVoltar{
+  display: flex;
+  justify-content: start;
   text-align: center;
 }
 
-#cap{
+#cxBtnVoltar > button {
+  margin:1em 1em 1em;
+  padding: 1em 3em;
+  border-radius: 10px;
+  color: #4F5285;
+  font-weight: 600;
+}
 
+#itemCar{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1em;
+}
+
+#campos{
+  display: flex;
+  flex-direction: column;
+}
+
+#campos > div {
+  justify-content: space-between;
+  display: flex;
+  margin-bottom: 1em;
 }
