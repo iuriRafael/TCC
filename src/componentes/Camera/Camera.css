@@ -136,9 +136,8 @@ h2 {
 #escolherFoto,
 .avancarButton {
   width: 8rem;
-  padding: 10px;
+  padding:1rem 4rem;
   border-radius: 10px;
-  padding: 4.5rem;
   margin-top: 2.5vh;
   display: flex;
   flex-direction: column;
@@ -152,7 +151,6 @@ h2 {
 .avancarButton {
   background-color: #fc4747;
   color: #fff;
-  padding: 3vh 4.5rem;
 }
 
 .avancarButton:hover {

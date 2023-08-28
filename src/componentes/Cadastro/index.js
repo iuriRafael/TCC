@@ -44,8 +44,8 @@ const Cadastro = () => {
         senha
       });
       if (response.status === 201) {
+        //setUserName(nome); // Armazena o nome do usuário
         console.log('Usuário cadastrado com sucesso');
-
         // Redirecionar para outra página após o cadastro
         navigate('/Inicio');
       } else {
