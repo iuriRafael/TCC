@@ -10,9 +10,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
-  const [isLoading, setLoading] = useState(false);
-  const [showWelcomeModal, setShowWelcomeModal] = useState(false); // Novo estado para controlar o modal
-  const [userName, setUserName] = useState(''); // Novo estado para armazenar o nome do usuário
+  
   const navigate = useNavigate();
 
   const handleEmailChange = (event) => {
@@ -31,10 +29,8 @@ const Login = () => {
       return;
     }
 
-    setLoading(true);
-    setTimeout(async () => {
       try {
-        const response = await axios.post('http://localhost:4000/Usuario/login', {
+        const response = await axios.post('http://localhost:3000/auth/login', {
           email,
           senha,
         });
@@ -44,18 +40,13 @@ const Login = () => {
           localStorage.setItem('nome', nome);
 
           console.log('Login realizado com sucesso');
-          setUserName(nome); // Armazena o nome do usuário
-          setShowWelcomeModal(true); // Mostra o modal de boas-vindas
           navigate('/Inicio');
         } else {
-          console.log('Erro ao realizar login:', response.data.error);
+          console.log('Erro ao realizar login:');
         }
       } catch (erro) {
-        console.error('Erro ao realizar login:', erro);
-      } finally {
-        setLoading(false);
-      }
-    }, 2500);
+        console.error('Erro ao realizar login:');
+      } 
   };
 
   const handleClick = () => {
@@ -87,12 +78,8 @@ const Login = () => {
           />
           <div className="btns">
             {/* Adicionei o spinner ao botão de login */}
-            <button className="botaoLogin" type="submit" disabled={!email || !senha || isLoading}>
-              {isLoading ? (
-                <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-              ) : (
-                'Login'
-              )}
+            <button className="botaoLogin" type="submit">
+              login
             </button>
             <p id="ou">ou</p>
             <button className="botaoCadastro" id='btnCad' onClick={handleClick} type="button">
@@ -101,29 +88,6 @@ const Login = () => {
           </div>
         </form>
       </div>
-      <div id='esquerda' className="wave-border">
-        <div id='itensEsquerda'>
-          <img className="imagens2" id='rot' src={logolat} alt="Logo" />
-          <h3 id='titleExp'>Olá! Caso não tenha conta, acesse o botão abaixo.</h3>
-          <button className="botaoCadastro2" onClick={handleClick} type="button">
-            Cadastro
-          </button>
-        </div>
-      </div>
-      {/* Modal de Boas-Vindas */}
-      <Modal show={showWelcomeModal} onHide={() => setShowWelcomeModal(false)}>
-        <Modal.Header closeButton>
-          <Modal.Title>Bem-vindo!</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <p>Olá, {userName}! Seja bem-vindo ao nosso aplicativo.</p>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="primary" onClick={() => setShowWelcomeModal(false)}>
-            Fechar
-          </Button>
-        </Modal.Footer>
-      </Modal>
     </div>
   );
 };

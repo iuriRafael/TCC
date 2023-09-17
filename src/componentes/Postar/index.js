@@ -23,7 +23,7 @@ const Postar = () => {
 
   async function handleClick(file) {
 
-    axios.post("http://localhost:4000/Usuario/Postar", {
+    axios.post("http://localhost:3000/posts/criar", {
 
       "files": file , 
       "nome": localStorage.getItem("nome"),

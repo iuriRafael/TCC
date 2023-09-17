@@ -38,15 +38,14 @@ const Cadastro = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:4000/Usuario/cadastro', {
+      const response = await axios.post('http://localhost:3000/auth/cadastro', {
         nome,
         email,
         senha
       });
       if (response.status === 201) {
-        //setUserName(nome); // Armazena o nome do usuário
+
         console.log('Usuário cadastrado com sucesso');
-        // Redirecionar para outra página após o cadastro
         navigate('/Inicio');
       } else {
         console.log('Erro ao cadastrar usuário:', response.data.error);
