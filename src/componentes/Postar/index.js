@@ -5,17 +5,14 @@ import axios from 'axios';
 import './postar.css';
 
 const Postar = () => {
-  const location = useLocation();
   const capturedImagesList = JSON.parse(localStorage.getItem("capturedImages")) || [];
   const navigate = useNavigate();
 
   const [texto, setTexto] = useState('');
   const [enderecoAtual, setEnderecoAtual] = useState('');
-  const [latitude, setLatitude] = useState(null);
-  const [longitude, setLongitude] = useState(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
-  const [referencia, setReferencia] = useState("");
+
 
   const handleChangeTexto = (event) => {
     setTexto(event.target.value);
@@ -23,13 +20,11 @@ const Postar = () => {
 
   async function handleClick(file) {
 
-    axios.post("http://localhost:3000/posts/criar", {
+    axios.post("http://localhost:3000/posts/upload", {
 
       "files": file , 
-      "nome": localStorage.getItem("nome"),
-      "descricao": texto,
-      "referencia": referencia,
-      "endereco": enderecoAtual
+      "description": texto,
+      "location": enderecoAtual
     })
     navigate('/inicio');
   }
@@ -69,51 +64,7 @@ const Postar = () => {
     console.log('Remoção de imagem cancelada');
   };
 
-  useEffect(() => {
-    const getCurrentLocation = () => {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            setLatitude(position.coords.latitude);
-            setLongitude(position.coords.longitude);
-          },
-          (error) => {
-            console.log('Erro ao obter a localização atual:', error);
-          }
-        );
-      } else {
-        console.log('Geolocalização não suportada pelo navegador.');
-      }
-    };
-
-    getCurrentLocation();
-  }, []);
-
-  useEffect(() => {
-    const getCurrentAddress = async () => {
-      if (latitude && longitude) {
-        try {
-          const response = await axios.get('https://places-dsn.algolia.net/1/places/reverse', {
-            params: {
-              latlng: `${latitude},${longitude}`,
-              language: 'pt-BR',
-            },
-          });
-
-          const data = response.data;
-          const { road, house_number, neighborhood } = data.address;
-          const address = `${road} ${house_number}, ${neighborhood}`;
-
-          setEnderecoAtual(address);
-        } catch (error) {
-          console.log('Erro ao obter o endereço atual:', error);
-        }
-      }
-    };
-
-    getCurrentAddress();
-  }, [latitude, longitude]);
-
+  
   return (
     <div className="postar-container">
       <div id='cxBtnVoltar'>
@@ -123,13 +74,6 @@ const Postar = () => {
       </div>
 
       <form className="postar-form" onSubmit={handleSubmit}>
-        <textarea
-          className="postar-textarea"
-          resize="none"
-          placeholder="Digite o seu texto"
-          value={texto}
-          onChange={handleChangeTexto}
-        />
         <div className="endereco-atual">
           <div id='campos'>
             <div>
@@ -138,7 +82,7 @@ const Postar = () => {
             </div>
             <div>
               <label>Referência:</label>
-              <input id='references' placeholder='Ao lado do banco tal...' value={referencia} onChange={(event) => setReferencia(event.target.value)} />
+              <input id='references' placeholder='Ao lado do banco tal...' value={texto} onChange={(event) => setTexto(event.target.value)} />
             </div>
           </div>
         </div>
