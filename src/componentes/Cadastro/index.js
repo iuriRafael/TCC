@@ -4,6 +4,7 @@ import './style.css';
 import Logos from "../img/default_765x625 2.png";
 import logolat from "../img/Humaaans - Space (1).png"
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 const Cadastro = () => {
   const [nome, setNome] = useState('');
@@ -46,6 +47,10 @@ const Cadastro = () => {
       if (response.status === 201) {
 
         console.log('Usuário cadastrado com sucesso');
+        Cookies.set('nome', nome, { expires: 2 });
+        Cookies.set('email', email, { expires: 2 });
+        sessionStorage.set('nome', nome, { expires: 2 });
+        sessionStorage.set('email', email, { expires: 2 });
         navigate('/Inicio');
       } else {
         console.log('Erro ao cadastrar usuário:', response.data.error);

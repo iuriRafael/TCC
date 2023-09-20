@@ -59,7 +59,7 @@ function Previsao() {
           <h2 id='temp'>{temperature}°C</h2>
           <p id='state'>{weatherDescription}</p>
         </div>
-        <h4 id='city'>{city}</h4>
+        <h4 id='city'>{city} RS</h4>
       </div>
     </div>
   );
