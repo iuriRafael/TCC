@@ -23,6 +23,14 @@ const Cadastro = () => {
     setSenha(event.target.value);
   };
 
+  // Função de validação de email
+  const validateEmail = (email) => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+  };
+
+
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -49,8 +57,8 @@ const Cadastro = () => {
         console.log('Usuário cadastrado com sucesso');
         Cookies.set('nome', nome, { expires: 2 });
         Cookies.set('email', email, { expires: 2 });
-        sessionStorage.set('nome', nome, { expires: 2 });
-        sessionStorage.set('email', email, { expires: 2 });
+        sessionStorage.setItem('nome', nome, { expires: 2 });
+        sessionStorage.setItem('email', email, { expires: 2 });
         navigate('/Inicio');
       } else {
         console.log('Erro ao cadastrar usuário:', response.data.error);
@@ -66,11 +74,6 @@ const Cadastro = () => {
     navigate('/Login');
   };
 
-  // Função de validação de email
-  const validateEmail = (email) => {
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return regex.test(email);
-  };
 
   return (
     <div className="App" id='bodyCadastro'>
