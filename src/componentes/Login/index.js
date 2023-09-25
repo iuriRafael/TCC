@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './login.css';
 import Logos from '../img/default_765x625 2.png';
-import logolat from "../img/Humaaans - 2 Characters.png";
 import axios from 'axios';
 import { Modal, Button } from 'react-bootstrap'; // Importe o Modal e o Button do Bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -36,8 +35,12 @@ const Login = () => {
         });
 
         if (response.status === 200) {
-          const { nome } = response.data;
-          localStorage.setItem('nome', nome);
+          const { nome, token, usuario_id} = response.data;
+
+      // Armazenar informações na sessão (session storage)
+      sessionStorage.setItem('nome', nome);
+      sessionStorage.setItem('usuarioId', usuario_id);
+      sessionStorage.setItem('token', token);
 
           console.log('Login realizado com sucesso');
           navigate('/Inicio');

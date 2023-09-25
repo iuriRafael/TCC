@@ -53,12 +53,14 @@ const Cadastro = () => {
         senha
       });
       if (response.status === 201) {
+        const { nome, token , usuario_id} = response.data;
+
+      // Armazenar informações na sessão (session storage)
+      sessionStorage.setItem('nome', nome);
+      sessionStorage.setItem('idusuario', usuario_id);
+      sessionStorage.setItem('token', token);
 
         console.log('Usuário cadastrado com sucesso');
-        Cookies.set('nome', nome, { expires: 2 });
-        Cookies.set('email', email, { expires: 2 });
-        sessionStorage.setItem('nome', nome, { expires: 2 });
-        sessionStorage.setItem('email', email, { expires: 2 });
         navigate('/Inicio');
       } else {
         console.log('Erro ao cadastrar usuário:', response.data.error);

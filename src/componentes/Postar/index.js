@@ -13,6 +13,7 @@ const Postar = () => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
 
+  const [userId, setUserId] = useState(null);
 
   const handleChangeTexto = (event) => {
     setTexto(event.target.value);
@@ -20,12 +21,16 @@ const Postar = () => {
 
   async function handleClick(file) {
 
-    axios.post("http://localhost:3000/posts/upload", {
+    const response = await axios.post("http://localhost:3000/posts/upload", {
 
+      userId: userId,
       "files": file , 
       "description": texto,
       "location": enderecoAtual
-    })
+    });
+
+    console.log('Resposta do servidor:', response.data);
+    
     navigate('/inicio');
   }
 
@@ -35,8 +40,10 @@ const Postar = () => {
     console.log('Texto postado:', texto);
     console.log('Imagens postadas:', capturedImagesList);
     setTexto('');
-    handleClick(capturedImagesList);
+    handleClick(capturedImagesList, userId, texto);
   };
+
+
 
   const handleVoltar = () => {
     navigate('/Camera');
