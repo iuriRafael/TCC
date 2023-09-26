@@ -20,7 +20,7 @@ function Inicio() {
 
         const updatedPostagens = response.data.map((post) => ({
           ...post,
-          image: `http://localhost:3000/${post.image}`, // Construa o URL completo da imagem
+          image: `http://localhost:3000/${post.image}`, 
         }));
         setPostagens(updatedPostagens);
         

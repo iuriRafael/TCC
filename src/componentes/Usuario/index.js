@@ -13,8 +13,6 @@ function Usuario(props) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [isSaindo, setIsSaindo] = useState(false);
 
-  // Recupere o nome do usuário dos cookies
-  const nomeUsuario = Cookies.get('nome');
 
   function handleSair() {
     setModalIsOpen(true);
@@ -24,8 +22,7 @@ function Usuario(props) {
     setIsSaindo(true);
     setTimeout(() => {
 
-      Cookies.remove('nome');
-      Cookies.remove('email');
+
 
       setIsSaindo(false);
       setModalIsOpen(false);
@@ -52,13 +49,12 @@ function Usuario(props) {
         <div id="cxPerfil">
           <img className="perfil" src={perfil} alt="Perfil" />
         </div>
-        <h2 id="nomeUsuario">{nomeUsuario}</h2>
+        <h2 id="nomeUsuario"></h2>
 
         <div className="user-buttons">
           <button id="btnAndamento" onClick={handleAndamento} disabled={false}>
             <div id="iconAndamento">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-clock" viewBox="0 0 16 16">
-                {/* ... (código SVG) ... */}
               </svg>
             </div>
             Em andamento
@@ -67,7 +63,6 @@ function Usuario(props) {
           <button id="btnFinalizado" onClick={handleClick} disabled={false}>
             <div>
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-card-checklist" viewBox="0 0 16 16">
-                {/* ... (código SVG) ... */}
               </svg>
             </div>
             Tarefas finalizadas
@@ -76,7 +71,7 @@ function Usuario(props) {
           <button id="btnSair" onClick={handleSair} disabled={false}>
             <div>
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-box-arrow-left" viewBox="0 0 16 16">
-                {/* ... (código SVG) ... */}
+                
               </svg>
             </div>
             Sair da conta
