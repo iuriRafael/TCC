@@ -13,37 +13,33 @@ const Postar = () => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
 
-  const [userId, setUserId] = useState(null);
+  const userId = sessionStorage.getItem('usuarioId');
 
   const handleChangeTexto = (event) => {
     setTexto(event.target.value);
   };
 
-  async function handleClick(file) {
-
-    const response = await axios.post("http://localhost:3000/posts/upload", {
-
-      userId: userId,
-      "files": file , 
-      "description": texto,
-      "location": enderecoAtual
-    });
-
-    console.log('Resposta do servidor:', response.data);
-    
-    navigate('/inicio');
-  }
-
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Lógica para postar o texto e as imagens
-    console.log('Texto postado:', texto);
-    console.log('Imagens postadas:', capturedImagesList);
-    setTexto('');
-    handleClick(capturedImagesList, userId, texto);
+    
+    try {
+      console.log('ID do usuário enviado para o servidor:', userId);
+      const response = await axios.post("http://localhost:3000/posts/upload", {
+        userId: userId,
+        files: capturedImagesList,
+        description: texto,
+        location: enderecoAtual
+      });
+
+      console.log('Resposta do servidor:', response.data);
+      
+      navigate('/inicio');
+    } catch (error) {
+      console.error('Erro ao fazer upload de imagens:', error);
+      // Exibir uma mensagem de erro para o usuário, por exemplo:
+      // setErrorMessage('Erro ao fazer upload de imagens. Tente novamente.');
+    }
   };
-
-
 
   const handleVoltar = () => {
     navigate('/Camera');
