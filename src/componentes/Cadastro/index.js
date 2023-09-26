@@ -57,7 +57,7 @@ const Cadastro = () => {
 
       // Armazenar informações na sessão (session storage)
       sessionStorage.setItem('nome', nome);
-      sessionStorage.setItem('idusuario', usuario_id);
+      sessionStorage.setItem('usuarioId', usuario_id);
       sessionStorage.setItem('token', token);
 
         console.log('Usuário cadastrado com sucesso');
