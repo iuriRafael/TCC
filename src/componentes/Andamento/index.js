@@ -39,7 +39,7 @@ function Andamento() {
     <div>
       <Previsao />
       <div>
-      {/* Renderize as publicações aqui */}
+    
       {publications.map((publication) => (
         <div key={publication._id}>
           <img src={publication.image} />
@@ -47,7 +47,6 @@ function Andamento() {
           <p>Descrição: {publication.description}</p>
           <p>Localização: {publication.location}</p>
           
-
         </div>
       ))}
     </div>

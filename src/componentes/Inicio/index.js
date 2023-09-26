@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./style.css";
-import axios from 'axios';
+import axios from "axios";
 // import lixos1 from "../img/e5a09f73b89138f33fd71d18b967fe9c.jpg";
 // import lixos2 from "../img/residuo2.jpg";
 // import lixos3 from "../img/residuos3.webp";
@@ -17,13 +17,12 @@ function Inicio() {
     axios
       .get("http://localhost:3000/posts/list")
       .then((response) => {
-
         const updatedPostagens = response.data.map((post) => ({
           ...post,
-          image: `http://localhost:3000/${post.image}`, 
+          image: `http://localhost:3000/${post.image}`,
         }));
         setPostagens(updatedPostagens);
-        
+
         // setPostagens(response.data);
       })
       .catch((error) => {
@@ -46,11 +45,14 @@ function Inicio() {
 
       {postagens.map((post) => (
         <div key={post._id} className="fotos4">
-          <img className="lixo" src={post.image} />
-          <h2 className='endereco'>{post.description}</h2>
-          <p className='localizacaoss'>{post.location}</p>
-          
-          {/* Botões embaixo de cada postagem */}
+          <div id="cxLixo">
+            <img className="lixo" src={post.image} />
+          </div>
+          <div id="cxInfo">
+            <h6 className="localizacoes">Localização:{post.location}</h6>
+            <h6 className="endereco">Descrição: {post.description}</h6>
+          </div>
+
           <div className="botoes-postagem">
             <button className="localizacao">
               Localização
