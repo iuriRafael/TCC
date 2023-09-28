@@ -41,12 +41,14 @@ function Andamento() {
       <div>
     
       {publications.map((publication) => (
-        <div key={publication._id}>
-          <img src={publication.image} />
-
-          <p>Descrição: {publication.description}</p>
-          <p>Localização: {publication.location}</p>
-          
+        <div key={publication._id} className="fotos4">
+          <div id="cxLixo">
+            <img className="lixo" src={publication.image} />
+          </div>
+          <div id="cxInfo">
+            <h6 className="localizacoes">Localização:{publication.location}</h6>
+            <h6 className="endereco">Descrição: {publication.description}</h6>
+          </div>
         </div>
       ))}
     </div>

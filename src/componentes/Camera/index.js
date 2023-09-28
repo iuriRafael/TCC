@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState, useLocation } from 'react';
 import './Camera.css';
 import { useNavigate } from 'react-router-dom';
 import { Carousel, Modal, Button } from 'react-bootstrap';
-
+import trash from "../img/botoes/Trash V2/trashV2.json"
 function CameraPage() {
   const videoRef = useRef(null);
   const canvasRef = useRef(null);

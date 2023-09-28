@@ -5,7 +5,7 @@ import Navbar from "../navbar";
 import perfil from "../img/botoes/do-utilizador.png";
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie'; // Importe a biblioteca Cookies
-
+import "bootstrap-icons/font/bootstrap-icons.css";
 import Previsao from "../Previsão";
 
 function Usuario(props) {
@@ -38,10 +38,6 @@ function Usuario(props) {
     navigate('/Andamento');
   }
 
-  function handleClick() {
-    navigate('/Finalizado');
-  }
-
   return (
     <div>
       <Previsao />
@@ -49,30 +45,18 @@ function Usuario(props) {
         <div id="cxPerfil">
           <img className="perfil" src={perfil} alt="Perfil" />
         </div>
-        <h2 id="nomeUsuario"></h2>
+        <h2 id="nomeUsuario">{localStorage.getItem("nome")}</h2>
 
         <div className="user-buttons">
           <button id="btnAndamento" onClick={handleAndamento} disabled={false}>
             <div id="iconAndamento">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-clock" viewBox="0 0 16 16">
-              </svg>
+            <i class="bi bi-clock"></i>
             </div>
             Em andamento
           </button>
-
-          <button id="btnFinalizado" onClick={handleClick} disabled={false}>
-            <div>
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-card-checklist" viewBox="0 0 16 16">
-              </svg>
-            </div>
-            Tarefas finalizadas
-          </button>
-
           <button id="btnSair" onClick={handleSair} disabled={false}>
             <div>
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-box-arrow-left" viewBox="0 0 16 16">
-                
-              </svg>
+            <i class="bi bi-box-arrow-right"></i>
             </div>
             Sair da conta
           </button>

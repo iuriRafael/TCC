@@ -48,7 +48,7 @@ function Inicio() {
           <div id="cxLixo">
             <img className="lixo" src={post.image} />
           </div>
-          <div id="cxInfo">
+          <div id="cxInformacoes">
             <h6 className="localizacoes">Localização:{post.location}</h6>
             <h6 className="endereco">Descrição: {post.description}</h6>
           </div>

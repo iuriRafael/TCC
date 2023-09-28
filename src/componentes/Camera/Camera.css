@@ -1,16 +1,25 @@
+/* CSS para a tela CameraPage */
 h2 {
   text-align: center;
 }
-.btnVoltar {
+
+.btnVoltar,
+#imgCap img,
+#tirarFoto,
+#escolherFoto,
+.avancarButton {
   width: 8rem;
   padding: 10px;
   border-radius: 10px;
   cursor: pointer;
-  border: 2px solid #fafafa;
   align-items: center;
   display: flex;
   justify-content: center;
   position: relative;
+}
+
+.btnVoltar {
+  border: 2px solid #fafafa;
   background-color: #e6e6e6;
   color: #000000;
   overflow: hidden;
@@ -34,21 +43,6 @@ h2 {
   transition: opacity 0.3s ease-out;
 }
 
-.btnVoltar {
-  width: 8rem;
-  padding: 10px;
-  border-radius: 10px;
-  cursor: pointer;
-  border: 2px solid #fafafa;
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  position: relative;
-  background-color: #e6e6e6;
-  color: #000000;
-  overflow: hidden;
-  transition: background-color 0.3s ease-out;
-}
 #imgCap {
   display: flex;
   align-items: center;
@@ -58,7 +52,7 @@ h2 {
 }
 
 #imgCap img {
-  margin: 5px 0 15px 0 ;
+  margin: 5px 0 15px 0;
   max-width: 50vw;
   border-radius: 15px;
 }
@@ -75,14 +69,14 @@ h2 {
   #imgCap img {}
 }
 
-@media (min-width:1200px) {
+@media (min-width: 1200px) {
   body {
     justify-content: center;
     min-width: 100vw;
     display: flex;
   }
 
-  .camera-container>.video-container {
+  .camera-container > .video-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -138,7 +132,7 @@ h2 {
   width: 8rem;
   padding:1rem 4rem;
   border-radius: 10px;
-  margin-top: 2.5vh;
+  margin: 1.5vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -146,6 +140,8 @@ h2 {
   justify-content: space-evenly;
   border-radius: 15px;
   width: 4.8em;
+  flex-grow: 1;
+  flex-basis: 200;
 }
 
 .avancarButton {
@@ -218,22 +214,42 @@ video {
 }
 
 .carousel-control-next-icon {
-  color: #4F5285 !important;
+  color: #4f5285 !important;
 }
 
 .visually-hidden {
-  color: #4F5285;
+  color: #4f5285;
 }
 
 .remove-button {
-  align-items: center;
   background-color: #b1b1b1;
-  color:#fff;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.3s ease-out;
 }
 
 .remove-button p {
   display: none;
   color: white;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.remove-button:hover {
+  background-color: #ff5e5e;
+  transition: background-color 0.3s ease-in;
 }
 
 .remove-button:hover p {
@@ -275,24 +291,24 @@ video {
   margin-right: 8px;
 }
 
-#btnCancelar{
+#btnCancelar {
   background-color: #e4e0e0;
   border: none;
   color: #000;
 }
 
-#btnConfirmar{
+#btnConfirmar {
   background-color: #ff5e5e;
   border: none;
 }
 
-#btnsModal{
+#btnsModal {
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
 
-#pergunta{
+#pergunta {
   align-items: center;
   text-align: center;
   font-weight: 750;

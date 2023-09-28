@@ -59,8 +59,8 @@ const Cadastro = () => {
       sessionStorage.setItem('nome', nome);
       sessionStorage.setItem('usuarioId', usuario_id);
       sessionStorage.setItem('token', token);
-
-        console.log('Usuário cadastrado com sucesso');
+      localStorage.setItem("nome",nome)
+      console.log('Usuário cadastrado com sucesso');
         navigate('/Inicio');
       } else {
         console.log('Erro ao cadastrar usuário:', response.data.error);

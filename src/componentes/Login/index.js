@@ -9,7 +9,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
-  
+  const [isLoading, setIsLoading] = useState(false); // Estado para controlar o carregamento
+  const [showLoadingModal, setShowLoadingModal] = useState(false); // Estado para controlar a exibição do modal de loading
   const navigate = useNavigate();
 
   const handleEmailChange = (event) => {
@@ -28,28 +29,42 @@ const Login = () => {
       return;
     }
 
-      try {
-        const response = await axios.post('http://localhost:3000/auth/login', {
-          email,
-          senha,
-        });
+    // Ative a animação de loading e exiba o modal de loading
+    setIsLoading(true);
+    setShowLoadingModal(true);
 
-        if (response.status === 200) {
-          const { nome, token, usuario_id} = response.data;
+    try {
+      const response = await axios.post('http://localhost:3000/auth/login', {
+        email,
+        senha,
+      });
 
-      // Armazenar informações na sessão (session storage)
-      sessionStorage.setItem('nome', nome);
-      sessionStorage.setItem('usuarioId', usuario_id);
-      sessionStorage.setItem('token', token);
+      if (response.status === 200) {
+        const { nome, token, usuario_id } = response.data;
 
-          console.log('Login realizado com sucesso');
+        // Armazenar informações na sessão (session storage)
+        sessionStorage.setItem('nome', nome);
+        sessionStorage.setItem('usuarioId', usuario_id);
+        sessionStorage.setItem('token', token);
+        localStorage.setItem("nome",nome)
+
+        console.log('Login realizado com sucesso');
+        // Use setTimeout para navegar para a próxima tela após 3 segundos
+        setTimeout(() => {
           navigate('/Inicio');
-        } else {
-          console.log('Erro ao realizar login:');
-        }
-      } catch (erro) {
-        console.error('Erro ao realizar login:');
-      } 
+        }, 3000);
+      } else {
+        console.log('Erro ao realizar login:');
+      }
+    } catch (erro) {
+      console.error('Erro ao realizar login:');
+    } finally {
+      // Desative a animação de loading e feche o modal após 3 segundos
+      setTimeout(() => {
+        setIsLoading(false);
+        setShowLoadingModal(false);
+      }, 2000);
+    }
   };
 
   const handleClick = () => {
@@ -80,9 +95,8 @@ const Login = () => {
             required
           />
           <div className="btns">
-            {/* Adicionei o spinner ao botão de login */}
-            <button className="botaoLogin" type="submit">
-              login
+            <button className="botaoLogin" type="submit" disabled={isLoading}>
+              {isLoading ? 'Carregando...' : 'Login'}
             </button>
             <p id="ou">ou</p>
             <button className="botaoCadastro" id='btnCad' onClick={handleClick} type="button">
@@ -91,6 +105,18 @@ const Login = () => {
           </div>
         </form>
       </div>
+
+      {/* Modal de Loading */}
+      <Modal show={showLoadingModal} backdrop="static" keyboard={false} centered>
+        <Modal.Body>
+          <div className="text-center">
+            <h4>Renderizando [ ... ]</h4>
+            <div className="spinner-border" role="status">
+              
+            </div>
+          </div>
+        </Modal.Body>
+      </Modal>
     </div>
   );
 };

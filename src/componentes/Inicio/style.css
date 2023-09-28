@@ -45,11 +45,10 @@ body {
 
 .fotos4 {
   display: flex;
-  justify-content: center;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  margin: 2rem;
+  margin-top: 2rem;
   background-color: rgb(243, 243, 243);
   padding: 2rem 0;
   width: 85vw;
@@ -59,10 +58,10 @@ body {
 }
 
 .lixo {
-  margin: 0 auto;
-  max-width: 60vw;
-  width: 90vw;
-  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  width: 85vw;
+  border-radius:5px 5px  0 0;
 }
 
 .localizacoes {
@@ -71,12 +70,8 @@ margin-top: 1rem;
  .endereco{
   margin-bottom: 1rem;
  }
-.botao-container {
-  gap: 5px;
-  margin-top: 15px;
+.botoes-postagem {
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
   align-items: center;
 }
 
@@ -86,7 +81,6 @@ margin-top: 1rem;
   display: flex;
   justify-content: space-evenly;
   color: #fff;
-  padding: 12px;
   border: 2px dotted #AAA4F2;
   border-radius: 18px;
   cursor: pointer;
@@ -102,12 +96,12 @@ margin-top: 1rem;
 }
 
 .concluir {
+  width: 35vw;
   background-color: #AAA4F2;
   align-items: center;
   display: flex;
   justify-content: space-evenly;
   color: #fff;
-  padding: 12px;
   border: 2px dotted #AAA4F2;
   border-radius: 18px;
   cursor: pointer;
@@ -119,10 +113,9 @@ margin-top: 1rem;
   transition: background-color 0.3s ease-in;
 }
 
-#cxInfo{
-  display: flex;
-  flex-direction: column;
-  align-items: start;
+#cxInformacoes{
+  display: block;
+  text-align: start;
 }
 .localizacao,
 .concluir {
