@@ -37,7 +37,9 @@ function Usuario(props) {
   function handleAndamento() {
     navigate('/Andamento');
   }
-
+  function handleFinalizando() {
+    navigate('/Finalizado');
+  }
   return (
     <div>
       <Previsao />
@@ -53,6 +55,12 @@ function Usuario(props) {
             <i class="bi bi-clock"></i>
             </div>
             Em andamento
+          </button>
+          <button id="btnFinalizando" onClick={handleFinalizando} disabled={false}>
+            <div id="iconFinalizando">
+             
+            </div>
+            Tarefas finalizadas
           </button>
           <button id="btnSair" onClick={handleSair} disabled={false}>
             <div>

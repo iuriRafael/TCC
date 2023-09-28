@@ -62,7 +62,7 @@ h2 {
 }
 
 #btnAndamento,
-#btnFinalizado,
+#btnFinalizando,
 #btnSair {
   width: 20rem;
   height: 6.5vh;
@@ -85,14 +85,14 @@ h2 {
   border: 2.4px dotted #ffac3f;
 }
 
-#btnFinalizado {
+#btnFinalizando {
   background-color: #AAA4F2;
   color: #fff;
   font-weight: 600;
   border: 1.8px solid #ffffff;
 }
 
-#btnFinalizado:hover {
+#btnFinalizando:hover {
   background-color: #ffffff;
   color: #AAA4F2;
   font-weight: 600;
