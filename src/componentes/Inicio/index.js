@@ -35,9 +35,18 @@ function Inicio() {
     fetchPostagens();
   }, []);
 
-  function handleClickConcluir() {
-    navigate("/Concluir");
+  function handleClickConcluir(_id) {
+    console.log(`ID da publicação: ${_id}`);
+    axios.put(`http://localhost:3000/posts/${_id}/conclude`)
+      .then((response) => {
+        console.log(response.data);
+        // Atualize a interface do usuário ou execute outra ação após concluir o post com sucesso
+      })
+      .catch((error) => {
+        console.error('Erro ao concluir o post:', error);
+      });
   }
+
 
   return (
     <div>
@@ -67,7 +76,7 @@ function Inicio() {
                 <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
               </svg>
             </button>
-            <button className="concluir" onClick={handleClickConcluir}>
+            <button className="concluir" onClick={() => handleClickConcluir(post._id)} >
               Concluir
               <svg
                 xmlns="http://www.w3.org/2000/svg"

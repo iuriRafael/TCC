@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { Carousel, Modal, Button } from "react-bootstrap";
 import axios from "axios";
 import "./postar.css";
