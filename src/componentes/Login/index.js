@@ -39,13 +39,16 @@ const Login = () => {
         senha,
       });
 
+      console.log('Resposta do servidor:', response.data);
+      
       if (response.status === 200) {
-        const { nome, token, usuario_id } = response.data;
+        const { nome, token, usuario_id, email} = response.data;
 
         // Armazenar informações na sessão (session storage)
         sessionStorage.setItem('nome', nome);
         sessionStorage.setItem('usuarioId', usuario_id);
         sessionStorage.setItem('token', token);
+        sessionStorage.setItem('email', email);
         localStorage.setItem("nome",nome)
 
         console.log('Login realizado com sucesso');

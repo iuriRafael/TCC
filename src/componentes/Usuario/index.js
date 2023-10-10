@@ -14,9 +14,9 @@ function Usuario(props) {
   const [isSaindo, setIsSaindo] = useState(false);
 
 
-  function handleSair() {
-    setModalIsOpen(true);
-  }
+  // function handleSair() {
+  //   setModalIsOpen(true);
+  // }
 
   function handleConfirmarSair() {
     setIsSaindo(true);
@@ -40,6 +40,14 @@ function Usuario(props) {
   function handleFinalizando() {
     navigate('/Finalizado');
   }
+
+
+  function handleSair() {
+    sessionStorage.clear();
+    navigate('/Login');
+  }
+
+
   return (
     <div>
       <Previsao />
