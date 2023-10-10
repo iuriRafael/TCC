@@ -1,11 +1,11 @@
 import React from "react";
 import Navbar from "../navbar";
 import './mapa.css';
-import { useNavigate } from 'react-router-dom';
-function Mapa() {
+function TelaUm(){
     return (
 
-        <div>
+        <div id="um">
+            tela 1
             <iframe
                 className="mapa"
                 title="Google Map"
@@ -25,5 +25,4 @@ function Mapa() {
     );
 
 }
-
-export default Mapa;
+export default TelaUm ;

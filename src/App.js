@@ -1,8 +1,7 @@
 import React from "react";
-
-import './App.css';
+import "./App.css";
 import Entrada from "./componentes/Entrada/index";
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Explicacao from "./componentes/Explicacao";
 import Login from "./componentes/Login";
 import Cadastro from "./componentes/Cadastro";
@@ -10,13 +9,14 @@ import Inicio from "./componentes/Inicio";
 import CameraPage from "./componentes/Camera";
 import Usuario from "./componentes/Usuario";
 import Mapa from "./componentes/Mapa";
-import Finalizado from "./componentes/FIinalizado";
+import Finalizado from "./componentes/Finalizado";
 import Andamento from "./componentes/Andamento";
 import Concluir from "./componentes/Concluir";
 import Postar from "./componentes/Postar";
+import TelaUm from "./src/componentes/TelaUm"; 
+import TelaDois from "./src/componentes/TelaDois"; // Importe o componente TelaDois
 
 function App() {
-
   return (
     <div>
       <BrowserRouter>
@@ -33,6 +33,8 @@ function App() {
           <Route path="/Andamento" element={<Andamento />} />
           <Route path="/Concluir" element={<Concluir />} />
           <Route path="/Postar" element={<Postar />} />
+          <Route path="/TelaUm" element={<TelaUm />} /> {/* Use a propriedade element para TelaUm */}
+          <Route path="/TelaDois" element={<TelaDois />} /> {/* Use a propriedade element para TelaDois */}
         </Routes>
       </BrowserRouter>
     </div>

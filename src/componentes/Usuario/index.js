@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Modal, Button, Spinner } from 'react-bootstrap';
+import { Modal, Button, Spinner } from "react-bootstrap";
 import "./usuario.css";
 import Navbar from "../navbar";
 import perfil from "../img/botoes/do-utilizador.png";
-import { useNavigate } from 'react-router-dom';
-import Cookies from 'js-cookie'; // Importe a biblioteca Cookies
+import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie"; // Importe a biblioteca Cookies
 import "bootstrap-icons/font/bootstrap-icons.css";
 import Previsao from "../Previsão";
 
@@ -13,7 +13,6 @@ function Usuario(props) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [isSaindo, setIsSaindo] = useState(false);
 
-
   // function handleSair() {
   //   setModalIsOpen(true);
   // }
@@ -21,12 +20,9 @@ function Usuario(props) {
   function handleConfirmarSair() {
     setIsSaindo(true);
     setTimeout(() => {
-
-
-
       setIsSaindo(false);
       setModalIsOpen(false);
-      navigate('/Login');
+      navigate("/Login");
     }, 2500);
   }
 
@@ -35,46 +31,58 @@ function Usuario(props) {
   }
 
   function handleAndamento() {
-    navigate('/Andamento');
+    navigate("/Andamento");
   }
   function handleFinalizando() {
-    navigate('/Finalizado');
+    navigate("/Finalizado");
   }
-
+  function handleTelaUm() {
+    navigate("/TelaUm");
+  }
+  function handleTelaDois() {
+    navigate("/TelaDois");
+  }
 
   function handleSair() {
     sessionStorage.clear();
-    navigate('/Login');
+    navigate("/Login");
   }
-
 
   return (
     <div>
       <Previsao />
       <div className="Container">
-        <div id="cxPerfil">
-          <img className="perfil" src={perfil} alt="Perfil" />
-        </div>
+        
         <h2 id="nomeUsuario">{localStorage.getItem("nome")}</h2>
 
         <div className="user-buttons">
           <button id="btnAndamento" onClick={handleAndamento} disabled={false}>
             <div id="iconAndamento">
-            <i class="bi bi-clock"></i>
+              <i class="bi bi-clock"></i>
             </div>
             Em andamento
           </button>
-          <button id="btnFinalizando" onClick={handleFinalizando} disabled={false}>
-            <div id="iconFinalizando">
-             
-            </div>
+          <button
+            id="btnFinalizando"
+            onClick={handleFinalizando}
+            disabled={false}
+          >
+            <div id="iconFinalizando"></div>
             Tarefas finalizadas
           </button>
           <button id="btnSair" onClick={handleSair} disabled={false}>
             <div>
-            <i class="bi bi-box-arrow-right"></i>
+              <i class="bi bi-box-arrow-right"></i>
             </div>
             Sair da conta
+          </button>
+          <button id="btnSair" onClick={handleTelaUm} >
+            <div></div>
+            Botão 1
+          </button>
+          <button id="btnSair" onClick={handleTelaDois} >
+            <div></div>
+            Botão 2
           </button>
         </div>
       </div>
@@ -83,13 +91,23 @@ function Usuario(props) {
 
       <Modal show={modalIsOpen} onHide={() => setModalIsOpen(false)}>
         <Modal.Header>
-          <Modal.Title id="pergunta">Tem certeza que deseja sair da conta?</Modal.Title>
+          <Modal.Title id="pergunta">
+            Tem certeza que deseja sair da conta?
+          </Modal.Title>
         </Modal.Header>
         <Modal.Footer id="btnsModal">
-          <Button id="btnCancelar" variant="secondary" onClick={handleCancelarSair}>
+          <Button
+            id="btnCancelar"
+            variant="secondary"
+            onClick={handleCancelarSair}
+          >
             Cancelar
           </Button>
-          <Button id="btnConfirmar" variant="primary" onClick={handleConfirmarSair}>
+          <Button
+            id="btnConfirmar"
+            variant="primary"
+            onClick={handleConfirmarSair}
+          >
             {isSaindo ? <Spinner animation="border" size="sm" /> : "Confirmar"}
           </Button>
         </Modal.Footer>
