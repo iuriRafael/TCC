@@ -68,7 +68,7 @@ function Usuario(props) {
             disabled={false}
           >
             <div id="iconFinalizando"></div>
-            Tarefas finalizadas
+            Todos postagem concluinda
           </button>
           <button id="btnSair" onClick={handleSair} disabled={false}>
             <div>
@@ -78,7 +78,7 @@ function Usuario(props) {
           </button>
           <button id="btnSair" onClick={handleTelaUm} >
             <div></div>
-            Botão 1
+            Tuas postagem concluinda
           </button>
           <button id="btnSair" onClick={handleTelaDois} >
             <div></div>

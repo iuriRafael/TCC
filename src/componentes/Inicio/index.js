@@ -45,13 +45,13 @@ function Inicio() {
       axios.put(`http://localhost:3000/posts/${_id}/conclude`)
         .then((response) => {
           console.log(response.data);
-          // Atualize a interface do usuário ou execute outra ação após concluir o post com sucesso
+          
         })
         .catch((error) => {
           console.error('Erro ao concluir o post:', error);
         });
     } else {
-      // O email do usuário não é permitido, não faça nada ou mostre uma mensagem de erro
+    
       console.log('Usuário não autorizado');
       alert('Você não tem permissão para concluir esta publicação');
     }

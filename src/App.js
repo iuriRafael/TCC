@@ -13,8 +13,8 @@ import Finalizado from "./componentes/Finalizado";
 import Andamento from "./componentes/Andamento";
 import Concluir from "./componentes/Concluir";
 import Postar from "./componentes/Postar";
-import TelaUm from "./src/componentes/TelaUm"; 
-import TelaDois from "./src/componentes/TelaDois"; // Importe o componente TelaDois
+import TelaUm from "./componentes/TelaUm"; 
+import TelaDois from "./componentes/TelaDois"; // Importe o componente TelaDois
 
 function App() {
   return (
