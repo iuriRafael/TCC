@@ -1,23 +1,70 @@
-import React from "react";
+import React,{useEffect} from "react";
 import Navbar from "../navbar";
 import './mapa.css';
-import { useNavigate } from 'react-router-dom';
+import Map from 'ol/Map';
+import View from 'ol/View';
+import TileLayer from 'ol/layer/Tile';
+import OSM from 'ol/source/OSM';
+import Feature from 'ol/Feature';
+import Point from 'ol/geom/Point';
+import { fromLonLat } from 'ol/proj';
+import { Icon, Style } from 'ol/style';
+import VectorLayer from 'ol/layer/Vector';
+import VectorSource from 'ol/source/Vector';
+
+
+
 function Mapa() {
+
+    useEffect(() => {
+        // Coordenadas da localização que você deseja marcar
+        const latitude = -22.906847;
+        const longitude = -43.172897;
+    
+        // Crie um objeto de mapa
+        const map = new Map({
+          target: 'map',
+          layers: [
+            new TileLayer({
+              source: new OSM(),
+            }),
+          ],
+          view: new View({
+            center: fromLonLat([longitude, latitude]),
+            zoom: 15, // Ajuste o nível de zoom conforme necessário
+          }),
+        });
+    
+        // Crie um marcador personalizado para a localização
+        const marker = new Feature({
+          geometry: new Point(fromLonLat([longitude, latitude])),
+        });
+    
+        const iconStyle = new Style({
+          image: new Icon({
+            anchor: [0.5, 1],
+            src: '/', // URL para o ícone do marcador
+            scale: 0.1, // Ajuste o tamanho do ícone conforme necessário
+          }),
+        });
+    
+        marker.setStyle(iconStyle);
+    
+        // Crie uma camada vetorial para o marcador
+        const vectorLayer = new VectorLayer({
+          source: new VectorSource({
+            features: [marker],
+          }),
+        });
+    
+        // Adicione a camada vetorial ao mapa
+        map.addLayer(vectorLayer);
+      }, []);
+
     return (
 
         <div>
-            <iframe
-                className="mapa"
-                title="Google Map"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d23342.378262362385!2d-50.79132656617006!3d-29.578522614773664!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x951923a90fb5284b%3A0xf1d1e1db8e3dfa4c!2sHospital%20Bom%20Pastor!5e0!3m2!1spt-BR!2sbr!4v1687547833477!5m2!1spt-BR!2sbr"
-                width="600"
-                height="450"
-                style={{ border: 0 }}
-                allowFullScreen=""
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-            ></iframe>
-
+            <div id="map" style={{ width: '100%', height: '700px' }}></div>;
             <Navbar />
         </div>
 

@@ -6,6 +6,7 @@ import "./postar.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import seta from "../img/botoes/Arrow-left-circle/arrow-left-circle.svg";
 import { DotPulse } from "@uiball/loaders";
+
 const Postar = () => {
   const capturedImagesList =
     JSON.parse(localStorage.getItem("capturedImages")) || [];
@@ -16,6 +17,7 @@ const Postar = () => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [location, setLocation] = useState(null);
 
   const userId = sessionStorage.getItem("usuarioId");
 
