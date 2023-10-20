@@ -42,7 +42,9 @@ function TelaUm(){
             <img className="lixo" src={post.image} />
           </div>
           <div id="cxInfo">
-            <h6 className="localizacoes">Localização:{post.location}</h6>
+          {post.location && (
+              <h6 className="localizacoes">Localização: {post.location.coordinates}</h6>
+            )}
             <h6 className="endereco">Descrição: {post.description}</h6>
           </div>
         </div>

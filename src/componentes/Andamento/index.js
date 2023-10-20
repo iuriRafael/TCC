@@ -1,8 +1,7 @@
 import React, { useEffect, useState }from "react";
 import "./andamento.css";
 import Navbar from "../navbar";
-import perfil from "../img/noImage.png";
-import lixos2 from "../img/residuo2.jpg"
+
 import Previsao from "../Previsão";
 
 import axios from 'axios';
@@ -46,7 +45,9 @@ function Andamento() {
             <img className="lixo" src={publication.image} />
           </div>
           <div id="cxInfo">
-            <h6 className="localizacoes">Localização:{publication.location}</h6>
+          {publication.location && (
+              <h6 className="localizacoes">Localização: {publication.location.coordinates}</h6>
+            )}
             <h6 className="endereco">Descrição: {publication.description}</h6>
           </div>
         </div>

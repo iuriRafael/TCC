@@ -6,6 +6,7 @@ import "./postar.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import seta from "../img/botoes/Arrow-left-circle/arrow-left-circle.svg";
 import { DotPulse } from "@uiball/loaders";
+import Mapa from "../Mapa";
 
 const Postar = () => {
   const capturedImagesList =
@@ -13,16 +14,22 @@ const Postar = () => {
   const navigate = useNavigate();
 
   const [texto, setTexto] = useState("");
-  const [enderecoAtual, setEnderecoAtual] = useState("");
+  // const [enderecoAtual, setEnderecoAtual] = useState("");
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
-  const [location, setLocation] = useState(null);
+  const [latitude, setLatitude] = useState(null);
+  const [longitude, setLongitude] = useState(null);
 
   const userId = sessionStorage.getItem("usuarioId");
 
   const handleChangeTexto = (event) => {
     setTexto(event.target.value);
+  };
+
+  const handleLocationChange = ({ latitude, longitude }) => {
+    setLatitude(latitude);
+    setLongitude(longitude);
   };
 
   const handleSubmit = async (event) => {
@@ -34,7 +41,10 @@ const Postar = () => {
         userId: userId,
         files: capturedImagesList,
         description: texto,
-        location: enderecoAtual,
+        location: {
+          type: 'Point',
+          coordinates: [longitude, latitude], // Enviar as coordenadas da localização
+        },
       });
 
       console.log("Resposta do servidor:", response.data);
@@ -88,17 +98,9 @@ const Postar = () => {
       </div>
 
       <form className="postar-form" onSubmit={handleSubmit}>
+        <Mapa onLocationChange={handleLocationChange} />
         <div className="endereco-atual">
           <div id="campos">
-            <div>
-              <label>Endereço Atual:</label>
-              <input
-                id="address"
-                placeholder="Digite o seu endereço:"
-                value={enderecoAtual}
-                onChange={(event) => setEnderecoAtual(event.target.value)}
-              />
-            </div>
             <div>
               <label>Referência:</label>
               <input

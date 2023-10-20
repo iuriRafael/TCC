@@ -1,76 +1,61 @@
-import React,{useEffect} from "react";
+import React, { useEffect, useRef} from "react";
 import Navbar from "../navbar";
 import './mapa.css';
-import Map from 'ol/Map';
-import View from 'ol/View';
-import TileLayer from 'ol/layer/Tile';
-import OSM from 'ol/source/OSM';
-import Feature from 'ol/Feature';
-import Point from 'ol/geom/Point';
-import { fromLonLat } from 'ol/proj';
-import { Icon, Style } from 'ol/style';
-import VectorLayer from 'ol/layer/Vector';
-import VectorSource from 'ol/source/Vector';
+
+import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
+
+import userIcon from "../imegns/vermelho-removebg-preview.png";
+import userIcon2 from "../imegns/R-removebg-preview.png";
 
 
 
-function Mapa() {
+function Mapa({ onLocationChange }) {
+  const mapRef = useRef(null); // Utilize useRef para armazenar uma referência ao mapa
+  const mapInitialized = useRef(false);
 
-    useEffect(() => {
-        // Coordenadas da localização que você deseja marcar
-        const latitude = -22.906847;
-        const longitude = -43.172897;
-    
-        // Crie um objeto de mapa
-        const map = new Map({
-          target: 'map',
-          layers: [
-            new TileLayer({
-              source: new OSM(),
-            }),
-          ],
-          view: new View({
-            center: fromLonLat([longitude, latitude]),
-            zoom: 15, // Ajuste o nível de zoom conforme necessário
-          }),
+  useEffect(() => {
+    // Inicialize o mapa Leaflet apenas se ele ainda não estiver inicializado
+    if (!mapInitialized.current) {
+      const map = L.map(mapRef.current).setView([51.505, -0.09], 13);
+
+      // Adicione uma camada de mapa (por exemplo, um mapa de rua)
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      }).addTo(map);
+
+      // Obtenha a localização do usuário
+      if ('geolocation' in navigator) {
+        navigator.geolocation.getCurrentPosition((position) => {
+          const { latitude, longitude } = position.coords;
+      
+          onLocationChange({ latitude, longitude });
+      
+          L.marker([latitude, longitude],{icon: userIcon})
+          .addTo(map)
+            .bindPopup('Sua Localização Atual')
+            .openPopup();
         });
-    
-        // Crie um marcador personalizado para a localização
-        const marker = new Feature({
-          geometry: new Point(fromLonLat([longitude, latitude])),
-        });
-    
-        const iconStyle = new Style({
-          image: new Icon({
-            anchor: [0.5, 1],
-            src: '/', // URL para o ícone do marcador
-            scale: 0.1, // Ajuste o tamanho do ícone conforme necessário
-          }),
-        });
-    
-        marker.setStyle(iconStyle);
-    
-        // Crie uma camada vetorial para o marcador
-        const vectorLayer = new VectorLayer({
-          source: new VectorSource({
-            features: [marker],
-          }),
-        });
-    
-        // Adicione a camada vetorial ao mapa
-        map.addLayer(vectorLayer);
-      }, []);
+      }
 
-    return (
+      
 
-        <div>
-            <div id="map" style={{ width: '100%', height: '700px' }}></div>;
-            <Navbar />
-        </div>
+      // Atualize o estado para indicar que o mapa foi inicializado
+      mapInitialized.current = true;
+
+    }
+  }, [onLocationChange]);// Certifique-se de passar um array vazio para que o efeito seja executado apenas uma vez
+  
+
+  
 
 
-    );
-
+  return (
+    <div>
+      <div ref={mapRef} style={{ height: '400px' }}></div>
+      <Navbar />
+    </div>
+  );
 }
 
 export default Mapa;

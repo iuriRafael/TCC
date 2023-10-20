@@ -1,31 +1,59 @@
-// import React, { useState } from 'react';
+// import React, { useEffect, useRef} from 'react';
 // import './style.css';
-// import Logo from "../img/meioo/CleanMap/default_transparent_1000x1000.png";
-// import axios from 'axios'; // Importe a biblioteca axios
 
 
+// import 'leaflet/dist/leaflet.css';
+// import L from 'leaflet'
 
-// function Concluir(props) {
+// import userIcon from "../imegns/vermelho-removebg-preview.png";
+// import userIcon2 from "../imegns/R-removebg-preview.png";
+
+
+// function Concluir({ onLocationChange }) {
+//     const mapRef = useRef(null); // Utilize useRef para armazenar uma referência ao mapa
+//     const mapInitialized = useRef(false);
   
-//   const postId = props.id;
+//     useEffect(() => {
+//       // Inicialize o mapa Leaflet apenas se ele ainda não estiver inicializado
+//       if (!mapInitialized.current) {
+//         const map = L.map(mapRef.current).setView([51.505, -0.09], 13);
   
-
-//   const handleConcluirClick = async () => {
-//     try {
-//       const response = await axios.put(`http://localhost:3000/posts/${postId}/conclude`);
-//       console.log(postId);
-//       console.log(response.data);
-//       // Atualize a interface do usuário ou execute outra ação após concluir o post com sucesso
-//     } catch (error) {
-//       console.error('Erro ao concluir o post:', error);
-//     }
-//   };
-
-//   return (
-//     <div>
-//       <button onClick={handleConcluirClick}>Concluir Post</button>
-//     </div>
-//   );
+//         // Adicione uma camada de mapa (por exemplo, um mapa de rua)
+//         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+//           attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+//         }).addTo(map);
+  
+//         // Obtenha a localização do usuário
+//         if ('geolocation' in navigator) {
+//           navigator.geolocation.getCurrentPosition((position) => {
+//             const { latitude, longitude } = position.coords;
+        
+//             onLocationChange({ latitude, longitude });
+        
+//             L.marker([latitude, longitude],{icon: userIcon})
+//             .addTo(map)
+//               .bindPopup('Sua Localização Atual')
+//               .openPopup();
+//           });
+//         }
+  
+        
+  
+//         // Atualize o estado para indicar que o mapa foi inicializado
+//         mapInitialized.current = true;
+  
+//       }
+//     }, [onLocationChange]);// Certifique-se de passar um array vazio para que o efeito seja executado apenas uma vez
+    
+  
+    
+  
+  
+//     return (
+//       <div>
+//         <div ref={mapRef} style={{ height: '400px' }}></div>
+//       </div>
+//     );
 // }
 
 // export default Concluir;

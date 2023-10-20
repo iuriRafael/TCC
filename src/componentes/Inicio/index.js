@@ -5,6 +5,8 @@ import axios from "axios";
 
 import Navbar from "../navbar";
 import Previsao from "../Previsão";
+import Mapa from "../Mapa";
+
 
 
 function Inicio() {
@@ -22,7 +24,7 @@ function Inicio() {
         }));
         setPostagens(updatedPostagens);
 
-        // setPostagens(response.data);
+        sessionStorage.setItem('postagens', JSON.stringify(updatedPostagens));
       })
       .catch((error) => {
         console.error("Erro ao buscar publicações:", error);
@@ -57,7 +59,7 @@ function Inicio() {
     }
   }
 
-
+  
   return (
     <div>
       <Previsao />
@@ -68,7 +70,9 @@ function Inicio() {
             <img className="lixo" src={post.image} />
           </div>
           <div id="cxInformacoes">
-            <h6 className="localizacoes">Localização:{post.location}</h6>
+          {post.location && (
+              <h6 className="localizacoes">Localização: {post.location.coordinates}</h6>
+            )}
             <h6 className="endereco">Descrição: {post.description}</h6>
           </div>
 
