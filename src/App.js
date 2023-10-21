@@ -15,6 +15,7 @@ import Concluir from "./componentes/Concluir";
 import Postar from "./componentes/Postar";
 import TelaUm from "./componentes/TelaUm"; 
 import TelaDois from "./componentes/TelaDois"; // Importe o componente TelaDois
+import LocalizacaoUsuario from "./componentes/LocalizacaoUsuario";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
           <Route path="/Postar" element={<Postar />} />
           <Route path="/TelaUm" element={<TelaUm />} /> {/* Use a propriedade element para TelaUm */}
           <Route path="/TelaDois" element={<TelaDois />} /> {/* Use a propriedade element para TelaDois */}
+          <Route path="/LocalizacaoUsuario" element={<LocalizacaoUsuario />} />
         </Routes>
       </BrowserRouter>
     </div>

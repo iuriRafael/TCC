@@ -21,10 +21,18 @@ function Inicio() {
         const updatedPostagens = response.data.map((post) => ({
           ...post,
           image: `http://localhost:3000/${post.image}`,
+
         }));
+
+        const postCoordinates = response.data.map((post) => ({
+          latitude: post.location.coordinates[1],
+          longitude: post.location.coordinates[0],
+        }));
+
         setPostagens(updatedPostagens);
 
-        sessionStorage.setItem('postagens', JSON.stringify(updatedPostagens));
+        sessionStorage.setItem('postCoordinates', JSON.stringify(postCoordinates));
+        console.log("Coordenadas dos posts armazenadas na sessão")
       })
       .catch((error) => {
         console.error("Erro ao buscar publicações:", error);

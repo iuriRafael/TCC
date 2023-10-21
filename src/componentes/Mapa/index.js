@@ -1,61 +1,61 @@
-import React, { useEffect, useRef} from "react";
+import React, { useEffect, useRef, useState} from "react";
 import Navbar from "../navbar";
 import './mapa.css';
 
-import 'leaflet/dist/leaflet.css';
-import L from 'leaflet';
+import axios from 'axios';
 
 import userIcon from "../imegns/vermelho-removebg-preview.png";
 import userIcon2 from "../imegns/R-removebg-preview.png";
 
 
 
-function Mapa({ onLocationChange }) {
-  const mapRef = useRef(null); // Utilize useRef para armazenar uma referência ao mapa
-  const mapInitialized = useRef(false);
+function Mapa() {
+  const [map, setMap] = useState(null);
+  const [lat, setLat] = useState(null);
+  const [lng, setLng] = useState(null);
 
   useEffect(() => {
-    // Inicialize o mapa Leaflet apenas se ele ainda não estiver inicializado
-    if (!mapInitialized.current) {
-      const map = L.map(mapRef.current).setView([51.505, -0.09], 13);
+    const apiKey = 'AIzaSyDZ7VsqZJbfA8KEAo5HgKzz2As_HgkjO2k';
+    const address = '1600 Amphitheatre Parkway, Mountain View, CA';
+    const apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${apiKey}`;
 
-      // Adicione uma camada de mapa (por exemplo, um mapa de rua)
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-      }).addTo(map);
+    axios.get(apiUrl)
+      .then(response => {
+        const location = response.data.results[0].geometry.location;
+        setLat(location.lat);
+        setLng(location.lng);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }, []);
 
-      // Obtenha a localização do usuário
-      if ('geolocation' in navigator) {
-        navigator.geolocation.getCurrentPosition((position) => {
-          const { latitude, longitude } = position.coords;
-      
-          onLocationChange({ latitude, longitude });
-      
-          L.marker([latitude, longitude],{icon: userIcon})
-          .addTo(map)
-            .bindPopup('Sua Localização Atual')
-            .openPopup();
-        });
+  useEffect(() => {
+    if (lat && lng) {
+      if (!map) {
+        // Inicialize o mapa
+        const google = window.google;
+        const mapOptions = {
+          center: { lat, lng },
+          zoom: 15,
+        };
+        const mapInstance = new google.maps.Map(document.getElementById('map'), mapOptions);
+        setMap(mapInstance);
+      } else {
+        // Atualize o centro do mapa
+        map.setCenter({ lat, lng });
       }
-
-      
-
-      // Atualize o estado para indicar que o mapa foi inicializado
-      mapInitialized.current = true;
-
     }
-  }, [onLocationChange]);// Certifique-se de passar um array vazio para que o efeito seja executado apenas uma vez
-  
-
-  
-
+  }, [lat, lng, map]);
 
   return (
     <div>
-      <div ref={mapRef} style={{ height: '400px' }}></div>
-      <Navbar />
+      <h1>Map</h1>
+      <div id="map" style={{ width: '400px', height: '450px' }}></div>
+      {/* <Navbar/> */}
     </div>
   );
 }
+
 
 export default Mapa;

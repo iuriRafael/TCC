@@ -6,7 +6,7 @@ import "./postar.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import seta from "../img/botoes/Arrow-left-circle/arrow-left-circle.svg";
 import { DotPulse } from "@uiball/loaders";
-import Mapa from "../Mapa";
+import LocalizacaoUsuario from "../LocalizacaoUsuario";
 
 const Postar = () => {
   const capturedImagesList =
@@ -27,10 +27,6 @@ const Postar = () => {
     setTexto(event.target.value);
   };
 
-  const handleLocationChange = ({ latitude, longitude }) => {
-    setLatitude(latitude);
-    setLongitude(longitude);
-  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -98,7 +94,10 @@ const Postar = () => {
       </div>
 
       <form className="postar-form" onSubmit={handleSubmit}>
-        <Mapa onLocationChange={handleLocationChange} />
+      <LocalizacaoUsuario onLocationChange={({ latitude, longitude }) => {
+          setLatitude(latitude);
+          setLongitude(longitude);
+        }} />
         <div className="endereco-atual">
           <div id="campos">
             <div>
