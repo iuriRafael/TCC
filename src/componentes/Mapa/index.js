@@ -7,17 +7,21 @@ import axios from 'axios';
 import userIcon from "../imegns/vermelho-removebg-preview.png";
 import userIcon2 from "../imegns/R-removebg-preview.png";
 
-
-
 function Mapa() {
   const [map, setMap] = useState(null);
   const [lat, setLat] = useState(null);
   const [lng, setLng] = useState(null);
 
+  const postCoordinates = JSON.parse(sessionStorage.getItem("postCoordinates")) || [];
+
   useEffect(() => {
+    
+
     const apiKey = 'AIzaSyDZ7VsqZJbfA8KEAo5HgKzz2As_HgkjO2k';
     const address = '1600 Amphitheatre Parkway, Mountain View, CA';
-    const apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${apiKey}`;
+    const apiUrl = postCoordinates.length > 0
+      ? `https://maps.googleapis.com/maps/api/geocode/json?latlng=${postCoordinates[0].latitude},${postCoordinates[0].longitude}&key=${apiKey}`
+      : `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${apiKey}`;
 
     axios.get(apiUrl)
       .then(response => {
@@ -28,7 +32,7 @@ function Mapa() {
       .catch(error => {
         console.error(error);
       });
-  }, []);
+  }, [postCoordinates]);
 
   useEffect(() => {
     if (lat && lng) {
@@ -41,18 +45,27 @@ function Mapa() {
         };
         const mapInstance = new google.maps.Map(document.getElementById('map'), mapOptions);
         setMap(mapInstance);
+
+        postCoordinates.forEach((coordenada, index) => {
+          new window.google.maps.Marker({
+            position: { lat: coordenada.latitude, lng: coordenada.longitude },
+            map: mapInstance,
+            title: `Post ${index + 1}`,
+          });
+        });
+
       } else {
         // Atualize o centro do mapa
         map.setCenter({ lat, lng });
       }
     }
-  }, [lat, lng, map]);
+  }, [lat, lng, map, postCoordinates]);
 
   return (
     <div>
       <h1>Map</h1>
       <div id="map" style={{ width: '400px', height: '450px' }}></div>
-      {/* <Navbar/> */}
+      <Navbar/>
     </div>
   );
 }
