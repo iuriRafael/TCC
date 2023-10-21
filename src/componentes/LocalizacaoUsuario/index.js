@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import "./local.css"
 function LocalizacaoUsuario({ onLocationChange }) {
   const [lat, setLat] = useState(null);
   const [lng, setLng] = useState(null);
@@ -28,11 +28,12 @@ function LocalizacaoUsuario({ onLocationChange }) {
 
   return (
     <div>
-      <h2>Localização do Usuário:</h2>
+      <h2 className="nomeUserPost">Localização de {localStorage.getItem("nome")}:</h2>
       {lat != null && lng != null && (
-        <div>
-          <p>Latitude: {lat}</p>
-          <p>Longitude: {lng}</p>
+        <div id="coordenadas">
+          <p className="cods">Latitude: {lat}</p>
+         
+          <p className="cods">Longitude: {lng}</p>
         </div>
       )}
     </div>

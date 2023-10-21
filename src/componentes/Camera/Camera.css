@@ -236,6 +236,9 @@ video {
   transition: background-color 0.3s ease-out;
 }
 
+.remove-button  {
+  margin-left: 2.4rem;
+}
 .remove-button p {
   display: none;
   color: white;

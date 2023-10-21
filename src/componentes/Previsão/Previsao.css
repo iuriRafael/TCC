@@ -19,12 +19,13 @@
 #temp {
   margin: 0;
   font-weight: 650;
+  color: #000;
 }
 
 #city {
   margin: 0;
   font-weight: 700;
-  color: #4F5285;
+  color: #000000;
 }
 
 .cxItens > #state{

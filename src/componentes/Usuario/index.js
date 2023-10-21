@@ -10,49 +10,42 @@ import Previsao from "../Previsão";
 
 function Usuario(props) {
   const navigate = useNavigate();
-  const [modalIsOpen, setModalIsOpen] = useState(false);
   const [isSaindo, setIsSaindo] = useState(false);
-
-  // function handleSair() {
-  //   setModalIsOpen(true);
-  // }
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
 
   function handleConfirmarSair() {
     setIsSaindo(true);
     setTimeout(() => {
       setIsSaindo(false);
-      setModalIsOpen(false);
+      setShowConfirmationModal(false);
       navigate("/Login");
     }, 2500);
   }
 
   function handleCancelarSair() {
-    setModalIsOpen(false);
+    setShowConfirmationModal(false);
   }
 
   function handleAndamento() {
     navigate("/Andamento");
   }
+
   function handleFinalizando() {
     navigate("/Finalizado");
   }
+
   function handleTelaUm() {
     navigate("/TelaUm");
   }
-  function handleTelaDois() {
-    navigate("/TelaDois");
-  }
 
   function handleSair() {
-    sessionStorage.clear();
-    navigate("/Login");
+    setShowConfirmationModal(true); // Exibir o modal de confirmação
   }
 
   return (
     <div>
       <Previsao />
       <div className="Container">
-        
         <h2 id="nomeUsuario">{localStorage.getItem("nome")}</h2>
 
         <div className="user-buttons">
@@ -60,15 +53,17 @@ function Usuario(props) {
             <div id="iconAndamento">
               <i class="bi bi-clock"></i>
             </div>
-            Em andamento
+            Pendentes
           </button>
           <button
             id="btnFinalizando"
             onClick={handleFinalizando}
             disabled={false}
           >
-            <div id="iconFinalizando"></div>
-            Todos postagem concluinda
+            <div id="iconFinalizando">
+              <i class="bi bi-check2-circle"></i>
+            </div>
+            Concluídos
           </button>
           <button id="btnSair" onClick={handleSair} disabled={false}>
             <div>
@@ -76,20 +71,18 @@ function Usuario(props) {
             </div>
             Sair da conta
           </button>
-          <button id="btnSair" onClick={handleTelaUm} >
-            <div></div>
-            Tuas postagem concluinda
-          </button>
-          <button id="btnSair" onClick={handleTelaDois} >
-            <div></div>
-            Botão 2
+          <button id="btnSair" onClick={handleTelaUm}>
+            <div>
+              <i class="bi bi-person-fill" id="iconP"></i>
+            </div>
+            Suas postagens
           </button>
         </div>
       </div>
 
       <Navbar />
 
-      <Modal show={modalIsOpen} onHide={() => setModalIsOpen(false)}>
+      <Modal show={showConfirmationModal} onHide={() => setShowConfirmationModal(false)}>
         <Modal.Header>
           <Modal.Title id="pergunta">
             Tem certeza que deseja sair da conta?

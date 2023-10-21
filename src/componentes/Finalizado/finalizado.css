@@ -52,3 +52,20 @@ h2 {
   justify-content: space-between;
   margin: 5vh 2rem 0 2rem;
 }
+
+#cxSemConteudo{
+  width: 10rem;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#cxSemConteudo > img {
+  width: 100%;
+}
+
+#cxTodosItensSem{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin:50% 2rem;
+}

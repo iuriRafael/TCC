@@ -4,32 +4,19 @@ body {
   padding: 0;
 }
 
-#mais{
-  background-color: #fff;
-  margin-top: 3.5vw;
-  align-items: center;
-  display: flex;
-  justify-content: center;
+.bi-filter-left {
+  color: #4f5285;
+  font-size: 44px;
+}
+#cxFiltro {
+  margin: 3.5rem 3.5rem 0;
 }
 
-.maisBtn{
-  background-color: #4F5285;
-  padding: 1rem;
-  position: relative;
-  border: none;
-  cursor: pointer;
-  overflow: hidden;
-  border-radius: 5px;
-  transition: opacity 0.2s ease-in-out;
+#btnFiltro {
+  background: none;
 }
-
-#botaoMais{
-  max-width: 8vw;
-  background-color: #4F5285;
-}
-
-.menssagemBtn{
-  background-color: #4F5285;
+.menssagemBtn {
+  background-color: #4f5285;
   padding-left: 1.5rem;
   color: #fff;
   display: none;
@@ -43,7 +30,7 @@ body {
   display: none;
 }
 
-.fotos4 {
+.postagem {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -55,33 +42,33 @@ body {
   margin-left: 7.5vw;
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
+  
 }
 
 .lixo {
-  display: flex;
-  flex-direction: column;
   width: 85vw;
-  border-radius:5px 5px  0 0;
+  border-radius: 5px 5px 0 0;
+  margin-top: 0.8rem;
 }
 
 .localizacoes {
-margin-top: 1rem;
+  margin-top: 1rem;
 }
- .endereco{
+.endereco {
   margin-bottom: 1rem;
- }
+}
 .botoes-postagem {
   display: flex;
   align-items: center;
 }
 
 .localizacao {
-  background-color: #4F5285;
+  background-color: #4f5285;
   align-items: center;
   display: flex;
   justify-content: space-evenly;
   color: #fff;
-  border: 2px dotted #AAA4F2;
+  border: 2px dotted #aaa4f2;
   border-radius: 18px;
   cursor: pointer;
   transition: background-color 0.3s ease-out;
@@ -97,23 +84,21 @@ margin-top: 1rem;
 
 .concluir {
   width: 35vw;
-  background-color: #AAA4F2;
+  background-color: #aaa4f2;
   align-items: center;
   display: flex;
   justify-content: space-evenly;
   color: #fff;
-  border: 2px dotted #AAA4F2;
+  border: 2px dotted #aaa4f2;
   border-radius: 18px;
   cursor: pointer;
   transition: background-color 0.3s ease-out;
 }
-
 .concluir:hover {
   background-color: #e5d9ff;
   transition: background-color 0.3s ease-in;
 }
-
-#cxInformacoes{
+#cxInformacoes {
   display: block;
   text-align: start;
 }
@@ -122,7 +107,6 @@ margin-top: 1rem;
   margin: 0 5px;
   width: 40vw;
   padding: 1.5vh 0;
-  color: #ffffff;
   border: none;
   border-radius: 15px;
   font-weight: 600;
@@ -136,10 +120,41 @@ margin-top: 1rem;
 
 .imagens2 {
   align-items: center;
-  width: 100VW;
-  margin-left: 5VW;
+  width: 100vw;
+  margin-left: 5vw;
 }
 
 #espaco {
   height: 10vh;
+  margin-top: 1rem;
+}
+
+#userIcon {
+  background-color: #aaa4f2;
+  width: 32px;
+  height: 32px;
+  padding: .4em;
+  border-radius: 50%;
+}
+#nomeUser{
+  color: #31344e;
+}
+
+#fotoPerfil {
+  margin-right: 90%;
+  margin-bottom: 0.2rem;
+  display: flex;
+  justify-content:start;
+}
+
+@media (min-width: 368px) and (max-width: 1080px) {
+  .postagem {
+    width: 100%;
+    margin-left: 0;
+  }
+  Lixo,
+  .lixo {
+    width: 100%;
+    height: 50vh;
+  }
 }

@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './login.css';
-import Logos from '../img/default_765x625 2.png';
-import axios from 'axios';
-import { Modal, Button } from 'react-bootstrap'; // Importe o Modal e o Button do Bootstrap
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "./login.css";
+import Logos from "../img/default_765x625 2.png";
+import axios from "axios";
+import { Modal, Button, Alert, Spinner } from "react-bootstrap"; // Importe o Spinner do Bootstrap
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [senha, setSenha] = useState('');
-  const [isLoading, setIsLoading] = useState(false); // Estado para controlar o carregamento
-  const [showLoadingModal, setShowLoadingModal] = useState(false); // Estado para controlar a exibição do modal de loading
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [showErrorAlert, setShowErrorAlert] = useState(false);
   const navigate = useNavigate();
 
   const handleEmailChange = (event) => {
@@ -25,72 +25,69 @@ const Login = () => {
     event.preventDefault();
 
     if (!email || !senha) {
-      console.log('Por favor, preencha todos os campos do formulário');
+      console.log("Por favor, preencha todos os campos do formulário");
       return;
     }
 
-    // Ative a animação de loading e exiba o modal de loading
     setIsLoading(true);
-    setShowLoadingModal(true);
 
     try {
-      const response = await axios.post('http://localhost:3000/auth/login', {
+      const response = await axios.post("http://localhost:3000/auth/login", {
         email,
         senha,
       });
 
-      console.log('Resposta do servidor:', response.data);
-      
       if (response.status === 200) {
-        const { nome, token, usuario_id, email} = response.data;
+        const { nome, token, usuario_id, email } = response.data;
+        sessionStorage.setItem("nome", nome);
+        sessionStorage.setItem("usuarioId", usuario_id);
+        sessionStorage.setItem("token", token);
+        sessionStorage.setItem("email", email);
+        localStorage.setItem("nome", nome);
 
-        // Armazenar informações na sessão (session storage)
-        sessionStorage.setItem('nome', nome);
-        sessionStorage.setItem('usuarioId', usuario_id);
-        sessionStorage.setItem('token', token);
-        sessionStorage.setItem('email', email);
-        localStorage.setItem("nome",nome)
-
-        console.log('Login realizado com sucesso');
-        // Use setTimeout para navegar para a próxima tela após 3 segundos
         setTimeout(() => {
-          navigate('/Inicio');
+          navigate("/Inicio");
         }, 3000);
       } else {
-        console.log('Erro ao realizar login:');
+        console.log("Erro ao realizar login");
+        setShowErrorAlert(true);
+        setTimeout(() => {
+          setShowErrorAlert(false);
+        }, 4000);
       }
     } catch (erro) {
-      console.error('Erro ao realizar login:');
+      console.error("Erro ao realizar login");
+      setShowErrorAlert(true);
+      setTimeout(() => {
+        setShowErrorAlert(false);
+      }, 2500);
     } finally {
-      // Desative a animação de loading e feche o modal após 3 segundos
       setTimeout(() => {
         setIsLoading(false);
-        setShowLoadingModal(false);
       }, 2000);
     }
   };
 
   const handleClick = () => {
-    navigate('/Cadastro');
+    navigate("/Cadastro");
   };
 
   return (
     <div className="App">
-      <div id='formsDireita'>
+      <div id="formsDireita">
         <img className="imagens2" src={Logos} alt="Logo" />
         <h3 id="frase">1° APP para mapeamento de resíduos sólidos no mundo</h3>
         <form className="formulario" onSubmit={handleSubmit}>
           <input
-            className='iptLoginForm'
+            className="iptLoginForm"
             type="email"
             placeholder="E-mail:"
             value={email}
             onChange={handleEmailChange}
             required
           />
-
           <input
-            className='iptLoginForm'
+            className="iptLoginForm"
             type="password"
             placeholder="Senha:"
             value={senha}
@@ -98,28 +95,41 @@ const Login = () => {
             required
           />
           <div className="btns">
-            <button className="botaoLogin" type="submit" disabled={isLoading}>
-              {isLoading ? 'Carregando...' : 'Login'}
-            </button>
+            <Button
+              className="botaoLogin"
+              type="submit"
+              disabled={isLoading}
+              variant="primary"
+            >
+              {isLoading ? <Spinner animation="border" size="sm" /> : "Login"}
+            </Button>
             <p id="ou">ou</p>
-            <button className="botaoCadastro" id='btnCad' onClick={handleClick} type="button">
+            <button
+              className="botaoCadastro"
+              id="btnCad"
+              onClick={handleClick}
+              type="button"
+            >
               Cadastro
             </button>
           </div>
         </form>
-      </div>
-
-      {/* Modal de Loading */}
-      <Modal show={showLoadingModal} backdrop="static" keyboard={false} centered>
-        <Modal.Body>
-          <div className="text-center">
-            <h4>Renderizando [ ... ]</h4>
-            <div className="spinner-border" role="status">
-              
+        {showErrorAlert && (
+          <Alert
+            variant="danger"
+            className="error-alert"
+            style={{
+              transition: "opacity 0.5s",
+              opacity: showErrorAlert ? 1 : 0,
+            }}
+          >
+            Dados de login incorretos. Por favor, verifique suas credenciais.
+            <div id="cxX">
+              <i class="bi bi-x-circle" style={{ color: "#ff5e5e" }}></i>
             </div>
-          </div>
-        </Modal.Body>
-      </Modal>
+          </Alert>
+        )}
+      </div>
     </div>
   );
 };

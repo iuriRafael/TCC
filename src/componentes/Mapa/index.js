@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState} from "react";
 import Navbar from "../navbar";
 import './mapa.css';
-
+import Previsao from "../Previsão";
 import axios from 'axios';
 
 import userIcon from "../imegns/vermelho-removebg-preview.png";
@@ -63,8 +63,8 @@ function Mapa() {
 
   return (
     <div>
-      <h1>Map</h1>
-      <div id="map" style={{ width: '400px', height: '450px' }}></div>
+      <Previsao />
+      <div id="map"></div>
       <Navbar/>
     </div>
   );

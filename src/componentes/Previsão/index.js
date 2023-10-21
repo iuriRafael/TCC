@@ -30,12 +30,22 @@ function Previsao() {
     const obterTemperaturaAtual = async () => {
       try {
         const key = '54182895f993c08880bbaca0a0f49c31';
-        const response = await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=Igrejinha&appid=${key}&units=metric`);
-        const { main: { temp }, weather } = response.data;
-        setTemperature(temp);
-        setCity('Igrejinha');
-        setWeatherIcon(weather[0].icon);
-        setWeatherDescription(traducaoClima[weather[0].main]);
+        
+        // Obter a localização do dispositivo (latitude e longitude)
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(async (position) => {
+            const { latitude, longitude } = position.coords;
+            const response = await axios.get(`http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${key}&units=metric`);
+            const { name, main: { temp }, weather } = response.data;
+            const roundedTemperature = Math.round(temp);
+            setTemperature(roundedTemperature);
+            setCity(name);
+            setWeatherIcon(weather[0].icon);
+            setWeatherDescription(traducaoClima[weather[0].main]);
+          }, (error) => {
+            console.error('Erro ao obter a localização do dispositivo:', error);
+          });
+        }
       } catch (error) {
         console.error('Erro ao obter a temperatura atual:', error);
       }

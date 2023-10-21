@@ -1,6 +1,7 @@
-.mapa{
+#map{
     width: 100%;
-    height: 93.2vh;
+    height: 77.4vh;
+    margin-top: 1rem;
 }
 
 #um ,#dois{

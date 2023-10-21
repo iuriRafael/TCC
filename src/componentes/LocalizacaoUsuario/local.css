@@ -1,0 +1,11 @@
+#coordenadas{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: start
+}
+
+.nomeUserPost , .cods{ 
+    color: #fff;
+}

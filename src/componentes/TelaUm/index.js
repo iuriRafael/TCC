@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../navbar";
 import axios from 'axios';
-
+import Previsao from "../Previsão";
 function TelaUm(){
   const [posts, setPosts] = useState([]);
   
@@ -34,7 +34,7 @@ function TelaUm(){
 
   return (
     <div>
-      <h2>Publicações concluídas</h2>
+      <Previsao />
       <ul>
       {posts.map((post) => (
         <div key={post._id} className="fotos4">
