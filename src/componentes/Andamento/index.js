@@ -1,9 +1,8 @@
 import React, { useEffect, useState }from "react";
 import "./andamento.css";
 import Navbar from "../navbar";
-
+import userIcon from "../img/botoes/do-utilizador.png";
 import Previsao from "../Previsão";
-
 import axios from 'axios';
 
 function Andamento() {
@@ -40,7 +39,11 @@ function Andamento() {
       <div>
     
       {publications.map((publication) => (
-        <div key={publication._id} className="fotos4">
+        <div key={publication._id} className="postagem">
+          <div id="fotoPerfil">
+              <img src={userIcon} id="userIcon"></img>
+              <h6 id="nomeUser"></h6>
+            </div>
           <div id="cxLixo">
             <img className="lixo" src={publication.image} />
           </div>
