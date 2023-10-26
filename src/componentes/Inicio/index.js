@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "./style.css";
 import axios from "axios";
 import userIcon from "../img/botoes/do-utilizador.png";
@@ -81,7 +81,7 @@ function Inicio() {
           <div key={post._id} className="postagem">
             <div id="fotoPerfil">
               <img src={userIcon} id="userIcon"></img>
-              <h6 id="nomeUser"></h6>
+              <h6 id="fotoPerfil">{localStorage.getItem("nome")}</h6>
             </div>
             <div id="cxLixo">
               <img className="lixo" src={post.image} />
@@ -96,6 +96,7 @@ function Inicio() {
             </div>
 
             <div className="botoes-postagem">
+            <Link to="/Mapa">
               <button className="localizacao">
                 Localização
                 <svg
@@ -109,6 +110,7 @@ function Inicio() {
                   <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
                 </svg>
               </button>
+              </Link>
               {sessionStorage.getItem("email") === "kannemann@gmail.com" && (
                 <button
                   className="concluir"

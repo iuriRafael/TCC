@@ -58,7 +58,6 @@ body {
 }
 .botoes-postagem {
   display: flex;
-  align-items: center;
 }
 
 .localizacao {
@@ -140,10 +139,12 @@ body {
 }
 
 #fotoPerfil {
-  margin-right: 90%;
+  margin-right: 60%;
   margin-bottom: 0.2rem;
   display: flex;
   justify-content:start;
+  margin-top: 5px;
+  margin-left: 10px;
 }
 
 @media (min-width: 368px) and (max-width: 1080px) {
