@@ -4,8 +4,6 @@ import './mapa.css';
 import Previsao from "../Previsão";
 import axios from 'axios';
 
-import userIcon from "../imegns/vermelho-removebg-preview.png";
-import userIcon2 from "../imegns/R-removebg-preview.png";
 
 function Mapa() {
   const [map, setMap] = useState(null);
@@ -16,7 +14,6 @@ function Mapa() {
 
   useEffect(() => {
     
-
     const apiKey = 'AIzaSyDZ7VsqZJbfA8KEAo5HgKzz2As_HgkjO2k';
     const address = '1600 Amphitheatre Parkway, Mountain View, CA';
     const apiUrl = postCoordinates.length > 0

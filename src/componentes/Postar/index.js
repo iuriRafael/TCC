@@ -17,6 +17,7 @@ const Postar = () => {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
+  const [formattedAddress, setFormattedAddress] = useState("");
 
   const userId = sessionStorage.getItem("usuarioId");
 
@@ -48,6 +49,7 @@ const Postar = () => {
       console.error("Erro ao fazer upload de imagens:", error);
     }
   };
+
 
   const handleVoltar = () => {
     navigate("/Camera");

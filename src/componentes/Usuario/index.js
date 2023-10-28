@@ -75,7 +75,7 @@ function Usuario(props) {
             <div>
               <i class="bi bi-person-fill" id="iconP"></i>
             </div>
-            Suas postagens
+            Suas postagens concluinda
           </button>
         </div>
       </div>

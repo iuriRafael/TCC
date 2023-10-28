@@ -11,7 +11,6 @@ import Usuario from "./componentes/Usuario";
 import Mapa from "./componentes/Mapa";
 import Finalizado from "./componentes/Finalizado";
 import Andamento from "./componentes/Andamento";
-import Concluir from "./componentes/Concluir";
 import Postar from "./componentes/Postar";
 import TelaUm from "./componentes/TelaUm"; 
 import TelaDois from "./componentes/TelaDois"; // Importe o componente TelaDois
@@ -32,7 +31,6 @@ function App() {
           <Route path="/Usuario" element={<Usuario />} />
           <Route path="/Finalizado" element={<Finalizado />} />
           <Route path="/Andamento" element={<Andamento />} />
-          <Route path="/Concluir" element={<Concluir />} />
           <Route path="/Postar" element={<Postar />} />
           <Route path="/TelaUm" element={<TelaUm />} /> {/* Use a propriedade element para TelaUm */}
           <Route path="/TelaDois" element={<TelaDois />} /> {/* Use a propriedade element para TelaDois */}

@@ -17,20 +17,41 @@ function Andamento() {
       return;
     }
 
-    axios.get(`http://localhost:3000/posts/user/${userId}`)
-      .then((response) => {
-
-        const Postagens = response.data.map((post) => ({
-          ...post,
-          image: `http://localhost:3000/${post.image}`, 
-
-      }));
-      setPublicacao(Postagens);
-    })
+    axios
+      .get(`http://localhost:3000/posts/user/${userId}`)
+      .then(async (response) => {
+        const Postagens = await Promise.all(
+          response.data.map(async (post) => {
+            const address = await getReverseGeocoding(
+              post.location.coordinates[1],
+              post.location.coordinates[0]
+            );
+            return {
+              ...post,
+              address,
+              image: `http://localhost:3000/${post.image}`,
+            };
+          })
+        );
+        setPublicacao(Postagens);
+      })
       .catch((error) => {
-        console.error('Erro ao buscar as publicações do usuário:', error);
+        console.error("Erro ao buscar as publicações do usuário:", error);
       });
   }, []);
+
+  const getReverseGeocoding = async (latitude, longitude) => {
+    try {
+      const response = await axios.get(
+        `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=AIzaSyDZ7VsqZJbfA8KEAo5HgKzz2As_HgkjO2k`
+      );
+      const address = response.data.results[0]?.formatted_address;
+      return address || "Endereço não encontrado";
+    } catch (error) {
+      console.error("Erro na obtenção do endereço:", error);
+      return "Endereço não encontrado";
+    }
+  };
 
 
   return (
@@ -42,14 +63,14 @@ function Andamento() {
         <div key={publication._id} className="postagem">
           <div id="fotoPerfil">
               <img src={userIcon} id="userIcon"></img>
-              <h6 id="nomeUser"></h6>
+              <h6 id="fotoPerfil">{localStorage.getItem("nome")}</h6>
             </div>
           <div id="cxLixo">
             <img className="lixo" src={publication.image} />
           </div>
           <div id="cxInfo">
           {publication.location && (
-              <h6 className="localizacoes">Localização: {publication.location.coordinates}</h6>
+              <h6 className="localizacoes">Localização: {publication.address}</h6>
             )}
             <h6 className="endereco">Descrição: {publication.description}</h6>
           </div>

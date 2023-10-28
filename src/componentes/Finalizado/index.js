@@ -32,7 +32,7 @@ function Finalizado() {
           <div key={post._id} className="postagemC">
             <div id="fotoPerfil">
               <img src={userIcon} id="userIcon"></img>
-              <h6 id="nomeUser"></h6>
+              <h6 id="fotoPerfil">{localStorage.getItem("nome")}</h6>
             </div>
             <div id="cxLixo">
               <img className="lixo" src={post.image} />

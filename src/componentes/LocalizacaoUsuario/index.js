@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./local.css"
+
+
 function LocalizacaoUsuario({ onLocationChange }) {
   const [lat, setLat] = useState(null);
   const [lng, setLng] = useState(null);
@@ -25,6 +27,8 @@ function LocalizacaoUsuario({ onLocationChange }) {
   useEffect(() => {
     getUserLocation();
   }, []);
+
+
 
   return (
     <div>
