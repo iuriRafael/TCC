@@ -1,25 +1,16 @@
-/* #bodyAcom{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-} */
-/* 
-h2 {
-  margin-top: 3vh;
-} */
-
-/* ... mantenha o restante do código como está ... */
-
+a{
+  text-decoration: none;
+}
 #acompanhamento {
   display: flex;
-  align-items: center; /* Centraliza verticalmente os ícones */
+  align-items: center; 
   justify-content: space-between;
   text-align: center;
   border-radius: 5px;
-  margin: 1em auto; /* Centraliza horizontalmente a barra de progresso */
-  max-width: 95vw; /* Defina a largura máxima da barra de progresso */
+  margin: 1em auto;
+  max-width: 95vw; 
   background-color: #AAA4F2;
-  padding: 0.5em; /* Adiciona um espaçamento interno para os ícones */
+  padding: 0.5em;
 }
 
 .item {
@@ -61,6 +52,7 @@ h2 {
 }
 
 #cxTodosItensSem{
+  flex-direction: column;
   display: flex;
   align-items: center;
   justify-content: center;

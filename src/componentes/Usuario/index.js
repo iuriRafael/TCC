@@ -65,17 +65,17 @@ function Usuario(props) {
             </div>
             Concluídos
           </button>
+          <button id="btnSuasPostagens" onClick={handleTelaUm}>
+            <div>
+              <i class="bi bi-person-fill" id="iconP"></i>
+            </div>
+            Suas postagens concluinda
+          </button>
           <button id="btnSair" onClick={handleSair} disabled={false}>
             <div>
               <i class="bi bi-box-arrow-right"></i>
             </div>
             Sair da conta
-          </button>
-          <button id="btnSair" onClick={handleTelaUm}>
-            <div>
-              <i class="bi bi-person-fill" id="iconP"></i>
-            </div>
-            Suas postagens concluinda
           </button>
         </div>
       </div>

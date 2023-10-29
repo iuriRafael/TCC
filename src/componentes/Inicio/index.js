@@ -9,81 +9,55 @@ import Previsao from "../Previsão";
 import Mapa from "../Mapa";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
-
 function Inicio() {
   const [postagens, setPostagens] = useState([]);
   const navigate = useNavigate();
-  // const [userEmail, setUserEmail] = useState("");
+  const [userEmail, setUserEmail] = useState("");
 
+  const fetchPostagens = () => {
+    axios
+      .get("http://localhost:3000/posts/list")
+      .then((response) => {
+        const updatedPostagens = response.data.map((post) => ({
+          ...post,
+          image: `http://localhost:3000/${post.image}`,
+        }));
 
-  const fetchPostagens = async () => {
-    try {
-      const response = await axios.get("http://localhost:3000/posts/list");
-      const postCoordinates = [];
+        const postCoordinates = response.data.map((post) => ({
+          latitude: post.location.coordinates[1],
+          longitude: post.location.coordinates[0],
+        }));
 
-      const updatedPostagens = await Promise.all(
-        response.data.map(async (post) => {
-          const address = await getReverseGeocoding(post.location.coordinates[1], post.location.coordinates[0]);
+        setPostagens(updatedPostagens);
 
-          postCoordinates.push({ latitude: post.location.coordinates[1], longitude: post.location.coordinates[0]});
-          
-          return {
-            ...post,
-            address,
-            image: `http://localhost:3000/${post.image}`,
-          };
-        })
-      );
-
-      setPostagens(updatedPostagens);
-
-      // Armazene as coordenadas na sessão
-      sessionStorage.setItem("postCoordinates", JSON.stringify(postCoordinates));
-    } catch (error) {
-      console.error("Erro ao buscar publicações:", error);
-    }
-  }
-
-  const getReverseGeocoding = async (latitude, longitude) => {
-    try {
-      const response = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=AIzaSyDZ7VsqZJbfA8KEAo5HgKzz2As_HgkjO2k`);
-      const address = response.data.results[0]?.formatted_address;
-      return address || "Endereço não encontrado";
-    } catch (error) {
-      console.error("Erro na obtenção do endereço:", error);
-      return "Endereço não encontrado";
-    }
-  }
+        sessionStorage.setItem(
+          "postCoordinates",
+          JSON.stringify(postCoordinates)
+        );
+        console.log("Coordenadas dos posts armazenadas na sessão");
+      })
+      .catch((error) => {
+        console.error("Erro ao buscar publicações:", error);
+      });
+  };
 
   useEffect(() => {
+    // Chamando a função de busca de publicações quando o componente é montado
     fetchPostagens();
   }, []);
 
-  function handleClickConcluir(_id, post) {
+  function handleClickConcluir(_id) {
     console.log(`ID da publicação: ${_id}`);
 
+    // Verifique o email do usuário logado
     const userEmail = sessionStorage.getItem("email");
 
     if (userEmail === "kannemann@gmail.com") {
+      // O email do usuário é permitido, continue com a ação
       axios
         .put(`http://localhost:3000/posts/${_id}/conclude`)
         .then((response) => {
           console.log(response.data);
-
-          
-          const postCoordinates = JSON.parse(sessionStorage.getItem("postCoordinates")) || [];
-          const updatedCoordinates = postCoordinates.filter((coordenada) => {
-            return (
-              coordenada.latitude !== post.location.coordinates[1] ||
-              coordenada.longitude !== post.location.coordinates[0]
-            );
-          });
-          
-  
-          sessionStorage.setItem("postCoordinates", JSON.stringify(updatedCoordinates));
-          
-          
-          setPostagens((postagens) => postagens.filter((p) => p._id !== _id));
         })
         .catch((error) => {
           console.error("Erro ao concluir o post:", error);
@@ -113,9 +87,9 @@ function Inicio() {
               <img className="lixo" src={post.image} />
             </div>
             <div id="cxInformacoes">
-            {post.address && (
+              {post.location && (
                 <h6 className="localizacoes">
-                  Localização: {post.address}
+                  Localização: {post.location.coordinates}
                 </h6>
               )}
               <h6 className="endereco">Descrição: {post.description}</h6>
@@ -161,10 +135,10 @@ function Inicio() {
         ))
       ) : (
         <div id="cxTodosItensSem">
-          <p>Não há nenhuma postagem no momento.</p>
           <div id="cxSemConteudo">
             <img src={semConteudo} alt="Imagem Adicional" />
           </div>
+          <p>Não há nenhuma postagem no momento.</p>
         </div>
       )}
       <Navbar />

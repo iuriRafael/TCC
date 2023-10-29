@@ -1,6 +1,7 @@
 import React, { useEffect, useState }from "react";
 import "./andamento.css";
 import Navbar from "../navbar";
+import semConteudo from "../img/botoes/PlanetDesaturado.svg";
 import userIcon from "../img/botoes/do-utilizador.png";
 import Previsao from "../Previsão";
 import axios from 'axios';
@@ -58,26 +59,33 @@ function Andamento() {
     <div>
       <Previsao />
       <div>
-    
-      {publications.map((publication) => (
-        <div key={publication._id} className="postagem">
-          <div id="fotoPerfil">
-              <img src={userIcon} id="userIcon"></img>
-              <h6 id="fotoPerfil">{localStorage.getItem("nome")}</h6>
+        {publications.length > 0 ? (
+          publications.map((publication) => (
+            <div key={publication._id} className="postagem">
+              <div id="fotoPerfil">
+                <img src={userIcon} id="userIcon" alt="Foto de perfil" />
+                <h6 id="fotoPerfil">{localStorage.getItem("nome")}</h6>
+              </div>
+              <div id="cxLixo">
+                <img className="lixo" src={publication.image} alt="Imagem" />
+              </div>
+              <div id="cxInfo">
+                {publication.location && (
+                  <h6 className="localizacoes">Localização: {publication.address}</h6>
+                )}
+                <h6 className="endereco">Descrição: {publication.description}</h6>
+              </div>
             </div>
-          <div id="cxLixo">
-            <img className="lixo" src={publication.image} />
+          ))
+        ) : (
+          <div id="cxTodosItensSem">
+            <div id="cxSemConteudo">
+              <img src={semConteudo} alt="Imagem Adicional" />
+            </div>
+            <p>Não há postes pendentes no momento.</p>
           </div>
-          <div id="cxInfo">
-          {publication.location && (
-              <h6 className="localizacoes">Localização: {publication.address}</h6>
-            )}
-            <h6 className="endereco">Descrição: {publication.description}</h6>
-          </div>
-        </div>
-      ))}
-    </div>
-
+        )}
+      </div>
       <Navbar />
       <div id="espaco"></div>
     </div>
