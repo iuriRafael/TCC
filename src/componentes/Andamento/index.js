@@ -19,7 +19,7 @@ function Andamento() {
     }
 
     axios
-      .get(`http://localhost:3000/posts/user/${userId}`)
+      .get(`https://backend-tcc-rho.vercel.app/posts/user/${userId}`) //http://localhost:3000/posts/user/${userId}
       .then(async (response) => {
         const Postagens = await Promise.all(
           response.data.map(async (post) => {
@@ -30,7 +30,7 @@ function Andamento() {
             return {
               ...post,
               address,
-              image: `http://localhost:3000/${post.image}`,
+              image: `https://backend-tcc-rho.vercel.app/${post.image}`,
             };
           })
         );

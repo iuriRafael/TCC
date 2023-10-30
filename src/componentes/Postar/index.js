@@ -28,8 +28,10 @@ const Postar = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    //http://localhost:3000/posts/upload
+    
     try {
-      const response = await axios.post("http://localhost:3000/posts/upload", {
+      const response = await axios.post("https://backend-tcc-rho.vercel.app/posts/upload", {
         userId: userId,
         files: capturedImagesList,
         description: texto,

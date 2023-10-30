@@ -31,8 +31,10 @@ const Login = () => {
 
     setIsLoading(true);
 
+    //http://localhost:3000/auth/login
+
     try {
-      const response = await axios.post("http://localhost:3000/auth/login", {
+      const response = await axios.post("https://backend-tcc-rho.vercel.app/auth/login", {
         email,
         senha,
       });

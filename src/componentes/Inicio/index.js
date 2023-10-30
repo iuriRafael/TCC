@@ -16,7 +16,7 @@ function Inicio() {
 
   const fetchPostagens = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/posts/list");
+      const response = await axios.get("https://backend-tcc-rho.vercel.app/posts/list");
       const postCoordinates = [];
 
       const updatedPostagens = await Promise.all(
@@ -25,10 +25,12 @@ function Inicio() {
 
           postCoordinates.push({ latitude: post.location.coordinates[1], longitude: post.location.coordinates[0]});
 
+          //http://localhost:3000/${post.image}
+
           return {
             ...post,
             address,
-            image: `http://localhost:3000/${post.image}`,
+            image: `https://backend-tcc-rho.vercel.app/${post.image}`,
           };
         })
       );
@@ -65,9 +67,9 @@ function Inicio() {
     const userEmail = sessionStorage.getItem("email");
 
     if (userEmail === "kannemann@gmail.com") {
-      // O email do usuário é permitido, continue com a ação
+
       axios
-        .put(`http://localhost:3000/posts/${_id}/conclude`)
+        .put(`https://backend-tcc-rho.vercel.app/posts/${_id}/conclude`) //http://localhost:3000/posts/${_id}/conclude
         .then((response) => {
           console.log(response.data);
         })
