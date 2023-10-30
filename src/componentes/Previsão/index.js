@@ -35,7 +35,7 @@ function Previsao() {
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(async (position) => {
             const { latitude, longitude } = position.coords;
-            const response = await axios.get(`http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${key}&units=metric`);
+            const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${key}&units=metric`);
             const { name, main: { temp }, weather } = response.data;
             const roundedTemperature = Math.round(temp);
             setTemperature(roundedTemperature);
