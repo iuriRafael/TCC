@@ -10,19 +10,50 @@ function Finalizado() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
+
+    const userId = sessionStorage.getItem('usuarioId'); 
+    
+    if (!userId) {
+      console.error('ID do usuário não encontrado na sessão.');
+      return;
+    }
+
     axios
-      .get("http://localhost:3000/posts/listConcluded")
-      .then((response) => {
-        const imagemPostagem = response.data.map((post) => ({
-          ...post,
-          image: `http://localhost:3000/${post.image}`,
-        }));
-        setPosts(imagemPostagem);
+      .get(`http://localhost:3000/posts/listConcluded`)
+      .then(async (response) => {
+        const Postagens = await Promise.all(
+          response.data.map(async (post) => {
+            const address = await getReverseGeocoding(
+              post.location.coordinates[1],
+              post.location.coordinates[0]
+            );
+            return {
+              ...post,
+              address,
+              image: `http://localhost:3000/${post.image}`,
+            };
+          })
+        );
+        setPosts(Postagens);
       })
       .catch((error) => {
-        console.error("Erro ao buscar as publicações concluídas:", error);
+        console.error("Erro ao buscar as publicações do usuário:", error);
       });
   }, []);
+
+  const getReverseGeocoding = async (latitude, longitude) => {
+    try {
+      const response = await axios.get(
+        `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=AIzaSyDZ7VsqZJbfA8KEAo5HgKzz2As_HgkjO2k`
+      );
+      const address = response.data.results[0]?.formatted_address;
+      return address || "Endereço não encontrado";
+    } catch (error) {
+      console.error("Erro na obtenção do endereço:", error);
+      return "Endereço não encontrado";
+    }
+  };
+
 
   return (
     <div>
@@ -32,7 +63,7 @@ function Finalizado() {
           <div key={post._id} className="postagemC">
             <div id="fotoPerfil">
               <img src={userIcon} id="userIcon"></img>
-              <h6 id="nomeUser"></h6>
+              <h6 id="fotoPerfil">{localStorage.getItem("nome")}</h6>
             </div>
             <div id="cxLixo">
               <img className="lixo" src={post.image} />
@@ -40,7 +71,7 @@ function Finalizado() {
             <div id="cxInformacoes">
               {post.location && (
                 <h6 className="localizacoes">
-                  Localização: {post.location.coordinates}
+                  Localização: {post.address}
                 </h6>
               )}
               <h6 className="endereco">Descrição: {post.description}</h6>

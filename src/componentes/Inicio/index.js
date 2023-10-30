@@ -14,32 +14,44 @@ function Inicio() {
   const navigate = useNavigate();
   const [userEmail, setUserEmail] = useState("");
 
-  const fetchPostagens = () => {
-    axios
-      .get("http://localhost:3000/posts/list")
-      .then((response) => {
-        const updatedPostagens = response.data.map((post) => ({
-          ...post,
-          image: `http://localhost:3000/${post.image}`,
-        }));
+  const fetchPostagens = async () => {
+    try {
+      const response = await axios.get("http://localhost:3000/posts/list");
+      const postCoordinates = [];
 
-        const postCoordinates = response.data.map((post) => ({
-          latitude: post.location.coordinates[1],
-          longitude: post.location.coordinates[0],
-        }));
+      const updatedPostagens = await Promise.all(
+        response.data.map(async (post) => {
+          const address = await getReverseGeocoding(post.location.coordinates[1], post.location.coordinates[0]);
 
-        setPostagens(updatedPostagens);
+          postCoordinates.push({ latitude: post.location.coordinates[1], longitude: post.location.coordinates[0]});
 
-        sessionStorage.setItem(
-          "postCoordinates",
-          JSON.stringify(postCoordinates)
-        );
-        console.log("Coordenadas dos posts armazenadas na sessão");
-      })
-      .catch((error) => {
-        console.error("Erro ao buscar publicações:", error);
-      });
-  };
+          return {
+            ...post,
+            address,
+            image: `http://localhost:3000/${post.image}`,
+          };
+        })
+      );
+
+      setPostagens(updatedPostagens);
+
+      // Armazene as coordenadas na sessão
+      sessionStorage.setItem("postCoordinates", JSON.stringify(postCoordinates));
+    } catch (error) {
+      console.error("Erro ao buscar publicações:", error);
+    }
+  }
+
+  const getReverseGeocoding = async (latitude, longitude) => {
+    try {
+      const response = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=AIzaSyDZ7VsqZJbfA8KEAo5HgKzz2As_HgkjO2k`);
+      const address = response.data.results[0]?.formatted_address;
+      return address || "Endereço não encontrado";
+    } catch (error) {
+      console.error("Erro na obtenção do endereço:", error);
+      return "Endereço não encontrado";
+    }
+  }
 
   useEffect(() => {
     // Chamando a função de busca de publicações quando o componente é montado
@@ -68,6 +80,8 @@ function Inicio() {
     }
   }
 
+  
+
   return (
     <div>
       <Previsao />
@@ -87,9 +101,9 @@ function Inicio() {
               <img className="lixo" src={post.image} />
             </div>
             <div id="cxInformacoes">
-              {post.location && (
+              {post.address && (
                 <h6 className="localizacoes">
-                  Localização: {post.location.coordinates}
+                  Localização: {post.address}
                 </h6>
               )}
               <h6 className="endereco">Descrição: {post.description}</h6>
