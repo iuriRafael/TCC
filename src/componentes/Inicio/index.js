@@ -16,7 +16,7 @@ function Inicio() {
 
   const fetchPostagens = async () => {
     try {
-      const response = await axios.get("https://backend-tcc-rho.vercel.app/posts/list");
+      const response = await axios.get("http://localhost:3000/posts/list");
       const postCoordinates = [];
 
       const updatedPostagens = await Promise.all(
@@ -25,12 +25,12 @@ function Inicio() {
 
           postCoordinates.push({ latitude: post.location.coordinates[1], longitude: post.location.coordinates[0]});
 
-          //http://localhost:3000/${post.image}
+  
 
           return {
             ...post,
             address,
-            image: `https://backend-tcc-rho.vercel.app/${post.image}`,
+            image: `http://localhost:3000/${post.image}`,
           };
         })
       );
@@ -69,7 +69,7 @@ function Inicio() {
     if (userEmail === "kannemann@gmail.com") {
 
       axios
-        .put(`https://backend-tcc-rho.vercel.app/posts/${_id}/conclude`) //http://localhost:3000/posts/${_id}/conclude
+        .put(`http://localhost:3000/posts/${_id}/conclude`) 
         .then((response) => {
           console.log(response.data);
         })
@@ -81,8 +81,6 @@ function Inicio() {
       alert("Você não tem permissão para concluir esta publicação");
     }
   }
-
-  
 
   return (
     <div>

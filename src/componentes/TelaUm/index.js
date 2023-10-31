@@ -16,7 +16,7 @@ function TelaUm(){
     }
 
     axios
-      .get(`https://backend-tcc-rho.vercel.app/posts/concluded-posts/${userId}`)   //http:localhost:3000/posts/concluded-posts/${userId}
+      .get(`http:localhost:3000/posts/concluded-posts/${userId}`)   
       .then(async (response) => {
         const Postagens = await Promise.all(
           response.data.map(async (post) => {
@@ -27,7 +27,7 @@ function TelaUm(){
             return {
               ...post,
               address,
-              image: `https://backend-tcc-rho.vercel.app/${post.image}`,
+              image: `http://localhost:3000/${post.image}`,
             };
           })
         );

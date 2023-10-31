@@ -64,10 +64,8 @@ const Cadastro = () => {
       return;
     }
 
-
-    //http://localhost:3000/auth/cadastro
     try {
-      const response = await axios.post('https://backend-tcc-rho.vercel.app/auth/cadastro', {
+      const response = await axios.post('http://localhost:3000/auth/cadastro', {
         nome,
         email,
         senha,

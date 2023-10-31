@@ -19,7 +19,7 @@ function Finalizado() {
     }
 
     axios
-      .get(`https://backend-tcc-rho.vercel.app/posts/listConcluded`) //http://localhost:3000/posts/listConcluded
+      .get(`http://localhost:3000/posts/listConcluded`)
       .then(async (response) => {
         const Postagens = await Promise.all(
           response.data.map(async (post) => {
@@ -30,7 +30,7 @@ function Finalizado() {
             return {
               ...post,
               address,
-              image: `https://backend-tcc-rho.vercel.app/${post.image}`,
+              image: `http://localhost:3000/${post.image}`,
             };
           })
         );
