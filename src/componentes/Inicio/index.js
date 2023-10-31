@@ -16,7 +16,7 @@ function Inicio() {
 
   const fetchPostagens = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/posts/list");
+      const response = await axios.get("https://mapeamentolixo.onrender.com/posts/list"); //http://localhost:3000/posts/list
       const postCoordinates = [];
 
       const updatedPostagens = await Promise.all(
@@ -30,7 +30,7 @@ function Inicio() {
           return {
             ...post,
             address,
-            image: `http://localhost:3000/${post.image}`,
+            image: `https://mapeamentolixo.onrender.com/${post.image}`,
           };
         })
       );
@@ -69,7 +69,7 @@ function Inicio() {
     if (userEmail === "kannemann@gmail.com") {
 
       axios
-        .put(`http://localhost:3000/posts/${_id}/conclude`) 
+        .put(`https://mapeamentolixo.onrender.com/posts/${_id}/conclude`) //http://localhost:3000/posts/${_id}/conclude
         .then((response) => {
           console.log(response.data);
         })

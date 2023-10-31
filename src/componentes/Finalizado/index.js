@@ -19,7 +19,7 @@ function Finalizado() {
     }
 
     axios
-      .get(`http://localhost:3000/posts/listConcluded`)
+      .get(`https://mapeamentolixo.onrender.com/posts/listConcluded`) //http://localhost:3000/posts/listConcluded
       .then(async (response) => {
         const Postagens = await Promise.all(
           response.data.map(async (post) => {
@@ -30,7 +30,7 @@ function Finalizado() {
             return {
               ...post,
               address,
-              image: `http://localhost:3000/${post.image}`,
+              image: `https://mapeamentolixo.onrender.com/${post.image}`, //http://localhost:3000/${post.image}
             };
           })
         );

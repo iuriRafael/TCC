@@ -16,7 +16,7 @@ function TelaUm(){
     }
 
     axios
-      .get(`http:localhost:3000/posts/concluded-posts/${userId}`)   
+      .get(`https://mapeamentolixo.onrender.com/posts/concluded-posts/${userId}`)   //http:localhost:3000/posts/concluded-posts/${userId}
       .then(async (response) => {
         const Postagens = await Promise.all(
           response.data.map(async (post) => {
@@ -27,7 +27,7 @@ function TelaUm(){
             return {
               ...post,
               address,
-              image: `http://localhost:3000/${post.image}`,
+              image: `https://mapeamentolixo.onrender.com/${post.image}`,
             };
           })
         );
