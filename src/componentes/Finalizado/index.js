@@ -8,6 +8,7 @@ import userIcon from "../img/botoes/do-utilizador.png";
 
 function Finalizado() {
   const [posts, setPosts] = useState([]);
+  
 
   useEffect(() => {
 
@@ -18,8 +19,9 @@ function Finalizado() {
       return;
     }
 
+    //https://mapeamentolixo.onrender.com/posts/listConcluded
     axios
-      .get(`https://mapeamentolixo.onrender.com/posts/listConcluded`) //http://localhost:3000/posts/listConcluded
+      .get(`http://localhost:3000/posts/listConcluded`) 
       .then(async (response) => {
         const Postagens = await Promise.all(
           response.data.map(async (post) => {
@@ -30,7 +32,8 @@ function Finalizado() {
             return {
               ...post,
               address,
-              image: `https://mapeamentolixo.onrender.com/${post.image}`, //http://localhost:3000/${post.image}
+              image: `https://mapeamentolixo.onrender.com/${post.image}`, 
+              //https://mapeamentolixo.onrender.com/${post.image}
             };
           })
         );

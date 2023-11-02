@@ -21,10 +21,11 @@ function Inicio() {
   const fetchPostagens = async () => {
     try {
       const response = await axios.get(
-        "https://mapeamentolixo.onrender.com/posts/list"
-      ); //http://localhost:3000/posts/list
+        "http://localhost:3000/posts/list"
+        //"https://mapeamentolixo.onrender.com/posts/list
+      ); 
       const postCoordinates = [];
-      console.log(response);
+      // console.log(response);
       const updatedPostagens = await Promise.all(
         response.data.map(async (post) => {
           const address = await getReverseGeocoding(
@@ -41,10 +42,12 @@ function Inicio() {
             ...post,
             address,
             image: `https://mapeamentolixo.onrender.com/${post.image}`,
+            //https://mapeamentolixo.onrender.com/${post.image}
+
           };
         })
       );
-      console.log("postagem", updatedPostagens);
+
       setPostagens(updatedPostagens);
 
       sessionStorage.setItem(
@@ -59,7 +62,7 @@ function Inicio() {
   const getReverseGeocoding = async (latitude, longitude) => {
     try {
       const response = await axios.get(
-        `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=SEU_API_KEY_AQUI`
+        `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=AIzaSyDZ7VsqZJbfA8KEAo5HgKzz2As_HgkjO2k`
       );
       const address = response.data.results[0]?.formatted_address;
       return address || "Endereço não encontrado";
@@ -75,7 +78,7 @@ function Inicio() {
 
     if (userEmail === "kannemann@gmail.com") {
       axios
-        .put(`https://mapeamentolixo.onrender.com/posts/${_id}/conclude`)
+        .put(`http://localhost:3000/posts/${_id}/conclude`) //https://mapeamentolixo.onrender.com/posts/${_id}/conclude
         .then((response) => {
           console.log(response.data);
         })
@@ -91,7 +94,7 @@ function Inicio() {
   useEffect(() => {
     fetchPostagens();
   }, [selectedOption]);
-  console.log(postagens.length);
+  // console.log(postagens.length);
 
   return (
     <div>

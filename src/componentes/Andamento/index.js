@@ -18,8 +18,9 @@ function Andamento() {
       return;
     }
 
+    //https://mapeamentolixo.onrender.com/posts/user/${userId}
     axios
-      .get(`https://mapeamentolixo.onrender.com/posts/user/${userId}`) //http://localhost:3000/posts/user/${userId}
+      .get(`http://localhost:3000/posts/user/${userId}`) 
       .then(async (response) => {
         const Postagens = await Promise.all(
           response.data.map(async (post) => {
@@ -30,7 +31,8 @@ function Andamento() {
             return {
               ...post,
               address,
-              image: `https://mapeamentolixo.onrender.com/${post.image}`, //http://localhost:3000/${post.image}
+              image: `https://mapeamentolixo.onrender.com/${post.image}`, 
+              //https://mapeamentolixo.onrender.com/${post.image}
             };
           })
         );

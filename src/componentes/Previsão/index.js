@@ -38,7 +38,7 @@ function Previsao() {
           .then((response) => response.json())
           .then((data) => {
             // Processar os dados das previsões de uma semana aqui
-            console.log(data);
+            // console.log(data);
           })
           .catch((error) => {
             console.error('Erro ao obter os dados das previsões de uma semana:', error);
