@@ -61,14 +61,14 @@ function Andamento() {
 
   return (
     <div>
-      <Previsao />
+      {/* <Previsao /> */}
       <div>
         {publications.length > 0 ? (
           publications.map((publication) => (
             <div key={publication._id} className="postagem">
               <div id="fotoPerfil">
                 <img src={userIcon} id="userIcon" alt="Foto de perfil" />
-                <h6 id="fotoPerfil">{localStorage.getItem("nome")}</h6>
+               
               </div>
               <div id="cxLixo">
                 <img className="lixo" src={publication.image} alt="Imagem" />

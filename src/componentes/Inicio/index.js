@@ -6,10 +6,13 @@ import userIcon from "../img/botoes/do-utilizador.png";
 import semConteudo from "../img/botoes/Planet.svg";
 import Navbar from "../navbar";
 import Previsao from "../Previsão";
-import TelaUm from '../TelaUm';
+import Finalizado from '../Finalizado';
+import Andamento from '../Andamento';
+import TelaUm from "../TelaUm";
 import Mapa from "../Mapa";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import { clearUserProjection } from "ol/proj";
+
+
 
 function Inicio() {
   const [postagens, setPostagens] = useState([]);
@@ -94,7 +97,7 @@ function Inicio() {
   useEffect(() => {
     fetchPostagens();
   }, [selectedOption]);
-  // console.log(postagens.length);
+  
 
   return (
     <div>
@@ -111,18 +114,18 @@ function Inicio() {
               onChange={(e) => setSelectedOption(e.target.value)}
             >
               <option className="optionPost" value="opcao0">
-                Pendentes
+                Todos as postagem
               </option>
               <option className="optionPost" value="opcao1">
-                Concluídos
+                Todas as postagem concluinda
               </option>
               <option className="optionPost" value="opcao2">
-                Seus Posts Pendentes
+                Suas Postagem Pendentes ainda
               </option>
               <option className="optionPost" value="opcao3">
-                Seus Posts Concluídos
+                Suas postagens Concluídos
               </option>
-              {/* <option value="opcao4">Opção 4</option> */}
+              
             </select>
           </div>
         )}
@@ -135,7 +138,7 @@ function Inicio() {
                 <div key={post._id} className="postagem">
                   <div id="fotoPerfil">
                     <img src={userIcon} id="userIcon"></img>
-                    <h6 id="fotoPerfil">{localStorage.getItem("nome")}</h6>
+                    <h6 id="fotoPerfil">{post.nome}</h6>
                   </div>
                   <div id="cxLixo">
                     <img className="lixo" src={post.image} />
@@ -188,83 +191,23 @@ function Inicio() {
                 </div>
               );
               break;
-            case "opcao1": // Concluídos
+            case "opcao1": // Todos Concluídos
               return (
-                <div key={post._id} className="postagem">
-                  <p>teste</p>
-                </div>
+                <Finalizado/>
               );
 
               break;
             case "opcao2": // Seus Posts Pendentes
                 return (
-                  <div key={post._id} className="postagem">
-                    <div id="fotoPerfil">
-                      <img src={userIcon} id="userIcon"></img>
-                      <h6 id="fotoPerfil">{localStorage.getItem("nome")}</h6>
-                    </div>
-                    <div id="cxLixo">
-                      <img className="lixo" src={post.image} />
-                    </div>
-                    <div id="cxInformacoes">
-                      {post.address && (
-                        <h6 className="localizacoes">
-                          Localização: {post.address}
-                        </h6>
-                      )}
-                      <h6 className="endereco">
-                        Descrição: {post.description}
-                      </h6>
-                    </div>
-                    <div className="botoes-postagem">
-                      <Link to="/Mapa">
-                        <button className="localizacao">
-                          Localização
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="16"
-                            height="16"
-                            fill="currentColor"
-                            className="bi bi-geo-alt-fill"
-                            viewBox="0 0 16 16"
-                          >
-                            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
-                          </svg>
-                        </button>
-                      </Link>
-                      {sessionStorage.getItem("email") ===
-                        "kannemann@gmail.com" && (
-                        <button
-                          className="concluir"
-                          onClick={() => handleClickConcluir(post._id)}
-                        >
-                          Concluir
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="16"
-                            height="16"
-                            fill="currentColor"
-                            className="bi bi-check2-circle"
-                            viewBox="0 0 16 16"
-                          >
-                            <path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0z" />
-                            <path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z" />
-                          </svg>
-                        </button>
-                      )}
-                    </div>
-                  </div>
+                  <Andamento/>
                 );
               
               break;
 
             case "opcao3": // Seus Posts Concluídos
-              if (post.concluido && post.email === userEmail) {
-                return (
-                  <div key={post._id} className="postagem">
-                  </div>
-                );
-              }
+                  return(
+                    <TelaUm/>
+                  )
               break;
             default:
           }

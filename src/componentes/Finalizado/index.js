@@ -6,9 +6,11 @@ import axios from "axios";
 import Previsao from "../Previsão";
 import userIcon from "../img/botoes/do-utilizador.png";
 
+
 function Finalizado() {
   const [posts, setPosts] = useState([]);
-  
+  const [selectedOption, setSelectedOption] = useState("opcao1");
+
 
   useEffect(() => {
 
@@ -60,13 +62,12 @@ function Finalizado() {
 
   return (
     <div>
-      <Previsao />
+      {/* <Previsao /> */}
       {posts.length > 0 ? (
         posts.map((post) => (
           <div key={post._id} className="postagemC">
             <div id="fotoPerfil">
               <img src={userIcon} id="userIcon"></img>
-              <h6 id="fotoPerfil">{localStorage.getItem("nome")}</h6>
             </div>
             <div id="cxLixo">
               <img className="lixo" src={post.image} />
