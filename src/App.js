@@ -15,7 +15,10 @@ import Postar from "./componentes/Postar";
 import TelaUm from "./componentes/TelaUm"; 
 import LocalizacaoUsuario from "./componentes/LocalizacaoUsuario";
 
+
 function App() {
+  
+  
   return (
     <div>
       <BrowserRouter>

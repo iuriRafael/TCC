@@ -65,8 +65,8 @@ const Cadastro = () => {
     }
 
     try {
-      //https://mapeamentolixo.onrender.com/auth/cadastro}
-      const response = await axios.post('http://localhost:3000/auth/cadastro', { //http://localhost:3000/auth/cadastro
+      
+      const response = await axios.post('https://mapeamentolixo.onrender.com/auth/cadastro', { //http://localhost:3000/auth/cadastro
         nome,
         email,
         senha,

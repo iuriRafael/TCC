@@ -8,6 +8,9 @@ import axios from 'axios';
 
 function Andamento() {
   const [publications, setPublicacao] = useState([]);
+  const [user, setUser] = useState({});
+
+  
 
   useEffect(() => {
 
@@ -18,9 +21,9 @@ function Andamento() {
       return;
     }
 
-    //https://mapeamentolixo.onrender.com/posts/user/${userId}
+    //http://localhost:3000/posts/user/${userId}
     axios
-      .get(`http://localhost:3000/posts/user/${userId}`) 
+      .get(`https://mapeamentolixo.onrender.com/posts/user/${userId}`) 
       .then(async (response) => {
         const Postagens = await Promise.all(
           response.data.map(async (post) => {
@@ -37,6 +40,8 @@ function Andamento() {
           })
         );
         setPublicacao(Postagens);
+        setUser(user.name);
+        
       })
       .catch((error) => {
         console.error("Erro ao buscar as publicações do usuário:", error);
@@ -68,7 +73,7 @@ function Andamento() {
             <div key={publication._id} className="postagem">
               <div id="fotoPerfil">
                 <img src={userIcon} id="userIcon" alt="Foto de perfil" />
-               
+            
               </div>
               <div id="cxLixo">
                 <img className="lixo" src={publication.image} alt="Imagem" />
