@@ -5,27 +5,16 @@
   background-color: rgba(228, 226, 226, 0.315);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
   height: 10vh;
-  width: 80vw;
+  width: 90vw;
   margin: 0 auto;
   border-radius: 30px;
   margin-top: 40px;
 }
 
-.marco {
-  text-align: center;
-  margin-top: -15px;
-}
-
-#temp {
+#temp , #city {
   margin: 0;
   font-weight: 650;
   color: #000;
-}
-
-#city {
-  margin: 0;
-  font-weight: 700;
-  color: #000000;
 }
 
 .cxItens > #state{
@@ -43,7 +32,7 @@
 }
 
 .clima-icon{
-  background-color: hsla(0, 0%, 95%, 0.7);
+  background-color: rgba(242, 242, 242, 0.7);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
-  border-radius: 25px;
+  border-radius: 50%;
 }

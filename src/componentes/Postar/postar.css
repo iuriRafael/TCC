@@ -6,7 +6,7 @@
 }
 
 .postar-form {
-  background-color: #AAA4F2;
+  background-color: #4F5285;
   border-radius: 10px;
   width: 95vw;
   display: flex;
@@ -16,7 +16,6 @@
   margin: 2.4vw;
   padding:5rem 2rem ;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
-
 }
 
 #descricaoReferencia{
@@ -24,17 +23,16 @@
 }
 #dados{
   height: 3rem;
-  width: 28rem;
+  width: 18rem;
   border-radius: 5px;
   border: none;
-  border-bottom: 3px solid #4F5285;
+  border-bottom: 3px solid #dfdddd;
   background: rgba(250, 250, 250, 0.089);
   color: #fff;
 }
 
 #dados::placeholder{
   color: #dfdddd;
-  
 }
 
 #infoDados {
@@ -65,7 +63,7 @@
   width: 8rem;
   height: 2.5em;
   color: #ffffff;
-  background-color: #4F5285;
+  background-color: #aaa4f2;
   border-radius: 5px;
   display: flex;
   justify-content: space-evenly;

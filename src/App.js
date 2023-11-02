@@ -31,7 +31,7 @@ function App() {
           <Route path="/Finalizado" element={<Finalizado />} />
           <Route path="/Andamento" element={<Andamento />} />
           <Route path="/Postar" element={<Postar />} />
-          <Route path="/TelaUm" element={<TelaUm />} /> {/* Use a propriedade element para TelaUm */}
+          <Route path="/TelaUm" element={<TelaUm />} />
           <Route path="/LocalizacaoUsuario" element={<LocalizacaoUsuario />} />
         </Routes>
       </BrowserRouter>

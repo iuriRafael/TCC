@@ -30,8 +30,19 @@ function Previsao() {
     const obterTemperaturaAtual = async () => {
       try {
         const key = '54182895f993c08880bbaca0a0f49c31';
+        const city = 'Taquara'; // Substitua pelo nome da cidade desejada
+
+        const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${key}&cnt=7`;
         
-        // Obter a localização do dispositivo (latitude e longitude)
+        fetch(apiUrl)
+          .then((response) => response.json())
+          .then((data) => {
+            // Processar os dados das previsões de uma semana aqui
+            console.log(data);
+          })
+          .catch((error) => {
+            console.error('Erro ao obter os dados das previsões de uma semana:', error);
+          });
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(async (position) => {
             const { latitude, longitude } = position.coords;
@@ -52,7 +63,7 @@ function Previsao() {
     };
 
     obterTemperaturaAtual();
-    const interval = setInterval(obterTemperaturaAtual, 60000); // Atualiza a temperatura a cada 1 minuto
+    const interval = setInterval(obterTemperaturaAtual, 40000); 
 
     return () => {
       clearInterval(interval);
