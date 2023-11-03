@@ -72,7 +72,6 @@ function Andamento() {
           publications.map((publication) => (
             <div key={publication._id} className="postagem">
               <div id="fotoPerfil">
-                <img src={userIcon} id="userIcon" alt="Foto de perfil" />
             
               </div>
               <div id="cxLixo">

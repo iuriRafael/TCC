@@ -25,7 +25,7 @@ function Inicio() {
     try {
       const response = await axios.get(
         "https://mapeamentolixo.onrender.com/posts/list"
-        //http://localhost:3000/posts/list
+        //https://mapeamentolixo.onrender.com/posts/list
       ); 
       const postCoordinates = [];
       // console.log(response);
@@ -82,7 +82,7 @@ function Inicio() {
     if (userEmail === "kannemann@gmail.com") {
       axios
         .put(`https://mapeamentolixo.onrender.com/posts/${_id}/conclude`)
-        //http://localhost:3000/posts/${_id}/conclude
+        
         .then((response) => {
           console.log(response.data);
         })
@@ -98,6 +98,7 @@ function Inicio() {
   useEffect(() => {
     fetchPostagens();
   }, [selectedOption]);
+  
   
 
   return (
@@ -138,8 +139,6 @@ function Inicio() {
               return (
                 <div key={post._id} className="postagem">
                   <div id="fotoPerfil">
-                    <img src={userIcon} id="userIcon"></img>
-                    <h6 id="fotoPerfil">{post.nome}</h6>
                   </div>
                   <div id="cxLixo">
                     <img className="lixo" src={post.image} />

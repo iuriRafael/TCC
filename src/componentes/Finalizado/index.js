@@ -22,7 +22,7 @@ function Finalizado() {
     }
 
     axios
-      .get(`https://mapeamentolixo.onrender.com/posts/listConcluded`)  //http://localhost:3000/posts/listConcluded
+      .get(`https://mapeamentolixo.onrender.com/posts/listConcluded`) 
       .then(async (response) => {
         const Postagens = await Promise.all(
           response.data.map(async (post) => {
@@ -66,7 +66,6 @@ function Finalizado() {
         posts.map((post) => (
           <div key={post._id} className="postagemC">
             <div id="fotoPerfil">
-              <img src={userIcon} id="userIcon"></img>
             </div>
             <div id="cxLixo">
               <img className="lixo" src={post.image} />

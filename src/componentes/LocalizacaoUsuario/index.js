@@ -5,6 +5,7 @@ import "./local.css"
 function LocalizacaoUsuario({ onLocationChange }) {
   const [lat, setLat] = useState(null);
   const [lng, setLng] = useState(null);
+  const [error, setError] = useState(null);
 
   const getUserLocation = () => {
     if (navigator.geolocation) {
@@ -12,15 +13,16 @@ function LocalizacaoUsuario({ onLocationChange }) {
         (position) => {
           setLat(position.coords.latitude);
           setLng(position.coords.longitude);
-          // Chame a função onLocationChange com as coordenadas
           onLocationChange({ latitude: position.coords.latitude, longitude: position.coords.longitude });
         },
         (error) => {
+          setError("Não foi possível obter a localização. Verifique suas configurações de permissão.");
           console.error(error);
         }
       );
     } else {
-      console.error("Geolocation is not supported by this browser.");
+      setError("Geolocalização não é suportada por este navegador.");
+      console.error("Geolocalização não é suportada por este navegador.");
     }
   }
 

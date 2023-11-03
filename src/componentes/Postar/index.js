@@ -21,6 +21,18 @@ const Postar = () => {
 
   const userId = sessionStorage.getItem("usuarioId");
 
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const nextImage = () => {
+    if (currentImageIndex < 2) { // Permita apenas até a segunda imagem (índice 0 e 1)
+      setCurrentImageIndex(currentImageIndex + 1);
+    } else {
+      // Exiba uma mensagem de erro para o usuário (pode ser um alert, modal, etc.)
+      alert("Você só pode adicionar até duas fotos!");
+    }
+  };
+
+
   const handleChangeTexto = (event) => {
     setTexto(event.target.value);
   };
@@ -28,10 +40,15 @@ const Postar = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-   
+    if (latitude === null || longitude === null) {
+      // Usuário não permitiu a localização, mostre um alert
+      alert("Você deve permitir a localização para fazer uma postagem.");
+      return;
+    }
 
+   
     try {
-      const response = await axios.post("https://mapeamentolixo.onrender.com/posts/upload", { //http://localhost:3000/posts/upload
+      const response = await axios.post("https://mapeamentolixo.onrender.com/posts/upload", { 
         userId: userId,
         files: capturedImagesList,
         description: texto,
@@ -116,25 +133,24 @@ const Postar = () => {
         </div>
         
         <div className="captured-images">
-          <Carousel>
-            {capturedImagesList.map((image, index) => {
-              return (
-                <Carousel.Item id="itemCar" key={index}>
-                  <img
-                    className="d-block w-100"
-                    src={image}
-                    alt={`Captured Image ${index}`}
-                  />
-                </Carousel.Item>
-              );
-            })}
-          </Carousel>
-        </div>
+      {capturedImagesList.length > 0 ? (
+        <img
+          className="d-block w-100"
+          src={capturedImagesList[0]} // Mostra apenas a primeira imagem
+          alt="Captured Image"
+        />
+      ) : (
+        <p>Nenhuma imagem capturada.</p>
+      )}
+      </div>
         <div className="postar-buttons">
-          <button type="submit" className="postar-button">
-            <i className="bi bi-send"></i>
-            Postar
-          </button>
+        <button
+        type="submit"
+        onClick={nextImage}
+        disabled={currentImageIndex === 2}// Limitado a duas fotos
+      >
+        Próxima
+      </button>
         </div>
       </form>
       <Modal

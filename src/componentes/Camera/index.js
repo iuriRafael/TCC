@@ -15,6 +15,8 @@ function CameraPage() {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
+  const MAX_IMAGES = 1;
+
   const retornar = () => {
     navigate("/Inicio");
   };
@@ -37,7 +39,6 @@ function CameraPage() {
     accessCamera();
   }, []);
 
-  const MAX_IMAGES = 4;
 
   const [capturedImagesList, setCapturedImagesList] = useState(() => {
     const savedImages = localStorage.getItem("capturedImages");
@@ -126,8 +127,13 @@ function CameraPage() {
   };
 
   const handleAvancar = () => {
-    setShowCarousel(true);
-    navigate("/Postar");
+    if (capturedImagesList.length === 1) {
+      setShowCarousel(true);
+      navigate("/Postar");
+    } else {
+      // Exiba uma mensagem de erro informando que apenas 1 foto é permitida
+      alert("Apenas uma foto é permitida.");
+    }
   };
 
   const handleModalKeyDown = (event) => {
