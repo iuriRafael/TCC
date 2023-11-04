@@ -22,7 +22,7 @@ function Finalizado() {
     }
 
     axios
-      .get(`https://backend-tcc-one.vercel.app/posts/listConcluded`) 
+      .get(`https://mapeamentolixo.onrender.com/posts/listConcluded`) 
       .then(async (response) => {
         const Postagens = await Promise.all(
           response.data.map(async (post) => {

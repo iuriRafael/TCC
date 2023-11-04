@@ -66,7 +66,7 @@ const Cadastro = () => {
 
     try {
       
-      const response = await axios.post('https://backend-tcc-one.vercel.app/auth/cadastro', { //http://localhost:3000/auth/cadastro
+      const response = await axios.post('https://mapeamentolixo.onrender.com/auth/cadastro', { //http://localhost:3000/auth/cadastro
         nome,
         email,
         senha,
