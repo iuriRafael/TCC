@@ -33,7 +33,7 @@ const Login = () => {
 
 
     try {
-      const response = await axios.post("https://mapeamentolixo.onrender.com/auth/login", {
+      const response = await axios.post("https://backend-tcc-one.vercel.app/auth/login", {
         email,
         senha,
       });

@@ -22,7 +22,7 @@ function Finalizado() {
     }
 
     axios
-      .get(`https://mapeamentolixo.onrender.com/posts/listConcluded`) 
+      .get(`https://backend-tcc-one.vercel.app/posts/listConcluded`) 
       .then(async (response) => {
         const Postagens = await Promise.all(
           response.data.map(async (post) => {
@@ -33,8 +33,7 @@ function Finalizado() {
             return {
               ...post,
               address,
-              image: `https://mapeamentolixo.onrender.com/${post.image}`, 
-              //https://mapeamentolixo.onrender.com/${post.image}
+              image: post.image, //https://mapeamentolixo.onrender.com/${post.image} 
             };
           })
         );

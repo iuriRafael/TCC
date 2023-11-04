@@ -24,7 +24,7 @@ function Inicio() {
   const fetchPostagens = async () => {
     try {
       const response = await axios.get(
-        "https://mapeamentolixo.onrender.com/posts/list"
+        "https://backend-tcc-one.vercel.app/posts/list"
         //https://mapeamentolixo.onrender.com/posts/list
       ); 
       const postCoordinates = [];
@@ -44,8 +44,7 @@ function Inicio() {
           return {
             ...post,
             address,
-            image: `https://mapeamentolixo.onrender.com/${post.image}`,
-            //https://mapeamentolixo.onrender.com/${post.image}
+            image: post.image, //https://mapeamentolixo.onrender.com/${post.image}
 
           };
         })
@@ -81,7 +80,7 @@ function Inicio() {
 
     if (userEmail === "kannemann@gmail.com") {
       axios
-        .put(`https://mapeamentolixo.onrender.com/posts/${_id}/conclude`)
+        .put(`https://backend-tcc-one.vercel.app/posts/${_id}/conclude`)
         
         .then((response) => {
           console.log(response.data);
