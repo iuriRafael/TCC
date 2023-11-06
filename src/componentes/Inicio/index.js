@@ -22,9 +22,10 @@ function Inicio() {
   const [userEmail, setUserEmail] = useState("");
 
   const fetchPostagens = async () => {
+    console.log("Chamando a função fetchPostagens")
     try {
       const response = await axios.get(
-        "https://mapeamentolixo.onrender.com/posts/list"
+        "http://localhost:3000/posts/list"
         //https://mapeamentolixo.onrender.com/posts/list
       ); 
       const postCoordinates = [];
@@ -80,7 +81,7 @@ function Inicio() {
 
     if (userEmail === "kannemann@gmail.com") {
       axios
-        .put(`https://mapeamentolixo.onrender.com/posts/${_id}/conclude`)
+        .put(`http://localhost:3000/posts/${_id}/conclude`)
         
         .then((response) => {
           console.log(response.data);
@@ -131,95 +132,57 @@ function Inicio() {
           </div>
         )}
       </div>
-      {postagens.length > 0 ? (
-        postagens.map((post) => {
-          switch (selectedOption) {
-            case "opcao0": // Pendentes
-              return (
-                <div key={post._id} className="postagem">
-                  <div id="fotoPerfil">
-                  </div>
-                  <div id="cxLixo">
-                    <img className="lixo" src={post.image} />
-                  </div>
-                  <div id="cxInformacoes">
-                    {post.address && (
-                      <h6 className="localizacoes">
-                        Localização: {post.address}
-                      </h6>
-                    )}
-                    <h6 className="endereco">Descrição: {post.description}</h6>
-                  </div>
-                  <div className="botoes-postagem">
-                    <Link to="/Mapa">
-                      <button className="localizacao">
-                        Localização
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          fill="currentColor"
-                          className="bi bi-geo-alt-fill"
-                          viewBox="0 0 16 16"
-                        >
-                          <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
-                        </svg>
-                      </button>
-                    </Link>
-                    {sessionStorage.getItem("email") ===
-                      "kannemann@gmail.com" && (
-                      <button
-                        className="concluir"
-                        onClick={() => handleClickConcluir(post._id)}
-                      >
-                        Concluir
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          fill="currentColor"
-                          className="bi bi-check2-circle"
-                          viewBox="0 0 16 16"
-                        >
-                          <path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0z" />
-                          <path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z" />
-                        </svg>
-                      </button>
-                    )}
-                  </div>
-                </div>
-              );
-              break;
-            case "opcao1": // Todos Concluídos
-              return (
-                <Finalizado/>
-              );
+      {selectedOption === "opcao1" && <Finalizado />}
+      {selectedOption === "opcao2" && <Andamento />}
+      {selectedOption === "opcao3" && <TelaUm />}
 
-              break;
-            case "opcao2": // Seus Posts Pendentes
-                return (
-                  <Andamento/>
-                );
-              
-              break;
-
-            case "opcao3": // Seus Posts Concluídos
-                  return(
-                    <TelaUm/>
-                  )
-              break;
-            default:
-          }
-          return null;
-        })
-      ) : (
-        <div id="cxTodosItensSem">
-          <div id="cxSemConteudo">
-            <img src={semConteudo} alt="Imagem Adicional" />
+    {selectedOption === "opcao0" && (
+      <div>
+        {postagens.length > 0 ? (
+          postagens.map((post) => (
+            <div key={post._id} className="postagem">
+              {/* Render the common elements for all posts */}
+              <div id="fotoPerfil">
+                {/* Render user profile image here */}
+              </div>
+              <div id="cxLixo">
+                <img className="lixo" src={post.image} alt="Lixo" />
+              </div>
+              <div id="cxInformacoes">
+                {post.address && (
+                  <h6 className="localizacoes">Localização: {post.address}</h6>
+                )}
+                <h6 className="endereco">Descrição: {post.description}</h6>
+              </div>
+              <div className="botoes-postagem">
+                <Link to="/Mapa">
+                  <button className="localizacao">
+                    Localização
+                    {/* Render location icon here */}
+                  </button>
+                </Link>
+                {sessionStorage.getItem("email") === "kannemann@gmail.com" && (
+                  <button
+                    className="concluir"
+                    onClick={() => handleClickConcluir(post._id)}
+                  >
+                    Concluir
+                    {/* Render concluir icon here */}
+                  </button>
+                )}
+              </div>
+            </div>
+          ))
+        ) : (
+          <div id="cxTodosItensSem">
+            <div id="cxSemConteudo">
+              <img src={semConteudo} alt="Imagem Adicional" />
+            </div>
+            <p>Não há nenhuma postagem no momento.</p>
           </div>
-          <p>Não há nenhuma postagem no momento.</p>
-        </div>
-      )}
+        )}
+      </div>
+    )}
       <Navbar />
       <div id="espaco"></div>
     </div>

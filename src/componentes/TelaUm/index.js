@@ -17,7 +17,7 @@ function TelaUm(){
 
     //https://mapeamentolixo.onrender.com/posts/concluded-posts/${userId}
 
-    axios.get(`https://mapeamentolixo.onrender.com/posts/concluded-posts/${userId}`)   
+    axios.get(`http://localhost:3000/posts/concluded-posts/${userId}`)   
       .then(async (response) => {
         const Postagens = await Promise.all(
           response.data.map(async (post) => {
@@ -58,6 +58,7 @@ function TelaUm(){
       {posts.map((post) => (
         <div key={post._id} className="fotos4">
           <div id="cxLixo">
+          <img className="lixo" src={post.image} />
           </div>
           <div id="cxInfo">
           {post.location && (

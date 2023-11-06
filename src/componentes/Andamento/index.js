@@ -10,7 +10,6 @@ function Andamento() {
   const [publications, setPublicacao] = useState([]);
   const [user, setUser] = useState({});
 
-  
 
   useEffect(() => {
 
