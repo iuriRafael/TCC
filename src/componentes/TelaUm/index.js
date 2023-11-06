@@ -17,7 +17,7 @@ function TelaUm(){
 
     //https://mapeamentolixo.onrender.com/posts/concluded-posts/${userId}
 
-    axios.get(`http://localhost:3000/posts/concluded-posts/${userId}`)   
+    axios.get(`https://mapeamentolixo.onrender.com/posts/concluded-posts/${userId}`)   
       .then(async (response) => {
         const Postagens = await Promise.all(
           response.data.map(async (post) => {
