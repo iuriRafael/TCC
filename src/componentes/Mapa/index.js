@@ -59,7 +59,7 @@ function Mapa() {
   }, [lat, lng, map, postCoordinates]);
 
   return (
-    <div>
+    <div id="bodyMapa">
       <Previsao />
       <div id="map"></div>
       <Navbar/>

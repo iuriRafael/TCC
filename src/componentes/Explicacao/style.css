@@ -88,7 +88,7 @@ body{
     border: 2px solid #ffffff;
     font-weight: 800;
     margin-bottom:7vh ;
-    
+    transition: 0.5s;
 }
 
 .btnContinuar:hover	{

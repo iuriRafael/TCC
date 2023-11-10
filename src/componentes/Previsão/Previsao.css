@@ -5,10 +5,10 @@
   background-color: rgba(228, 226, 226, 0.315);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
   height: 10vh;
-  width: 90vw;
-  margin: 0 auto;
+  width: 93vw;
+  margin: 0 1rem;
   border-radius: 30px;
-  margin-top: 40px;
+  margin-top: 1rem;
 }
 
 #temp , #city {
