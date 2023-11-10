@@ -34,14 +34,14 @@ const Login = () => {
 
 
     try {
-      const response = await axios.post("http://localhost:3000/auth/login", {
-        email,
-        senha,
-      });
-      // const response = await axios.post("https://mapeamentolixo.onrender.com/auth/login", {
+      // const response = await axios.post("http://localhost:3000/auth/login", {
       //   email,
       //   senha,
       // });
+      const response = await axios.post("https://mapeamentolixo.onrender.com/auth/login", {
+        email,
+        senha,
+      });
 
       if (response.status === 200) {
         const { nome, token, usuario_id, email } = response.data;
