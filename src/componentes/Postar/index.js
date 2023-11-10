@@ -8,7 +8,8 @@ import { DotPulse } from "@uiball/loaders";
 import LocalizacaoUsuario from "../LocalizacaoUsuario";
 
 const Postar = () => {
-  const capturedImagesList = JSON.parse(localStorage.getItem("capturedImages")) || [];
+  const capturedImagesList =
+    JSON.parse(localStorage.getItem("capturedImages")) || [];
   const navigate = useNavigate();
 
   const [texto, setTexto] = useState("");
@@ -24,14 +25,10 @@ const Postar = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const nextImage = () => {
-    if (currentImageIndex < 2) { // Permita apenas até a segunda imagem (índice 0 e 1)
+    if (currentImageIndex < 2) {
       setCurrentImageIndex(currentImageIndex + 1);
-    } else {
-      // Exiba uma mensagem de erro para o usuário (pode ser um alert, modal, etc.)
-      alert("Você só pode adicionar até duas fotos!");
-    }
+    } else alert("Você só pode adicionar até duas fotos!");
   };
-
 
   const handleChangeTexto = (event) => {
     setTexto(event.target.value);
@@ -41,23 +38,23 @@ const Postar = () => {
     event.preventDefault();
 
     if (latitude === null || longitude === null) {
-      // Usuário não permitiu a localização, mostre um alert
       alert("Você deve permitir a localização para fazer uma postagem.");
       return;
     }
 
-   
     try {
-      const response = await axios.post("https://mapeamentolixo.onrender.com/posts/upload", { 
-        userId: userId,
-        files: capturedImagesList,
-        description: texto,
-        location: {
-          type: 'Point',
-          coordinates: [longitude, latitude],
-        },
-      });
-
+      const response = await axios.post(
+        "https://mapeamentolixo.onrender.com/posts/upload",
+        {
+          userId: userId,
+          files: capturedImagesList,
+          description: texto,
+          location: {
+            type: "Point",
+            coordinates: [longitude, latitude],
+          },
+        }
+      );
 
       setShowSuccessModal(true);
 
@@ -69,7 +66,6 @@ const Postar = () => {
       console.error("Erro ao fazer upload de imagens:", error);
     }
   };
-
 
   const handleVoltar = () => {
     navigate("/Camera");
@@ -107,16 +103,18 @@ const Postar = () => {
           <path
             fillRule="evenodd"
             d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"
-        />
+          />
         </svg>
         Voltar
       </button>
 
       <form className="postar-form" onSubmit={handleSubmit}>
-        <LocalizacaoUsuario onLocationChange={({ latitude, longitude }) => {
-          setLatitude(latitude);
-          setLongitude(longitude);
-        }} />
+        <LocalizacaoUsuario
+          onLocationChange={({ latitude, longitude }) => {
+            setLatitude(latitude);
+            setLongitude(longitude);
+          }}
+        />
         <div className="endereco-atual">
           <div id="campos">
             <div id="infoDados">
@@ -131,30 +129,32 @@ const Postar = () => {
             </div>
           </div>
         </div>
-        
+
         <div className="captured-images">
-      {capturedImagesList.length > 0 ? (
-        <img
-          className="d-block w-100"
-          src={capturedImagesList[0]} // Mostra apenas a primeira imagem
-          alt="Captured Image"
-        />
-      ) : (
-        <p>Nenhuma imagem capturada.</p>
-      )}
-      </div>
+          {capturedImagesList.length > 0 ? (
+            <img
+              className="d-block w-100"
+              src={capturedImagesList[0]}
+              alt="Captured Image"
+            />
+          ) : (
+            <p>Nenhuma imagem capturada.</p>
+          )}
+        </div>
         <div className="postar-buttons">
-        <button
-        type="submit"
-        onClick={nextImage}
-        disabled={currentImageIndex === 2}// Limitado a duas fotos
-      >
-        Próxima
-      </button>
+          <button
+            type="submit"
+            className="postar-button"
+            onClick={nextImage}
+            disabled={currentImageIndex === 2}
+          >
+            <i className="bi bi-send"></i>
+            Postar
+          </button>
         </div>
       </form>
       <Modal
-      id="modalSucedido"
+        id="modalSucedido"
         show={showSuccessModal}
         onHide={() => setShowSuccessModal(false)}
         backdrop="static"

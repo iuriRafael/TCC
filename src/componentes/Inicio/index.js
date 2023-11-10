@@ -6,13 +6,11 @@ import userIcon from "../img/botoes/do-utilizador.png";
 import semConteudo from "../img/botoes/Planet.svg";
 import Navbar from "../navbar";
 import Previsao from "../Previsão";
-import Finalizado from '../Finalizado';
-import Andamento from '../Andamento';
+import Finalizado from "../Finalizado";
+import Andamento from "../Andamento";
 import TelaUm from "../TelaUm";
 import Mapa from "../Mapa";
 import "bootstrap-icons/font/bootstrap-icons.css";
-
-
 
 function Inicio() {
   const [postagens, setPostagens] = useState([]);
@@ -22,12 +20,12 @@ function Inicio() {
   const [userEmail, setUserEmail] = useState("");
 
   const fetchPostagens = async () => {
-    console.log("Chamando a função fetchPostagens")
+    console.log("Chamando a função fetchPostagens");
     try {
       const response = await axios.get(
         "https://mapeamentolixo.onrender.com/posts/list"
         //https://mapeamentolixo.onrender.com/posts/list
-      ); 
+      );
       const postCoordinates = [];
       // console.log(response);
       const updatedPostagens = await Promise.all(
@@ -46,7 +44,6 @@ function Inicio() {
             ...post,
             address,
             image: post.image, //https://mapeamentolixo.onrender.com/${post.image}
-
           };
         })
       );
@@ -82,7 +79,7 @@ function Inicio() {
     if (userEmail === "kannemann@gmail.com") {
       axios
         .put(`https://mapeamentolixo.onrender.com/posts/${_id}/conclude`)
-        
+
         .then((response) => {
           console.log(response.data);
         })
@@ -98,8 +95,6 @@ function Inicio() {
   useEffect(() => {
     fetchPostagens();
   }, [selectedOption]);
-  
-  
 
   return (
     <div>
@@ -127,7 +122,6 @@ function Inicio() {
               <option className="optionPost" value="opcao3">
                 Suas postagens Concluídos
               </option>
-              
             </select>
           </div>
         )}
@@ -136,53 +130,75 @@ function Inicio() {
       {selectedOption === "opcao2" && <Andamento />}
       {selectedOption === "opcao3" && <TelaUm />}
 
-    {selectedOption === "opcao0" && (
-      <div>
-        {postagens.length > 0 ? (
-          postagens.map((post) => (
-            <div key={post._id} className="postagem">
-              {/* Render the common elements for all posts */}
-              <div id="fotoPerfil">
-                {/* Render user profile image here */}
+      {selectedOption === "opcao0" && (
+        <div>
+          {postagens.length > 0 ? (
+            postagens.map((post) => (
+              <div key={post._id} className="postagem">
+                {/* Render the common elements for all posts */}
+                <div id="fotoPerfil">
+                  {/* Render user profile image here */}
+                </div>
+                <div id="cxLixo">
+                  <img className="lixo" src={post.image} alt="Lixo" />
+                </div>
+                <div id="cxInformacoes">
+                  {post.address && (
+                    <h6 className="localizacoes">
+                      Localização: {post.address}
+                    </h6>
+                  )}
+                  <h6 className="endereco">Descrição: {post.description}</h6>
+                </div>
+                <div className="botoes-postagem">
+                  <Link to="/Mapa">
+                    <button className="localizacao">
+                      Localização
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        class="bi bi-geo-alt-fill"
+                        viewBox="0 0 16 16"
+                      >
+                        <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
+                      </svg>
+                    </button>
+                  </Link>
+                  {sessionStorage.getItem("email") ===
+                    "kannemann@gmail.com" && (
+                    <button
+                      className="concluir"
+                      onClick={() => handleClickConcluir(post._id)}
+                    >
+                      Concluir
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        className="bi bi-check2-circle"
+                        viewBox="0 0 16 16"
+                      >
+                        <path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0z" />
+                        <path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z" />
+                      </svg>
+                    </button>
+                  )}
+                </div>
               </div>
-              <div id="cxLixo">
-                <img className="lixo" src={post.image} alt="Lixo" />
+            ))
+          ) : (
+            <div id="cxTodosItensSem">
+              <div id="cxSemConteudo">
+                <img src={semConteudo} alt="Imagem Adicional" />
               </div>
-              <div id="cxInformacoes">
-                {post.address && (
-                  <h6 className="localizacoes">Localização: {post.address}</h6>
-                )}
-                <h6 className="endereco">Descrição: {post.description}</h6>
-              </div>
-              <div className="botoes-postagem">
-                <Link to="/Mapa">
-                  <button className="localizacao">
-                    Localização
-                    {/* Render location icon here */}
-                  </button>
-                </Link>
-                {sessionStorage.getItem("email") === "kannemann@gmail.com" && (
-                  <button
-                    className="concluir"
-                    onClick={() => handleClickConcluir(post._id)}
-                  >
-                    Concluir
-                    {/* Render concluir icon here */}
-                  </button>
-                )}
-              </div>
+              <p>Não há nenhuma postagem no momento.</p>
             </div>
-          ))
-        ) : (
-          <div id="cxTodosItensSem">
-            <div id="cxSemConteudo">
-              <img src={semConteudo} alt="Imagem Adicional" />
-            </div>
-            <p>Não há nenhuma postagem no momento.</p>
-          </div>
-        )}
-      </div>
-    )}
+          )}
+        </div>
+      )}
       <Navbar />
       <div id="espaco"></div>
     </div>

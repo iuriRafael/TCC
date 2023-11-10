@@ -40,7 +40,7 @@
   padding: 10px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  align-items: center;
 }
 
 .captured-images {
@@ -61,15 +61,23 @@
 
 .postar-button {
   width: 8rem;
-  height: 2.5em;
+  height: 3.5em;
+  margin-top: 2rem;
   color: #ffffff;
   background-color: #aaa4f2;
   border-radius: 5px;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  border: 1px solid #aaa4f2;
 }
-
+.postar-button:hover {
+  color: #aaa4f2;
+  background-color: #fff;
+  border:dashed #aaa4f2;
+  transition: 0.5s;
+ 
+}
 .remove-button{
   margin-bottom: 1em;
   display: flex;

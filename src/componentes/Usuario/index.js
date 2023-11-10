@@ -4,7 +4,7 @@ import "./usuario.css";
 import Navbar from "../navbar";
 import perfil from "../img/botoes/do-utilizador.png";
 import { useNavigate } from "react-router-dom";
-import Cookies from "js-cookie"; // Importe a biblioteca Cookies
+import Cookies from "js-cookie"; 
 import "bootstrap-icons/font/bootstrap-icons.css";
 import Previsao from "../Previsão";
 
@@ -39,7 +39,7 @@ function Usuario(props) {
   }
 
   function handleSair() {
-    setShowConfirmationModal(true); // Exibir o modal de confirmação
+    setShowConfirmationModal(true);
   }
 
   return (
@@ -49,28 +49,7 @@ function Usuario(props) {
         <h2 id="nomeUsuario">{localStorage.getItem("nome")}</h2>
 
         <div className="user-buttons">
-          <button id="btnAndamento" onClick={handleAndamento} disabled={false}>
-            <div id="iconAndamento">
-              <i class="bi bi-clock"></i>
-            </div>
-            Pendentes
-          </button>
-          <button
-            id="btnFinalizando"
-            onClick={handleFinalizando}
-            disabled={false}
-          >
-            <div id="iconFinalizando">
-              <i class="bi bi-check2-circle"></i>
-            </div>
-            Concluídos
-          </button>
-          <button id="btnSuasPostagens" onClick={handleTelaUm}>
-            <div>
-              <i class="bi bi-person-fill" id="iconP"></i>
-            </div>
-            Suas postagens concluinda
-          </button>
+       
           <button id="btnSair" onClick={handleSair} disabled={false}>
             <div>
               <i class="bi bi-box-arrow-right"></i>

@@ -1,10 +1,11 @@
+import "./login.css";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./login.css";
 import Logos from "../img/default_765x625 2.png";
 import axios from "axios";
-import { Modal, Button, Alert, Spinner } from "react-bootstrap"; // Importe o Spinner do Bootstrap
+import { Modal, Button, Alert, Spinner } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Loader from '../Loader';
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -33,10 +34,14 @@ const Login = () => {
 
 
     try {
-      const response = await axios.post("https://mapeamentolixo.onrender.com/auth/login", {
+      const response = await axios.post("http://localhost:3000/auth/login", {
         email,
         senha,
       });
+      // const response = await axios.post("https://mapeamentolixo.onrender.com/auth/login", {
+      //   email,
+      //   senha,
+      // });
 
       if (response.status === 200) {
         const { nome, token, usuario_id, email } = response.data;
@@ -102,7 +107,7 @@ const Login = () => {
               disabled={isLoading}
               variant="primary"
             >
-              {isLoading ? <Spinner animation="border" size="sm" /> : "Login"}
+              {isLoading ? <Loader/> : "Login"}
             </Button>
             <p id="ou">ou</p>
             <button
@@ -126,7 +131,7 @@ const Login = () => {
           >
             Dados de login incorretos. Por favor, verifique suas credenciais.
             <div id="cxX">
-              <i class="bi bi-x-circle" style={{ color: "#ff5e5e" }}></i>
+              <i class="bi bi-x-circle" style={{ color: "#ff5e5e" , alignItems: 'center' }}></i>
             </div>
           </Alert>
         )}

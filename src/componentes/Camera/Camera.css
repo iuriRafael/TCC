@@ -1,10 +1,8 @@
-/* CSS para a tela CameraPage */
 h2 {
   text-align: center;
 }
 
 .btnVoltar,
-#imgCap img,
 #tirarFoto,
 #escolherFoto,
 .avancarButton {
@@ -24,6 +22,7 @@ h2 {
   color: #000000;
   overflow: hidden;
   transition: background-color 0.3s ease-out;
+  margin: 1rem 0 0 1rem;
 }
 
 .btnVoltar:hover {
@@ -52,22 +51,10 @@ h2 {
 }
 
 #imgCap img {
-  margin: 5px 0 15px 0;
-  max-width: 50vw;
   border-radius: 15px;
+  width: 25rem;
 }
 
-.d-block.w-100 {
-  border-radius: 5px;
-}
-
-@media (max-width: 768px) {
-  #imgCap img {}
-}
-
-@media (max-width: 480px) {
-  #imgCap img {}
-}
 
 @media (min-width: 1200px) {
   body {
@@ -207,7 +194,7 @@ video {
 }
 
 .button-container {
-  margin-top: 4vh;
+  margin: 4vh 0;
   width: 100%;
   display: flex;
   justify-content: space-around;
@@ -229,26 +216,18 @@ video {
   align-items: center;
   justify-content: center;
   border: none;
-  border-radius: 50%;
   width: 30px;
   height: 30px;
   position: relative;
   cursor: pointer;
+  margin-top: 0.75rem;
   transition: background-color 0.3s ease-out;
 }
-
-.remove-button  {
-  margin-left: 2.4rem;
-}
-.remove-button p {
-  display: none;
-  color: white;
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 12px;
-  white-space: nowrap;
+#conteinerFts , #cxImgBatida{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .remove-button:hover {

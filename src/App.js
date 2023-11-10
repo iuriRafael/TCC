@@ -14,11 +14,9 @@ import Andamento from "./componentes/Andamento";
 import Postar from "./componentes/Postar";
 import TelaUm from "./componentes/TelaUm"; 
 import LocalizacaoUsuario from "./componentes/LocalizacaoUsuario";
-
+import Loader from "./componentes/Loader";
 
 function App() {
-  
-  
   return (
     <div>
       <BrowserRouter>
@@ -36,6 +34,7 @@ function App() {
           <Route path="/Postar" element={<Postar />} />
           <Route path="/TelaUm" element={<TelaUm />} />
           <Route path="/LocalizacaoUsuario" element={<LocalizacaoUsuario />} />
+          <Route path="/Loader" element={<Loader />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -130,10 +130,7 @@ function CameraPage() {
     if (capturedImagesList.length === 1) {
       setShowCarousel(true);
       navigate("/Postar");
-    } else {
-      // Exiba uma mensagem de erro informando que apenas 1 foto é permitida
-      alert("Apenas uma foto é permitida.");
-    }
+    } else alert("Apenas uma foto é permitida.");
   };
 
   const handleModalKeyDown = (event) => {
@@ -217,25 +214,23 @@ function CameraPage() {
         </div>
       </div>
       {capturedImagesList.length > 0 && (
-        <div>
-          <h2>Imagens capturadas:</h2>
+        <div id="conteinerFts">
           {showCarousel ? (
             <Carousel>
               {capturedImagesList.map((image, index) => (
-                <Carousel.Item key={index}>
                   <img
                     className="d-block w-100"
+                    id="imgCap"
                     src={image}
                     alt={`Captured Image ${index + 1}`}
                   />
-                </Carousel.Item>
               ))}
             </Carousel>
           ) : (
             <>
               <div id="imgCap">
                 {capturedImagesList.map((image, index) => (
-                  <div key={index}>
+                  <div id="cxImgBatida" key={index}>
                     <img
                       className="captured-image"
                       src={image}

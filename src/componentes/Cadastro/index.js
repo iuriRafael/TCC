@@ -25,7 +25,6 @@ const Cadastro = () => {
   const handleSenhaChange = (event) => {
     setSenha(event.target.value);
 
-    // Verificar a força da senha (comprimento mínimo e ausência de sequências)
     if (senha.length < 6 || /(\d)\1{2,}/.test(senha)) {
       setShowPasswordAlert(true);
       // Exibir o pop-up pequeno por 2,5 segundos
@@ -66,11 +65,16 @@ const Cadastro = () => {
 
     try {
       
-      const response = await axios.post('https://mapeamentolixo.onrender.com/auth/cadastro', { //http://localhost:3000/auth/cadastro
+      const response = await axios.post('http://localhost:3000/auth/cadastro', { //http://localhost:3000/auth/cadastro
         nome,
         email,
         senha,
       });
+      // const response = await axios.post('https://mapeamentolixo.onrender.com/auth/cadastro', { //http://localhost:3000/auth/cadastro
+      //   nome,
+      //   email,
+      //   senha,
+      // });
       if (response.status === 201) {
         const { nome, token, usuario_id, email } = response.data;
 

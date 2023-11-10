@@ -13,7 +13,7 @@ function Navbar() {
   const navigate = useNavigate();
 
   const acessarCamera = () => {
-    navigate('/Camera'); // Redirecionar para a página da câmera
+    navigate('/Camera');
   };
 
   const acessarUsuario = () => {
