@@ -33,7 +33,7 @@ h2 {
 }
 
 .btnVoltar::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -63,7 +63,7 @@ h2 {
 #tirarFoto {
   text-align: center;
   padding: 3vh 4.5rem;
-  background-color: #AAA4F2;
+  background-color: #aaa4f2;
   color: #fff;
   border: none;
   border-radius: 18px;
@@ -73,7 +73,7 @@ h2 {
 
 #tirarFoto:hover {
   background-color: #e5d9ff;
-  color: #AAA4F2;
+  color: #aaa4f2;
   transition: background-color 0.3s ease-in, color 0.3s ease-in;
 }
 
@@ -95,11 +95,11 @@ h2 {
   color: #ffffff;
 }
 
-#tirarFoto, 
+#tirarFoto,
 #escolherFoto,
 .avancarButton {
   width: 8rem;
-  padding:1rem 4rem;
+  padding: 1rem 4rem;
   border-radius: 10px;
   margin: 1.5vh;
   display: flex;
@@ -163,10 +163,10 @@ video {
 }
 
 .video-container video {
-  position: absolute;
-  top: 0;
-  left: 0;
+  display: flex;
   width: 100%;
+  align-items: center;
+  justify-content: center;
 }
 
 .button-container {
@@ -199,7 +199,8 @@ video {
   margin-top: 0.75rem;
   transition: background-color 0.3s ease-out;
 }
-#conteinerFts , #cxImgBatida{
+#conteinerFts,
+#cxImgBatida {
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -294,51 +295,46 @@ video {
     margin-bottom: 55rem;
   }
 }
-@media screen and (max-width:1000px) {
+@media screen and (max-width: 1000px) {
   .video-container {
-    position: relative;
     width: 100%;
     height: 0;
     margin-bottom: 45rem;
   }
 }
-@media screen and (max-width:800px) {
+@media screen and (max-width: 800px) {
   .video-container {
-    position: relative;
     width: 100%;
     height: 0;
     margin-bottom: 36rem;
   }
 }
-@media screen and (max-width:700px) {
+@media screen and (max-width: 700px) {
   .video-container {
-    position: relative;
     width: 100%;
-    height: 0;
-    margin-bottom: 32rem;
+    height: 100%;
+    height: 100%;
+    margin-bottom:1rem;
   }
 }
-@media screen and (max-width:600px) {
+@media screen and (max-width: 600px) {
   .video-container {
-    position: relative;
     width: 100%;
-    height: 0;
-    margin-bottom: 28rem;
+    height: 100%;
+    margin-bottom: 1rem;
   }
 }
-@media screen and (max-width:550px) {
+@media screen and (max-width: 550px) {
   .video-container {
-    position: relative;
     width: 100%;
-    height: 0;
-    margin-bottom: 25rem;
+    height: 100%;
+    margin-bottom: 1rem;
   }
 }
-@media screen and (max-width:500px) {
+@media screen and (max-width: 500px) {
   .video-container {
-    position: relative;
     width: 100%;
-    height: 0;
-    margin-bottom: 23rem;
+    height: 100%;
+    margin-bottom: 1rem;
   }
 }
