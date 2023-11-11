@@ -1,7 +1,6 @@
 import React from 'react';
 import './style.css'
 import Logo from "../img/lixos2.jpg";
-import Igrejinha from "../img/lixo3.jpg";
 import { useNavigate } from 'react-router-dom';
 
 function Entrada(props) {
