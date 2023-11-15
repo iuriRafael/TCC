@@ -1,4 +1,4 @@
-h2 {
+/* h2 {
   text-align: center;
 }
 
@@ -337,4 +337,111 @@ video {
     height: 100%;
     margin-bottom: 1rem;
   }
+} */
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.btnVoltar{
+  margin-top: 20px;
+  background-color: aqua;
+  color:aliceblue;
+}
+
+.camera-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.video-container {
+  position: relative;
+  width: 100%;
+  max-width: 400px; /* Ajuste conforme necessário */
+}
+
+video {
+  width: 100%;
+  border-radius: 10px; /* Adicione bordas arredondadas conforme necessário */
+}
+
+.canvas {
+  display: none;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between; /* Posiciona os botões um do lado do outro */
+  width: 100%;
+  max-width: 400px; /* Ajuste conforme necessário */
+  margin-top: 20px;
+}
+
+button {
+  flex: 1; /* Para que os botões ocupem a largura disponível */
+  margin: 0 5px; /* Adiciona um espaçamento entre os botões */
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#tirarFoto {
+  background-color: #4caf50; /* Cor verde */
+  color: white;
+}
+
+#escolherFoto {
+  background-color: #2196f3; /* Cor azul */
+  color: white;
+}
+
+.avancarButton {
+  background-color: #ff9800; /* Cor laranja */
+  color: white;
+}
+
+#conteinerFts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.captured-image {
+  width: 100%;
+  max-width: 150px; /* Ajuste conforme necessário */
+  margin: 10px;
+  border-radius: 5px;
+}
+
+#cxImgBatida {
+  position: relative;
+}
+
+.remove-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: #d9534f; /* Cor vermelha */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  cursor: pointer;
+  display: none;
+}
+
+.remove-button p {
+  margin: 0;
+  font-size: 12px;
+}
+
+.remove-button:hover p {
+  display: block;
 }

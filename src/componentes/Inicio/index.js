@@ -72,27 +72,64 @@ function Inicio() {
     }
   };
 
-  const handleClickConcluir = (_id) => {
-    console.log(`ID da publicação: ${_id}`);
-    const userEmail = sessionStorage.getItem("email");
-
-    if (userEmail === "kannemann@gmail.com") {
-      axios
-        .put(`https://mapeamentolixo.onrender.com/posts/${_id}/conclude`)
-
-        .then((response) => {
-          console.log(response.data);
-        })
-        .catch((error) => {
-          console.error("Erro ao concluir o post:", error);
+  const askForLocationPermission = async () => {
+    try {
+      const status = await navigator.permissions.query({ name: 'geolocation' });
+      if (status.state === 'granted') {
+        console.log('Permissão de localização já concedida');
+      } else if (status.state === 'prompt') {
+        await navigator.geolocation.getCurrentPosition(() => {
+          console.log('Permissão de localização concedida pelo usuário');
         });
-    } else {
-      console.log("Usuário não autorizado");
-      alert("Você não tem permissão para concluir esta publicação");
+      } else {
+        console.log('Permissão de localização negada pelo usuário');
+      }
+    } catch (error) {
+      console.error('Erro ao verificar permissão de localização:', error);
     }
   };
 
+  const askForCameraPermission = async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+      console.log('Permissão de câmera concedida');
+      // Agora você pode usar o stream da câmera, se necessário
+    } catch (error) {
+      console.error('Erro ao solicitar permissão de câmera:', error);
+    }
+  };
+
+  const handleClickConcluir = async (_id) => {
+    
+    console.log(`ID da publicação: ${_id}`);
+
+    try {
+      const response = await axios.put(
+        `https://mapeamentolixo.onrender.com/posts/${_id}/conclude`
+      );
+
+      console.log(response.data);
+
+      // Envia a notificação para o usuário que fez a postagem
+      if ('Notification' in window) {
+        Notification.requestPermission().then(permission => {
+          if (permission === 'granted') {
+            new Notification('Post Concluída', {
+              body: `Sua postagem com ID ${_id} foi concluída!`,
+            });
+          }
+        });
+      }
+    } catch (error) {
+      console.error("Erro ao concluir o post:", error);
+    }
+  };
+
+
+
   useEffect(() => {
+    askForLocationPermission();
+    askForCameraPermission();
     fetchPostagens();
   }, [selectedOption]);
 
@@ -170,7 +207,7 @@ function Inicio() {
                     "kannemann@gmail.com" && (
                     <button
                       className="concluir"
-                      onClick={() => handleClickConcluir(post._id)}
+                      onClick={() => handleClickConcluir(post._id, sessionStorage.getItem("email"))}
                     >
                       Concluir
                       <svg

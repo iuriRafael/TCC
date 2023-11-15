@@ -34,10 +34,7 @@ const Login = () => {
 
 
     try {
-      // const response = await axios.post("http://localhost:3000/auth/login", {
-      //   email,
-      //   senha,
-      // });
+      
       const response = await axios.post("https://mapeamentolixo.onrender.com/auth/login", {
         email,
         senha,

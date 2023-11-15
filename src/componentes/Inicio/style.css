@@ -30,13 +30,14 @@ body {
   background-color: #31344e;
 }
 #cxFiltro {
-  margin:1rem 3rem 0;
+  margin:1rem;
   display: flex;
   align-items: center;
 }
 
 #btnFiltro {
   background: none;
+  text-align: left;
 }
 .menssagemBtn {
   background-color: #4f5285;
