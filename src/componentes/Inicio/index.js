@@ -125,11 +125,16 @@ function Inicio() {
     }
   };
 
+  const askForPermissions = async () => {
+    await askForLocationPermission();
+    await askForCameraPermission();
+    await askForNotificationPermission();
+  };
+
 
 
   useEffect(() => {
-    askForLocationPermission();
-    askForCameraPermission();
+    askForPermissions();
     fetchPostagens();
   }, [selectedOption]);
 
