@@ -16,8 +16,9 @@ function Inicio() {
   const [postagens, setPostagens] = useState([]);
   const [showFilter, setShowFilter] = useState(false);
   const [selectedOption, setSelectedOption] = useState("opcao0");
-  const navigate = useNavigate();
-  const [userEmail, setUserEmail] = useState("");
+  
+  const [permissionsMessage, setPermissionsMessage] = useState("");
+  
 
   const fetchPostagens = async () => {
     console.log("Chamando a função fetchPostagens");
@@ -76,7 +77,7 @@ function Inicio() {
     try {
       const status = await navigator.permissions.query({ name: 'geolocation' });
       if (status.state === 'granted') {
-        console.log('Permissão de localização já concedida');
+        setPermissionsMessage('Ative a localização para uma melhor experiência.');
       } else if (status.state === 'prompt') {
         await navigator.geolocation.getCurrentPosition(() => {
           console.log('Permissão de localização concedida pelo usuário');
