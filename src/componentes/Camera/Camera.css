@@ -1,353 +1,15 @@
-/* h2 {
-  text-align: center;
+#btnVoltar , .btnVoltar{
+  margin-top: 3rem;
+  background-color: #acacac;
+  color:#fff;
+  border: 1px solid #acacac;
 }
-
-.btnVoltar,
-#tirarFoto,
-#escolherFoto,
-.avancarButton {
-  width: 8rem;
-  padding: 10px;
-  border-radius: 10px;
-  cursor: pointer;
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  position: relative;
-}
-
-.btnVoltar {
-  border: 2px solid #fafafa;
-  background-color: #e6e6e6;
-  color: #000000;
-  overflow: hidden;
-  transition: background-color 0.3s ease-out;
-  margin: 1rem 0 0 1rem;
-}
-
-.btnVoltar:hover {
-  background-color: #b1b1b1;
-  color: #ffffff;
-  border: 2px solid #fdfcff;
-  transition: background-color 0.3s ease-in;
-}
-
-.btnVoltar::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-color: rgba(255, 255, 255, 0.5);
-  opacity: 0;
-  transition: opacity 0.3s ease-out;
-}
-
-#imgCap {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-  width: auto;
-}
-
-#imgCap img {
-  border-radius: 15px;
-  width: 25rem;
-}
-.btnsOps {
-  display: flex;
-  justify-content: space-evenly;
-  margin-top: 1vh;
-}
-
-#tirarFoto {
-  text-align: center;
-  padding: 3vh 4.5rem;
-  background-color: #aaa4f2;
-  color: #fff;
-  border: none;
-  border-radius: 18px;
-  cursor: pointer;
-  transition: background-color 0.3s ease-out, color 0.3s ease-out;
-}
-
-#tirarFoto:hover {
-  background-color: #e5d9ff;
-  color: #aaa4f2;
-  transition: background-color 0.3s ease-in, color 0.3s ease-in;
-}
-
-#escolherFoto {
-  padding: 3vh 4.5rem;
-  display: flex;
-  justify-content: center;
-  position: relative;
-  background-color: #e6e6e6;
-  color: #000000;
-  cursor: pointer;
-  overflow: hidden;
-  transition: background-color 0.3s ease-out;
-}
-
-#escolherFoto:hover,
-.btnVoltar:hover {
-  background-color: #b4b4b4;
-  color: #ffffff;
-}
-
-#tirarFoto,
-#escolherFoto,
-.avancarButton {
-  width: 8rem;
-  padding: 1rem 4rem;
-  border-radius: 10px;
-  margin: 1.5vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  cursor: pointer;
-  justify-content: space-evenly;
-  border-radius: 15px;
-  width: 4.8em;
-  flex-grow: 1;
-  flex-basis: 200;
-}
-
-.avancarButton {
-  background-color: #fc4747;
-  color: #fff;
-}
-
-.avancarButton:hover {
-  background-color: #ff5e5e;
-  color: #ffffff;
-  transition: background-color 0.3s ease-in;
-}
-
-.avancarButton::after {
-  background-color: #ff5e5e80;
-  opacity: 0;
-  transition: opacity 0.3s ease-out;
-}
-
-.avancarButton:hover::after {
-  opacity: 1;
-  transition: opacity 0.8s ease-in;
-}
-
-video {
-  width: 100%;
-  margin-top: 2.5vh;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
-}
-
-.camera-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-}
-
-.cxTudo {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-}
-
-.video-container {
-  position: relative;
-  width: 100%;
-  height: 0;
-  margin-bottom: 95vh;
-}
-
-.video-container video {
-  display: flex;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
-}
-
-.button-container {
-  margin: 4vh 0;
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-}
-
-.carousel-control-next-icon {
-  color: #4f5285 !important;
-}
-
-.visually-hidden {
-  color: #4f5285;
-}
-
-.remove-button {
-  background-color: #b1b1b1;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  width: 30px;
-  height: 30px;
-  position: relative;
-  cursor: pointer;
-  margin-top: 0.75rem;
-  transition: background-color 0.3s ease-out;
-}
-#conteinerFts,
-#cxImgBatida {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.remove-button:hover {
-  background-color: #ff5e5e;
-  transition: background-color 0.3s ease-in;
-}
-
-.remove-button:hover p {
-  display: block;
-}
-
-.modal {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #fff;
-  border-radius: 8px;
-  padding: 8px;
-  width: 325px;
-  height: 325px;
-  max-width: 95%;
-  max-height: 24.5vh;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.modal h3 {
-  margin-bottom: 16px;
-}
-
-.modal-buttons button {
-  margin-right: 8px;
-}
-
-#btnCancelar {
-  background-color: #e4e0e0;
-  border: none;
-  color: #000;
-}
-
-#btnConfirmar {
-  background-color: #ff5e5e;
-  border: none;
-}
-
-#btnsModal {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-
-#pergunta {
-  align-items: center;
-  text-align: center;
-  font-weight: 750;
-}
-
-@media (min-width: 1400px) {
-  .video-container {
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 89rem;
-  }
-}
-@media (max-width: 1450px) {
-  .video-container {
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 63rem;
-  }
-}
-@media (max-width: 1300px) {
-  .video-container {
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 55rem;
-  }
-}
-@media screen and (max-width: 1000px) {
-  .video-container {
-    width: 100%;
-    height: 0;
-    margin-bottom: 45rem;
-  }
-}
-@media screen and (max-width: 800px) {
-  .video-container {
-    width: 100%;
-    height: 0;
-    margin-bottom: 36rem;
-  }
-}
-@media screen and (max-width: 700px) {
-  .video-container {
-    width: 100%;
-    height: 100%;
-    height: 100%;
-    margin-bottom:1rem;
-  }
-}
-@media screen and (max-width: 600px) {
-  .video-container {
-    width: 100%;
-    height: 100%;
-    margin-bottom: 1rem;
-  }
-}
-@media screen and (max-width: 550px) {
-  .video-container {
-    width: 100%;
-    height: 100%;
-    margin-bottom: 1rem;
-  }
-}
-@media screen and (max-width: 500px) {
-  .video-container {
-    width: 100%;
-    height: 100%;
-    margin-bottom: 1rem;
-  }
-} */
-
-body {
-  margin: 0;
-  padding: 0;
-}
-
-.btnVoltar{
+#btnVoltar:hover , .btnVoltar:hover{
   margin-top: 20px;
-  background-color: aqua;
-  color:aliceblue;
+  background-color: #8f8f8f;
+  border: 1px dashed #8f8f8f;
+  transition: 0.5s;
+  color:#fff;
 }
 
 .camera-container {
@@ -361,12 +23,12 @@ body {
 .video-container {
   position: relative;
   width: 100%;
-  max-width: 400px; /* Ajuste conforme necessário */
+  max-width: 400px; 
 }
 
 video {
   width: 100%;
-  border-radius: 10px; /* Adicione bordas arredondadas conforme necessário */
+  border-radius: 5px; 
 }
 
 .canvas {
@@ -375,35 +37,39 @@ video {
 
 .button-container {
   display: flex;
-  justify-content: space-between; /* Posiciona os botões um do lado do outro */
+  justify-content: space-between; 
   width: 100%;
-  max-width: 400px; /* Ajuste conforme necessário */
+  max-width: 400px; 
   margin-top: 20px;
 }
 
-button {
-  flex: 1; /* Para que os botões ocupem a largura disponível */
-  margin: 0 5px; /* Adiciona um espaçamento entre os botões */
+.avancarButton ,#escolherFoto , #tirarFoto , #btnVoltar {
+  flex: 1;
+  margin: 0 5px; 
   padding: 10px;
   font-size: 16px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #tirarFoto {
-  background-color: #4caf50; /* Cor verde */
-  color: white;
+  background-color: #4caf50; 
+  color: rgb(255, 255, 255);
 }
 
 #escolherFoto {
-  background-color: #2196f3; /* Cor azul */
+  background-color: #2196f3; 
   color: white;
 }
 
 .avancarButton {
-  background-color: #ff9800; /* Cor laranja */
-  color: white;
+  background-color: #ff9800;
+  color: rgb(255, 255, 255);
 }
 
 #conteinerFts {
@@ -415,7 +81,7 @@ button {
 
 .captured-image {
   width: 100%;
-  max-width: 150px; /* Ajuste conforme necessário */
+  max-width: 150px; 
   margin: 10px;
   border-radius: 5px;
 }
@@ -428,7 +94,7 @@ button {
   position: absolute;
   top: 5px;
   right: 5px;
-  background-color: #d9534f; /* Cor vermelha */
+  background-color: #d9534f;
   color: white;
   border: none;
   border-radius: 5px;

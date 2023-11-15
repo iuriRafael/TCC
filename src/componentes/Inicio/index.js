@@ -94,7 +94,6 @@ function Inicio() {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ video: true });
       console.log('Permissão de câmera concedida');
-      // Agora você pode usar o stream da câmera, se necessário
     } catch (error) {
       console.error('Erro ao solicitar permissão de câmera:', error);
     }
@@ -111,7 +110,6 @@ function Inicio() {
 
       console.log(response.data);
 
-      // Envia a notificação para o usuário que fez a postagem
       if ('Notification' in window) {
         Notification.requestPermission().then(permission => {
           if (permission === 'granted') {
@@ -145,8 +143,6 @@ function Inicio() {
     await askForNotificationPermission();
   };
 
-
-
   useEffect(() => {
     askForPermissions();
     fetchPostagens();
@@ -167,16 +163,16 @@ function Inicio() {
               onChange={(e) => setSelectedOption(e.target.value)}
             >
               <option className="optionPost" value="opcao0">
-                Todos as postagem
+                Todas as postagens
               </option>
               <option className="optionPost" value="opcao1">
-                Todas as postagem concluinda
+                Todas as postagens concluídas
               </option>
               <option className="optionPost" value="opcao2">
-                Suas Postagem Pendentes ainda
+                Suas postagem pendentes
               </option>
               <option className="optionPost" value="opcao3">
-                Suas postagens Concluídos
+                Suas postagens concluídas
               </option>
             </select>
           </div>
@@ -185,15 +181,12 @@ function Inicio() {
       {selectedOption === "opcao1" && <Finalizado />}
       {selectedOption === "opcao2" && <Andamento />}
       {selectedOption === "opcao3" && <TelaUm />}
-
       {selectedOption === "opcao0" && (
         <div>
           {postagens.length > 0 ? (
             postagens.map((post) => (
               <div key={post._id} className="postagem">
-                {/* Render the common elements for all posts */}
                 <div id="fotoPerfil">
-                  {/* Render user profile image here */}
                 </div>
                 <div id="cxLixo">
                   <img className="lixo" src={post.image} alt="Lixo" />
@@ -260,5 +253,4 @@ function Inicio() {
     </div>
   );
 }
-
 export default Inicio;

@@ -27,7 +27,7 @@ const Cadastro = () => {
 
     if (senha.length < 6 || /(\d)\1{2,}/.test(senha)) {
       setShowPasswordAlert(true);
-      // Exibir o pop-up pequeno por 2,5 segundos
+
       setShowPasswordPopup(true);
       setTimeout(() => setShowPasswordPopup(false), 2500);
     } else {
@@ -44,27 +44,26 @@ const Cadastro = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // Verificar se todos os campos foram preenchidos
     if (!nome || !email || !senha) {
       console.log('Por favor, preencha todos os campos do formulário');
       return;
     }
 
-    // Verificar se o email é válido
     if (!validateEmail(email)) {
       console.log('Email inválido');
       return;
     }
 
-    // Verificar a força da senha
     if (senha.length < 6 || /(\d)\1{2,}/.test(senha)) {
-      // Senha fraca, exibir o pop-up de alerta
       setShowModal(true);
       return;
     }
-
     try {
-      
+      // const response = await axios.post('http://localhost:3000/auth/cadastro', { //http://localhost:3000/auth/cadastro
+      //   nome,
+      //   email,
+      //   senha,
+      // });
       const response = await axios.post('https://mapeamentolixo.onrender.com/auth/cadastro', { 
         nome,
         email,

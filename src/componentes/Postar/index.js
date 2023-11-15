@@ -6,6 +6,7 @@ import "./postar.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { DotPulse } from "@uiball/loaders";
 import LocalizacaoUsuario from "../LocalizacaoUsuario";
+import Loader from '../Loader';
 
 const Postar = () => {
   const capturedImagesList =
@@ -91,7 +92,7 @@ const Postar = () => {
 
   return (
     <div className="postar-container">
-      <button type="button" className="btnVoltar" onClick={handleVoltar}>
+      <button type="button" className="btnVoltarTela" onClick={handleVoltar}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"
