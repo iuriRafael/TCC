@@ -126,6 +126,19 @@ function Inicio() {
     }
   };
 
+  const askForNotificationPermission = async () => {
+    try {
+      const permission = await Notification.requestPermission();
+      if (permission === 'granted') {
+        setPermissionsMessage('Ative a localização para uma melhor Notificação.');
+      } else {
+        console.log('Permissão de notificação negada pelo usuário');
+      }
+    } catch (error) {
+      console.error('Erro ao solicitar permissão de notificação:', error);
+    }
+  };
+
   const askForPermissions = async () => {
     await askForLocationPermission();
     await askForCameraPermission();
