@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Carousel, Modal, Button } from "react-bootstrap";
 import axios from "axios";
@@ -68,6 +68,28 @@ const Postar = () => {
     }
   };
 
+  const [streetAddress, setStreetAddress] = useState("");
+
+  // Função para obter o endereço com base nas coordenadas de latitude e longitude
+  const getReverseGeocoding = async (latitude, longitude) => {
+    try {
+      const response = await axios.get(
+        `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=AIzaSyDZ7VsqZJbfA8KEAo5HgKzz2As_HgkjO2k`
+      );
+      const address = response.data.results[0]?.formatted_address;
+      setStreetAddress(address || "Endereço não encontrado");
+    } catch (error) {
+      console.error("Erro na obtenção do endereço:", error);
+      setStreetAddress("Endereço não encontrado");
+    }
+  };
+
+  useEffect(() => {
+    if (latitude !== null && longitude !== null) {
+      getReverseGeocoding(latitude, longitude);
+    }
+  }, [latitude, longitude]);
+
   const handleVoltar = () => {
     navigate("/Camera");
   };
@@ -116,6 +138,7 @@ const Postar = () => {
             setLongitude(longitude);
           }}
         />
+        <p>Rua: {streetAddress}</p>
         <div className="endereco-atual">
           <div id="campos">
             <div id="infoDados">
