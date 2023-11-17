@@ -39,11 +39,11 @@ function Navbar() {
           <img src={mapIcon} className='icones' alt="Mapa" />
         </button>
       </NavLink>
-      {/* <NavLink to="/Usuario" activeClassName="active">
+      <NavLink to="/Usuario" activeClassName="active">
         <button onClick={acessarUsuario}>
           <img src={userIcon} className='icones' alt="Usuario" />
         </button>
-      </NavLink> */}
+      </NavLink>
     </nav>
   );
 }
