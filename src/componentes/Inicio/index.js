@@ -24,7 +24,7 @@ function Inicio() {
     console.log("Chamando a função fetchPostagens");
     try {
       const response = await axios.get(
-        "https://mapeamentolixo.onrender.com/posts/list"
+        "http://localhost:3000/posts/list"
         //https://mapeamentolixo.onrender.com/posts/list
       );
       const postCoordinates = [];
@@ -99,30 +99,36 @@ function Inicio() {
     }
   };
 
-  const handleClickConcluir = async (_id) => {
-    
-    console.log(`ID da publicação: ${_id}`);
+  const email = sessionStorage.getItem("email");
 
+  const handleClickConcluir = async (_id) => {
+    console.log(`ID da publicação: ${_id}`);
+  
     try {
       const response = await axios.put(
         `https://mapeamentolixo.onrender.com/posts/${_id}/conclude`
       );
-
+  
       console.log(response.data);
 
-      if ('Notification' in window) {
-        Notification.requestPermission().then(permission => {
-          if (permission === 'granted') {
-            new Notification('Post Concluída', {
-              body: `Sua postagem com ID ${_id} foi concluída!`,
-            });
-          }
-        });
-      }
+      const emailResponse = await axios.post(
+        `https://mapeamentolixo.onrender.com/posts/email`, // Seu endpoint para enviar email
+        {
+          postId: _id,
+          userEmail: email,
+
+          
+        }
+        
+      );
+      console.log(`email enviado`);
+
     } catch (error) {
       console.error("Erro ao concluir o post:", error);
+    
     }
   };
+  
 
   const askForNotificationPermission = async () => {
     try {

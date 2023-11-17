@@ -24,11 +24,14 @@
   position: relative;
   width: 100%;
   max-width: 400px; 
+  height: 40vh;
 }
 
 video {
   width: 100%;
-  border-radius: 5px; 
+  height: 100%; /* Ocupa toda a altura disponível do contêiner */
+  border-radius: 5px;
+  object-fit: cover;
 }
 
 .canvas {

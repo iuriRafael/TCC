@@ -22,6 +22,7 @@ const Postar = () => {
   const [formattedAddress, setFormattedAddress] = useState("");
 
   const userId = sessionStorage.getItem("usuarioId");
+  const userEmail = sessionStorage.getItem("email");
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -48,6 +49,7 @@ const Postar = () => {
         "https://mapeamentolixo.onrender.com/posts/upload",
         {
           userId: userId,
+          email: userEmail,
           files: capturedImagesList,
           description: texto,
           location: {
