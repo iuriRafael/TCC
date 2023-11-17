@@ -22,7 +22,7 @@ function Finalizado() {
     }
 
     axios
-      .get(`https://mapeamentolixo.onrender.com/posts/listConcluded`) 
+      .get(`http://localhost:3000/posts/listConcluded`) 
       .then(async (response) => {
         const Postagens = await Promise.all(
           response.data.map(async (post) => {

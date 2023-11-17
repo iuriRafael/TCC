@@ -1,13 +1,8 @@
 #btnVoltar , .btnVoltar{
-  margin-top: 3rem;
-  background-color: #acacac;
-  color:#fff;
-  border: 1px solid #acacac;
+  margin: 2.5rem 0 0 1rem;
+  color:#000000;
 }
 #btnVoltar:hover , .btnVoltar:hover{
-  margin-top: 20px;
-  background-color: #8f8f8f;
-  border: 1px dashed #8f8f8f;
   transition: 0.5s;
   color:#fff;
 }
@@ -46,9 +41,9 @@ video {
   margin-top: 20px;
 }
 
-.avancarButton ,#escolherFoto , #tirarFoto , #btnVoltar {
+.avancarButton ,#escolherFoto , #tirarFoto {
   flex: 1;
-  margin: 0 5px; 
+  margin: 0.5rem;
   padding: 10px;
   font-size: 16px;
   border: none;
@@ -92,18 +87,13 @@ video {
 #cxImgBatida {
   position: relative;
 }
-
 .remove-button {
-  position: absolute;
-  top: 5px;
-  right: 5px;
   background-color: #d9534f;
   color: white;
   border: none;
   border-radius: 5px;
   padding: 5px;
   cursor: pointer;
-  display: none;
 }
 
 .remove-button p {

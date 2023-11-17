@@ -46,7 +46,7 @@ const Postar = () => {
 
     try {
       const response = await axios.post(
-        "https://mapeamentolixo.onrender.com/posts/upload",
+        "http://localhost:3000/posts/upload",
         {
           userId: userId,
           email: userEmail,
@@ -72,7 +72,6 @@ const Postar = () => {
 
   const [streetAddress, setStreetAddress] = useState("");
 
-  // Função para obter o endereço com base nas coordenadas de latitude e longitude
   const getReverseGeocoding = async (latitude, longitude) => {
     try {
       const response = await axios.get(

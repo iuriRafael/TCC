@@ -53,7 +53,6 @@ function TelaUm(){
   };
   return (
     <div>
-      {/* <Previsao /> */}
       <ul>
       {posts.map((post) => (
         <div key={post._id} className="fotos4">

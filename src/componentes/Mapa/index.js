@@ -3,8 +3,6 @@ import Navbar from "../navbar";
 import './mapa.css';
 import Previsao from "../Previsão";
 import axios from 'axios';
-
-
 function Mapa() {
   const [map, setMap] = useState(null);
   const [lat, setLat] = useState(null);
@@ -34,7 +32,6 @@ function Mapa() {
   useEffect(() => {
     if (lat && lng) {
       if (!map) {
-        // Inicialize o mapa
         const google = window.google;
         const mapOptions = {
           center: { lat, lng },
@@ -52,7 +49,6 @@ function Mapa() {
         });
 
       } else {
-        // Atualize o centro do mapa
         map.setCenter({ lat, lng });
       }
     }
