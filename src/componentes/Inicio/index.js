@@ -25,7 +25,7 @@ function Inicio() {
     console.log("Chamando a função fetchPostagens");
     try {
       const response = await axios.get(
-        "http://localhost:3000/posts/list"
+        "https://mapeamentolixo.onrender.com/posts/list"
         //https://mapeamentolixo.onrender.com/posts/list
       );
       const postCoordinates = [];

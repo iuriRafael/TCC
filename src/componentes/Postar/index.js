@@ -6,7 +6,8 @@ import "./postar.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { DotPulse } from "@uiball/loaders";
 import LocalizacaoUsuario from "../LocalizacaoUsuario";
-import Loader from '../Loader';
+
+import PlacesAutocomplete, { geocodeByAddress, getLatLng,} from "react-places-autocomplete";
 
 const Postar = () => {
   const capturedImagesList =
@@ -14,17 +15,19 @@ const Postar = () => {
   const navigate = useNavigate();
 
   const [texto, setTexto] = useState("");
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
-  const [formattedAddress, setFormattedAddress] = useState("");
+
+  const [enderecoInput, setEnderecoInput] = useState("");
+  const [enderecoConfirmado, setEnderecoConfirmado] = useState(null);
 
   const userId = sessionStorage.getItem("usuarioId");
   const userEmail = sessionStorage.getItem("email");
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const apiKey = "AIzaSyDZ7VsqZJbfA8KEAo5HgKzz2As_HgkjO2k";
 
   const nextImage = () => {
     if (currentImageIndex < 2) {
@@ -45,19 +48,16 @@ const Postar = () => {
     }
 
     try {
-      const response = await axios.post(
-        "https://mapeamentolixo.onrender.com/posts/upload",
-        {
-          userId: userId,
-          email: userEmail,
-          files: capturedImagesList,
-          description: texto,
-          location: {
-            type: "Point",
-            coordinates: [longitude, latitude],
-          },
-        }
-      );
+      const response = await axios.post("https://mapeamentolixo.onrender.com/posts/upload", {
+        userId: userId,
+        email: userEmail,
+        files: capturedImagesList,
+        description: texto,
+        location: {
+          type: "Point",
+          coordinates: [longitude, latitude],
+        },
+      });
 
       setShowSuccessModal(true);
 
@@ -75,7 +75,7 @@ const Postar = () => {
   const getReverseGeocoding = async (latitude, longitude) => {
     try {
       const response = await axios.get(
-        `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=AIzaSyDZ7VsqZJbfA8KEAo5HgKzz2As_HgkjO2k`
+        `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${apiKey}`
       );
       const address = response.data.results[0]?.formatted_address;
       setStreetAddress(address || "Endereço não encontrado");
@@ -95,18 +95,27 @@ const Postar = () => {
     navigate("/Camera");
   };
 
-  const removeImage = (index) => {
-    setSelectedImage(index);
-    setShowDeleteModal(true);
+  const handleEnderecoChange = (endereco) => {
+    setEnderecoInput(endereco);
   };
 
-  const handleDeleteCancel = () => {
-    setSelectedImage(null);
-    setShowDeleteModal(false);
+  const handleSelect = async (endereco) => {
+    try {
+      const results = await geocodeByAddress(endereco);
+      const latLng = await getLatLng(results[0]);
+      setEnderecoConfirmado({ latitude: latLng.lat, longitude: latLng.lng });
+      setLatitude(latLng.lat);
+      setLongitude(latLng.lng);
+    } catch (error) {
+      console.error("Erro ao buscar coordenadas:", error);
+      setEnderecoConfirmado(null);
+    }
   };
+
+  
 
   return (
-    <div className="postar-container">
+    <div>
       <button type="button" className="btnVoltarTela" onClick={handleVoltar}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -123,68 +132,115 @@ const Postar = () => {
         </svg>
       </button>
 
-      <form className="postar-form" onSubmit={handleSubmit}>
-        <div id="address">
-          <LocalizacaoUsuario
-          onLocationChange={({ latitude, longitude }) => {
-            setLatitude(latitude);
-            setLongitude(longitude);
-          }}
-        />
-        </div>
-        <p>Rua: {streetAddress}</p>
-        <div className="endereco-atual">
-          <div id="campos">
-            <div id="infoDados">
-              <label id="descricaoReferencia">Descrição e/ou referência:</label>
-              <input
-                id="dados"
-                className="iptLoginForm"
-                placeholder="Ao lado do banco tal..."
-                value={texto}
-                onChange={handleChangeTexto}
-              />
+      <div className="postar-container">
+        <form className="postar-form" onSubmit={handleSubmit}>
+          <div id="address">
+            <LocalizacaoUsuario
+              onLocationChange={({ latitude, longitude }) => {
+                setLatitude(latitude);
+                setLongitude(longitude);
+              }}
+            />
+          </div>
+          <p>Rua: {streetAddress}</p>
+
+          <h5>Sua rua esta correta?? Quer mudar??</h5>
+
+          <div className="buscar-localizacao">
+            <PlacesAutocomplete
+              value={enderecoInput}
+              onChange={handleEnderecoChange}
+              onSelect={handleSelect}
+            >
+              {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+                <div>
+                  <input
+                    {...getInputProps({
+                      placeholder: "Digite o endereço",
+                      className: "iptLoginForm",
+                    })}
+                  />
+                  <div>
+                    {loading ? <div>Carregando...</div> : null}
+
+                    {suggestions.map((suggestion) => {
+                      const style = {
+                        backgroundColor: suggestion.active ? "#41b6e6" : "#fff",
+                      };
+
+                      return (
+                        <div
+                          {...getSuggestionItemProps(suggestion, {
+                            style,
+                          })}
+                        >
+                          {suggestion.description}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+            </PlacesAutocomplete>
+          </div>
+
+          <div className="endereco-atual">
+            <div id="campos">
+              <div id="infoDados">
+                <label id="descricaoReferencia">
+                  Descrição e/ou referência:
+                </label>
+                <input
+                  id="dados"
+                  className="iptLoginForm"
+                  placeholder="Ao lado do banco tal..."
+                  value={texto}
+                  onChange={handleChangeTexto}
+                />
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className="captured-images">
-          {capturedImagesList.length > 0 ? (
-            <img
-              className="d-block w-100"
-              src={capturedImagesList[0]}
-              alt="Captured Image"
-            />
-          ) : (
-            <p>Nenhuma imagem capturada.</p>
-          )}
-        </div>
-        <div className="postar-buttons">
-          <button
-            type="submit"
-            className="postar-button"
-            onClick={nextImage}
-            disabled={currentImageIndex === 2}
-          >
-            <i className="bi bi-send"></i>
-            Postar
-          </button>
-        </div>
-      </form>
-      <Modal
-        id="modalSucedido"
-        show={showSuccessModal}
-        onHide={() => setShowSuccessModal(false)}
-        backdrop="static"
-        keyboard={false}
-      >
-        <Modal.Header>
-          <Modal.Title id="pergunta">Postagem bem sucedida!</Modal.Title>
-          <Modal.Title id="pergunta">
-            <DotPulse size={40} speed={1.3} color="#AAA4F2" />
-          </Modal.Title>
-        </Modal.Header>
-      </Modal>
+         
+
+          <div className="captured-images">
+            {capturedImagesList.length > 0 ? (
+              <img
+                className="d-block w-100"
+                src={capturedImagesList[0]}
+                alt="Captured Image"
+              />
+            ) : (
+              <p>Nenhuma imagem capturada.</p>
+            )}
+          </div>
+          <div className="postar-buttons">
+            <button
+              type="submit"
+              className="postar-button"
+              onClick={nextImage}
+              disabled={currentImageIndex === 2}
+            >
+              <i className="bi bi-send"></i>
+              Postar
+            </button>
+          </div>
+        </form>
+        <Modal
+          id="modalSucedido"
+          show={showSuccessModal}
+          onHide={() => setShowSuccessModal(false)}
+          backdrop="static"
+          keyboard={false}
+        >
+          <Modal.Header>
+            <Modal.Title id="pergunta">Postagem bem sucedida!</Modal.Title>
+            <Modal.Title id="pergunta">
+              <DotPulse size={40} speed={1.3} color="#AAA4F2" />
+            </Modal.Title>
+          </Modal.Header>
+        </Modal>
+      </div>
     </div>
   );
 };
