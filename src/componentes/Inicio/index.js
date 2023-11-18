@@ -24,7 +24,7 @@ function Inicio() {
     console.log("Chamando a função fetchPostagens");
     try {
       const response = await axios.get(
-        "http://localhost:3000/posts/list"
+        "https://mapeamentolixo.onrender.com/posts/list"
         //https://mapeamentolixo.onrender.com/posts/list
       );
       const postCoordinates = [];
@@ -42,8 +42,10 @@ function Inicio() {
           });
 
           return {
+            
             ...post,
             address,
+            email: post.email, // Inclua o campo de email na estrutura de dados da postagem
             image: post.image, //https://mapeamentolixo.onrender.com/${post.image}
           };
         })
@@ -99,7 +101,7 @@ function Inicio() {
     }
   };
 
-  const email = sessionStorage.getItem("email");
+
 
   const handleClickConcluir = async (_id) => {
     console.log(`ID da publicação: ${_id}`);
@@ -111,17 +113,10 @@ function Inicio() {
   
       console.log(response.data);
 
-      const emailResponse = await axios.post(
-        `https://mapeamentolixo.onrender.com/posts/email`, // Seu endpoint para enviar email
-        {
-          postId: _id,
-          userEmail: email,
+       // Imprima todo o objeto response.data para verificar sua estrutura
 
-          
-        }
-        
-      );
-      console.log(`email enviado`);
+      const email = response.data.email; 
+      console.log(`email: ${email}`);
 
     } catch (error) {
       console.error("Erro ao concluir o post:", error);
