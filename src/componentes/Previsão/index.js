@@ -25,6 +25,7 @@ function Previsao() {
   const [temperature, setTemperature] = useState('');
   const [weatherIcon, setWeatherIcon] = useState('');
   const [weatherDescription, setWeatherDescription] = useState('');
+  const [loading, setLoading] = useState(true); // Adiciona o estado de loading
 
   useEffect(() => {
     const obterTemperaturaAtual = async () => {
@@ -33,14 +34,20 @@ function Previsao() {
         const city = ''; 
         const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${key}&cnt=7`;
         
+        setLoading(true);
+
         fetch(apiUrl)
           .then((response) => response.json())
           .then((data) => {
          
+            console.log(data);
+            setLoading(false);
           })
           .catch((error) => {
+            setLoading(false); 
             console.error('Erro ao obter os dados das previsões de uma semana:', error);
           });
+
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(async (position) => {
             const { latitude, longitude } = position.coords;
@@ -52,10 +59,12 @@ function Previsao() {
             setWeatherIcon(weather[0].icon);
             setWeatherDescription(traducaoClima[weather[0].main]);
           }, (error) => {
+            setLoading(false);
             console.error('Erro ao obter a localização do dispositivo:', error);
           });
         }
       } catch (error) {
+        setLoading(false); 
         console.error('Erro ao obter a temperatura atual:', error);
       }
     };
@@ -71,16 +80,20 @@ function Previsao() {
   return (
     <div>
       <div className='Previsao'>
-        {weatherIcon && (
+        {loading && <div className='loader'>Carregando...</div>}
+        {!loading && weatherIcon && (
           <img className='clima-icon' src={`http://openweathermap.org/img/w/${weatherIcon}.png`} alt='Ícone do clima' />
         )}
-        <div className='cxItens'>
-          <h2 id='temp'>{temperature}°C</h2>
-          <p id='state'>{weatherDescription}</p>
-        </div>
-        <h4 id='city'>{city} RS</h4>
+        {!loading && (
+          <div className='cxItens'>
+            <h2 id='temp'>{temperature}°C</h2>
+            <p id='state'>{weatherDescription}</p>
+          </div>
+        )}
+        {!loading && <h4 id='city'>{city} RS</h4>}
       </div>
     </div>
   );
 }
+
 export default Previsao;

@@ -9,12 +9,12 @@ body {
 }
 .bi-filter-left {
   color: #4f5285;
-  font-size: 55px;
+  font-size: 45px;
 }
 #filterOptions{
   background-color: #e5d9ff;
   padding: 0.4em;
-  width: 13rem;
+  width: 11.5rem;
   border-radius: 5px;
   border: none;
   cursor: pointer;
@@ -24,7 +24,8 @@ body {
   text-align: center;
   color: #31344e;
   font-weight: 650;
-  font-size: 12px;
+  font-size: 0.85rem;
+  margin-right: 5px;
 }
 
 .optionPost:hover{
@@ -32,7 +33,7 @@ body {
   background-color: #31344e;
 }
 #cxFiltro {
-  margin:1rem;
+  margin:1rem 1rem -2rem 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -62,22 +63,27 @@ body {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  margin-top: 2rem;
+  justify-content: center;
+  margin-top: 1.5rem;
   background-color: rgb(243, 243, 243);
   padding: 2rem 0;
-  width: 85vw;
-  margin-left: 7.5vw;
+  max-width: 85vw;
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
 }
-
+#cxPostagens{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
 #cxLixo{
   width: 90%;
   height: 50%;
 }
 .lixo {
-  height: 100%;
-  margin-top: 0.8rem;
+  width: 100%;
+  margin-top: 0.85rem;
 }
 
 .localizacoes {
@@ -89,6 +95,9 @@ body {
 }
 .botoes-postagem {
   display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .localizacao {
@@ -104,7 +113,6 @@ body {
 }
 
 .botoes-postagem > button {
-  margin-bottom: 1rem;
 }
 .localizacao:hover {
   background-color: #31344e;
@@ -112,7 +120,7 @@ body {
 }
 
 .concluir {
-  width: 35vw;
+  width: 30vw;
   background-color: #aaa4f2;
   align-items: center;
   display: flex;
@@ -128,16 +136,15 @@ body {
   transition: background-color 0.3s ease-in;
 }
 #cxInformacoes {
-  display: block;
   text-align: start;
 }
 .localizacao,
 .concluir {
   margin: 0 5px;
-  width: 40vw;
-  padding: 1.5vh 0;
+  width: 18rem;
+  padding: 1.8vh 0;
   border: none;
-  border-radius: 15px;
+  border-radius: 10px;
   font-weight: 600;
   cursor: pointer;
 }
@@ -145,12 +152,6 @@ body {
 .localizacao:focus,
 .concluir:focus {
   outline: none;
-}
-
-.imagens2 {
-  align-items: center;
-  width: 100vw;
-  margin-left: 5vw;
 }
 
 #espaco {
@@ -178,30 +179,20 @@ body {
   margin-left: 10px;
 }
 
-@media (min-width: 368px) and (max-width: 1080px) {
-  .postagem {
-    width: 100%;
-    margin-left: 0;
-  }
-  Lixo,
-  .lixo {
-    width: 100%;
-  }
-}
 
 /*css logout*/
 .Btn {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  width: 45px;
-  height: 45px;
+  width: 40px;
+  height: 40px;
   border: none;
   border-radius: 50%;
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  transition-duration: .3s;
+  transition-duration: 0.3s;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
   background-color: rgb(255, 65, 65);
 }
@@ -229,13 +220,13 @@ body {
   width: 0%;
   opacity: 0;
   color: white;
-  font-size: 1.2em;
+  font-size: 0.85em;
   font-weight: 600;
-  transition-duration: .3s;
+  transition-duration: 0.3s;
 }
 /* hover effect on button width */
 .Btn:hover {
-  width: 125px;
+  width: 7rem;
   border-radius: 40px;
   transition-duration: .3s;
 }
@@ -248,7 +239,7 @@ body {
 /* hover effect button's text */
 .Btn:hover .text {
   opacity: 1;
-  width: 70%;
+  width: 60%;
   transition-duration: .3s;
   padding-right: 10px;
 }

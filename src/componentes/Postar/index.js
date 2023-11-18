@@ -112,8 +112,6 @@ const Postar = () => {
     }
   };
 
-  
-
   return (
     <div>
       <button type="button" className="btnVoltarTela" onClick={handleVoltar}>
@@ -144,8 +142,8 @@ const Postar = () => {
           </div>
           <p>Rua: {streetAddress}</p>
 
-          <h5>Sua rua esta correta?? Quer mudar??</h5>
 
+          <label id="descricaoReferencia">Endereço</label>
           <div className="buscar-localizacao">
             <PlacesAutocomplete
               value={enderecoInput}
@@ -157,7 +155,7 @@ const Postar = () => {
                   <input
                     {...getInputProps({
                       placeholder: "Digite o endereço",
-                      className: "iptLoginForm",
+                      className: "iptEndereco",
                     })}
                   />
                   <div>
@@ -167,7 +165,6 @@ const Postar = () => {
                       const style = {
                         backgroundColor: suggestion.active ? "#41b6e6" : "#fff",
                       };
-
                       return (
                         <div
                           {...getSuggestionItemProps(suggestion, {
@@ -192,8 +189,8 @@ const Postar = () => {
                 </label>
                 <input
                   id="dados"
-                  className="iptLoginForm"
-                  placeholder="Ao lado do banco tal..."
+                  className="iptEndereco"
+                  placeholder="Próximo ao banco..."
                   value={texto}
                   onChange={handleChangeTexto}
                 />

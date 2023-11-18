@@ -12,7 +12,7 @@ const Cadastro = () => {
   const [senha, setSenha] = useState('');
   const [showPasswordAlert, setShowPasswordAlert] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [showPasswordPopup, setShowPasswordPopup] = useState(false); // Novo estado
+  const [showPasswordPopup, setShowPasswordPopup] = useState(false);
 
   const handleNomeChange = (event) => {
     setNome(event.target.value);
@@ -35,7 +35,6 @@ const Cadastro = () => {
     }
   };
 
-  // Função de validação de email
   const validateEmail = (email) => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return regex.test(email);

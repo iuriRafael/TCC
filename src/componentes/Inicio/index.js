@@ -25,7 +25,7 @@ function Inicio() {
     console.log("Chamando a função fetchPostagens");
     try {
       const response = await axios.get(
-        "https://mapeamentolixo.onrender.com/posts/list"
+        "http://localhost:3000/posts/list"
         //https://mapeamentolixo.onrender.com/posts/list
       );
       const postCoordinates = [];
@@ -176,7 +176,7 @@ function Inicio() {
                 Todas as postagens
               </option>
               <option className="optionPost" value="opcao1">
-                Todas as postagens concluídas
+                Postagens concluídas
               </option>
               <option className="optionPost" value="opcao2">
                 Suas postagem pendentes
@@ -185,48 +185,55 @@ function Inicio() {
                 Suas postagens concluídas
               </option>
             </select>
-           
           </div>
         )}
-        <Modal show={showConfirmationModal} onHide={() => setShowConfirmationModal(false)}>
-        <Modal.Header>
-          <Modal.Title id="pergunta">
-          {localStorage.getItem("nome")}, tem certeza que deseja sair da conta?
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Footer id="btnsModal">
-          <Button
-            id="btnCancelar"
-            variant="secondary"
-            onClick={handleCancelarSair}
-          >
-            Cancelar
-          </Button>
-          <Button
-            id="btnConfirmar"
-            variant="primary"
-            onClick={handleConfirmarSair}
-          >
-            {isSaindo ? <Spinner animation="border" size="sm" /> : "Confirmar"}
-          </Button>
-        </Modal.Footer>
-      </Modal>
-         <div id="cxLogout" onClick={handleSair} disabled={false}>
-              <button class="Btn">
-                <div class="sign">
-                  <svg viewBox="0 0 512 512">
-                    <path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path>
-                  </svg>
-                </div>
-                <div class="text">Logout</div>
-              </button>
+        <Modal
+          show={showConfirmationModal}
+          onHide={() => setShowConfirmationModal(false)}
+        >
+          <Modal.Header>
+            <Modal.Title id="pergunta">
+              {localStorage.getItem("nome")}, tem certeza que deseja sair da
+              conta?
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Footer id="btnsModal">
+            <Button
+              id="btnCancelar"
+              variant="secondary"
+              onClick={handleCancelarSair}
+            >
+              Cancelar
+            </Button>
+            <Button
+              id="btnConfirmar"
+              variant="primary"
+              onClick={handleConfirmarSair}
+            >
+              {isSaindo ? (
+                <Spinner animation="border" size="sm" />
+              ) : (
+                "Confirmar"
+              )}
+            </Button>
+          </Modal.Footer>
+        </Modal>
+        <div id="cxLogout" onClick={handleSair} disabled={false}>
+          <button class="Btn">
+            <div class="sign">
+              <svg viewBox="0 0 512 512">
+                <path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path>
+              </svg>
             </div>
+            <div class="text">Logout</div>
+          </button>
+        </div>
       </div>
       {selectedOption === "opcao1" && <Finalizado />}
       {selectedOption === "opcao2" && <Andamento />}
       {selectedOption === "opcao3" && <TelaUm />}
       {selectedOption === "opcao0" && (
-        <div>
+        <div id="cxPostagens">
           {postagens.length > 0 ? (
             postagens.map((post) => (
               <div key={post._id} className="postagem">

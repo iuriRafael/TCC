@@ -43,13 +43,6 @@ body {
   margin-bottom: 8px;
 }
 
-#dados {
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 14px;
-}
-
 .captured-images img {
   max-width: 100%;
   height: auto;
@@ -65,7 +58,7 @@ body {
 
 .postar-button {
   padding: 10px 20px;
-  background-color: #4caf50;
+  background-color: #4f5285;
   color: rgb(255, 255, 255);
   border: none;
   border-radius: 5px;
@@ -91,3 +84,30 @@ body {
   align-items: start;
   color: #333;
 }
+
+.buscar-localizacao{
+  display: flex;
+}
+
+#infoDados{
+  align-items: start;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+.iptEndereco{
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  padding: 10px;
+  margin: 12px;
+  width: 25em;
+  background-color: hsl(245, 75%, 80%, 0.05);
+  border-radius: 3px;
+  border-bottom: 2px solid #4f5285;
+}
+
+/* padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;*/
