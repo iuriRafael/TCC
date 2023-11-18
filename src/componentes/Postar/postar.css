@@ -1,12 +1,12 @@
-/* postar.css */
-
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
   background-color: #f5f5f5;
 }
-
+#address{
+  display: none;
+}
 .postar-container {
   max-width: 100%;
   margin: 20px;
@@ -65,12 +65,17 @@ body {
 .postar-button {
   padding: 10px 20px;
   background-color: #4caf50;
-  color: white;
+  color: rgb(255, 255, 255);
   border: none;
-  border-radius: 6px;
+  border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
+  width: 8rem;
   transition: background-color 0.3s ease;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
 }
 
 .postar-button:hover {

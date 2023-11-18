@@ -36,13 +36,13 @@ function Navbar() {
      <path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"></path>
 </svg>
       </NavLink>
-      <NavLink to="/Usuario" activeClassName="active">
+      {/* <NavLink to="/Usuario" activeClassName="active">
 
         <svg id="iconMenu" width="40" height="40" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
      <path d="M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z"></path>
      <path d="M18 21a1 1 0 0 0 1-1 7 7 0 1 0-14 0 1 1 0 0 0 1 1h12Z"></path>
 </svg>      
-      </NavLink>
+      </NavLink> */}
     </nav>
   );
 }

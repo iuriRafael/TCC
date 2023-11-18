@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { Modal, Button, Spinner } from "react-bootstrap";
 import "./style.css";
 import axios from "axios";
 import userIcon from "../img/botoes/do-utilizador.png";
@@ -9,22 +10,22 @@ import Previsao from "../Previsão";
 import Finalizado from "../Finalizado";
 import Andamento from "../Andamento";
 import TelaUm from "../TelaUm";
-import Mapa from "../Mapa";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
 function Inicio() {
   const [postagens, setPostagens] = useState([]);
   const [showFilter, setShowFilter] = useState(false);
   const [selectedOption, setSelectedOption] = useState("opcao0");
-  
+  const [isSaindo, setIsSaindo] = useState(false);
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const [permissionsMessage, setPermissionsMessage] = useState("");
-  
+  const navigate = useNavigate();
 
   const fetchPostagens = async () => {
     console.log("Chamando a função fetchPostagens");
     try {
       const response = await axios.get(
-        "https://mapeamentolixo.onrender.com/posts/list"
+        "http://localhost:3000/posts/list"
         //https://mapeamentolixo.onrender.com/posts/list
       );
       const postCoordinates = [];
@@ -42,10 +43,9 @@ function Inicio() {
           });
 
           return {
-            
             ...post,
             address,
-            email: post.email, // Inclua o campo de email na estrutura de dados da postagem
+            email: post.email,
             image: post.image, //https://mapeamentolixo.onrender.com/${post.image}
           };
         })
@@ -77,64 +77,60 @@ function Inicio() {
 
   const askForLocationPermission = async () => {
     try {
-      const status = await navigator.permissions.query({ name: 'geolocation' });
-      if (status.state === 'granted') {
-        setPermissionsMessage('Ative a localização para uma melhor experiência.');
-      } else if (status.state === 'prompt') {
+      const status = await navigator.permissions.query({ name: "geolocation" });
+      if (status.state === "granted") {
+        setPermissionsMessage(
+          "Ative a localização para uma melhor experiência."
+        );
+      } else if (status.state === "prompt") {
         await navigator.geolocation.getCurrentPosition(() => {
-          console.log('Permissão de localização concedida pelo usuário');
+          console.log("Permissão de localização concedida pelo usuário");
         });
       } else {
-        console.log('Permissão de localização negada pelo usuário');
+        console.log("Permissão de localização negada pelo usuário");
       }
     } catch (error) {
-      console.error('Erro ao verificar permissão de localização:', error);
+      console.error("Erro ao verificar permissão de localização:", error);
     }
   };
 
   const askForCameraPermission = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-      console.log('Permissão de câmera concedida');
+      console.log("Permissão de câmera concedida");
     } catch (error) {
-      console.error('Erro ao solicitar permissão de câmera:', error);
+      console.error("Erro ao solicitar permissão de câmera:", error);
     }
   };
 
-
-
   const handleClickConcluir = async (_id) => {
     console.log(`ID da publicação: ${_id}`);
-  
+
     try {
       const response = await axios.put(
         `https://mapeamentolixo.onrender.com/posts/${_id}/conclude`
       );
-  
+
       console.log(response.data);
-
-       // Imprima todo o objeto response.data para verificar sua estrutura
-
-      const email = response.data.email; 
+      const email = response.data.email;
       console.log(`email: ${email}`);
-
     } catch (error) {
       console.error("Erro ao concluir o post:", error);
-    
     }
   };
-  
 
   const askForNotificationPermission = async () => {
     try {
       const permission = await Notification.requestPermission();
-      if (permission === 'granted') {
-        setPermissionsMessage('Ative a localização para uma melhor Notificação.');
+      if (permission === "granted") {
+        setPermissionsMessage(
+          "Ative a localização para uma melhor Notificação."
+        );
       } else {
-        console.log('Permissão de notificação negada pelo usuário');
+        console.log("Permissão de notificação negada pelo usuário");
       }
     } catch (error) {
-      console.error('Erro ao solicitar permissão de notificação:', error);
+      console.error("Erro ao solicitar permissão de notificação:", error);
     }
   };
 
@@ -148,7 +144,20 @@ function Inicio() {
     askForPermissions();
     fetchPostagens();
   }, [selectedOption]);
-
+  function handleSair() {
+    setShowConfirmationModal(true);
+  }
+  function handleCancelarSair() {
+    setShowConfirmationModal(false);
+  }
+  function handleConfirmarSair() {
+    setIsSaindo(true);
+    setTimeout(() => {
+      setIsSaindo(false);
+      setShowConfirmationModal(false);
+      navigate("/Login");
+    }, 2500);
+  }
   return (
     <div>
       <Previsao />
@@ -176,8 +185,42 @@ function Inicio() {
                 Suas postagens concluídas
               </option>
             </select>
+           
           </div>
         )}
+        <Modal show={showConfirmationModal} onHide={() => setShowConfirmationModal(false)}>
+        <Modal.Header>
+          <Modal.Title id="pergunta">
+          {localStorage.getItem("nome")}, tem certeza que deseja sair da conta?
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Footer id="btnsModal">
+          <Button
+            id="btnCancelar"
+            variant="secondary"
+            onClick={handleCancelarSair}
+          >
+            Cancelar
+          </Button>
+          <Button
+            id="btnConfirmar"
+            variant="primary"
+            onClick={handleConfirmarSair}
+          >
+            {isSaindo ? <Spinner animation="border" size="sm" /> : "Confirmar"}
+          </Button>
+        </Modal.Footer>
+      </Modal>
+         <div id="cxLogout" onClick={handleSair} disabled={false}>
+              <button class="Btn">
+                <div class="sign">
+                  <svg viewBox="0 0 512 512">
+                    <path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path>
+                  </svg>
+                </div>
+                <div class="text">Logout</div>
+              </button>
+            </div>
       </div>
       {selectedOption === "opcao1" && <Finalizado />}
       {selectedOption === "opcao2" && <Andamento />}
@@ -187,8 +230,7 @@ function Inicio() {
           {postagens.length > 0 ? (
             postagens.map((post) => (
               <div key={post._id} className="postagem">
-                <div id="fotoPerfil">
-                </div>
+                <div id="fotoPerfil"></div>
                 <div id="cxLixo">
                   <img className="lixo" src={post.image} alt="Lixo" />
                 </div>
@@ -220,7 +262,12 @@ function Inicio() {
                     "kannemann@gmail.com" && (
                     <button
                       className="concluir"
-                      onClick={() => handleClickConcluir(post._id, sessionStorage.getItem("email"))}
+                      onClick={() =>
+                        handleClickConcluir(
+                          post._id,
+                          sessionStorage.getItem("email")
+                        )
+                      }
                     >
                       Concluir
                       <svg
