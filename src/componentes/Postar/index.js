@@ -48,7 +48,7 @@ const Postar = () => {
     }
 
     try {
-      const response = await axios.post("https://mapeamentolixo.onrender.com/posts/upload", {
+      const response = await axios.post("http://locahttps://mapeamentolixo.onrender.com/posts/upload", {
         userId: userId,
         email: userEmail,
         files: capturedImagesList,
@@ -141,10 +141,8 @@ const Postar = () => {
             />
           </div>
           <p>Rua: {streetAddress}</p>
-
-
-          <label id="descricaoReferencia">Endereço</label>
           <div className="buscar-localizacao">
+          <label id="descricaoReferencia">O endereço está incorreto?Altere-o aqui.</label>
             <PlacesAutocomplete
               value={enderecoInput}
               onChange={handleEnderecoChange}
@@ -196,20 +194,6 @@ const Postar = () => {
                 />
               </div>
             </div>
-          </div>
-
-         
-
-          <div className="captured-images">
-            {capturedImagesList.length > 0 ? (
-              <img
-                className="d-block w-100"
-                src={capturedImagesList[0]}
-                alt="Captured Image"
-              />
-            ) : (
-              <p>Nenhuma imagem capturada.</p>
-            )}
           </div>
           <div className="postar-buttons">
             <button

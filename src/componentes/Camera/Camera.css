@@ -11,24 +11,29 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
   margin-top: 20px;
 }
 
 .video-container {
-  position: relative;
   width: 100%;
-  max-width: 400px; 
-  height: 40vh;
+  height: 100%;
 }
 
 video {
   width: 100%;
-  height: 100%; /* Ocupa toda a altura disponível do contêiner */
-  border-radius: 5px;
   object-fit: cover;
 }
 
+.captured-image {
+  width: 25rem;
+  margin: 10px;
+}
+
+#imgCap{
+  border-radius: 5px;
+  width: 100%;
+}
+/* #cxImgBatida {} */
 .canvas {
   display: none;
 }
@@ -77,16 +82,6 @@ video {
   margin-top: 20px;
 }
 
-.captured-image {
-  width: 100%;
-  max-width: 150px; 
-  margin: 10px;
-  border-radius: 5px;
-}
-
-#cxImgBatida {
-  position: relative;
-}
 .remove-button {
   background-color: #d9534f;
   color: white;
