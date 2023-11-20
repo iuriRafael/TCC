@@ -237,7 +237,6 @@ function Inicio() {
           {postagens.length > 0 ? (
             postagens.map((post) => (
               <div key={post._id} className="postagem">
-                <div id="fotoPerfil"></div>
                 <div id="cxLixo">
                   <img className="lixo" src={post.image} alt="Lixo" />
                 </div>

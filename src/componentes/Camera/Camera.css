@@ -25,7 +25,7 @@ video {
 }
 
 .captured-image {
-  width: 25rem;
+  width: 20rem;
   margin: 10px;
 }
 
@@ -75,27 +75,44 @@ video {
   color: rgb(255, 255, 255);
 }
 
-#conteinerFts {
+/* #conteinerFts {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 20px;
+} */
+
+
+#cxImgBatida {
+  position: relative;
+  display: inline-block;
+  margin: 10px;
+  border-radius: 8px;
+  overflow: hidden; /* Para garantir que o botão não ultrapasse os limites da imagem */
+  cursor: pointer; /* Adiciona um cursor indicando que é clicável */
+}
+
+.captured-image {
+  width: 20rem;
+  max-width: 100%; /* Garante que a imagem não ultrapasse seu contêiner pai */
+  display: block;
 }
 
 .remove-button {
+  position: absolute;
+  top: 5px; /* Ajuste vertical */
+  right: 5px; /* Ajuste horizontal */
   background-color: #d9534f;
   color: white;
   border: none;
   border-radius: 5px;
   padding: 5px;
   cursor: pointer;
+  transition: opacity 0.3s ease; /* Adiciona uma transição suave ao botão */
+  opacity: 1; /* Deixa o botão visível o tempo todo */
 }
 
 .remove-button p {
   margin: 0;
   font-size: 12px;
-}
-
-.remove-button:hover p {
-  display: block;
 }

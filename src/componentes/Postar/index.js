@@ -48,7 +48,7 @@ const Postar = () => {
     }
 
     try {
-      const response = await axios.post("http://locahttps://mapeamentolixo.onrender.com/posts/upload", {
+      const response = await axios.post("https://mapeamentolixo.onrender.com/posts/upload", {
         userId: userId,
         email: userEmail,
         files: capturedImagesList,
