@@ -25,11 +25,11 @@ function Inicio() {
     console.log("Chamando a função fetchPostagens");
     try {
       const response = await axios.get(
-        "https://mapeamentolixo.onrender.com/posts/list"
+        "http://localhost:3000/posts/list"
         //https://mapeamentolixo.onrender.com/posts/list
       );
       const postCoordinates = [];
-      // console.log(response);
+      
       const updatedPostagens = await Promise.all(
         response.data.map(async (post) => {
           const address = await getReverseGeocoding(
@@ -47,6 +47,7 @@ function Inicio() {
             address,
             email: post.email,
             image: post.image, //https://mapeamentolixo.onrender.com/${post.image}
+            createdAt: post.createdAt
           };
         })
       );
@@ -108,12 +109,12 @@ function Inicio() {
 
     try {
       const response = await axios.put(
-        `https://mapeamentolixo.onrender.com/posts/${_id}/conclude`
+        `http://localhost:3000/posts/${_id}/conclude`
       );
 
       console.log(response.data);
       const email = response.data.email;
-      console.log(`email: ${email}`);
+      
     } catch (error) {
       console.error("Erro ao concluir o post:", error);
     }
@@ -158,6 +159,12 @@ function Inicio() {
       navigate("/Login");
     }, 2500);
   }
+
+  function formatDate(date) {
+    const options = { day: 'numeric', month: 'numeric', year: 'numeric',  hour: 'numeric', minute: 'numeric' };
+    return new Date(date).toLocaleDateString('pt-BR', options);
+  }
+
   return (
     <div>
       <Previsao />
@@ -237,6 +244,7 @@ function Inicio() {
           {postagens.length > 0 ? (
             postagens.map((post) => (
               <div key={post._id} className="postagem">
+                <p>Data de criação: {formatDate(post.createdAt)}</p>
                 <div id="cxLixo">
                   <img className="lixo" src={post.image} alt="Lixo" />
                 </div>
