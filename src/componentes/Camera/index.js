@@ -186,20 +186,42 @@ function CameraPage() {
             </svg>
             Tirar Foto
           </button>
-          <button id="escolherFoto" onClick={chooseFromLibrary}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="currentColor"
-              className="bi bi-upload"
-              viewBox="0 0 16 16"
-            >
-              <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
-              <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z" />
-            </svg>
-            Carregar imagem
-          </button>
+          <label htmlFor="fileInput" id="escolherFoto">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        fill="currentColor"
+        className="bi bi-upload"
+        viewBox="0 0 16 16"
+      >
+        <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
+        <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z" />
+      </svg>
+      Carregar imagem
+    </label>
+    <input
+      type="file"
+      id="fileInput"
+      accept="image/*"
+      style={{ display: "none" }}
+      onChange={(event) => {
+        const file = event.target.files[0];
+
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            const dataURL = e.target.result;
+
+            setCapturedImagesList((prevList) => [...prevList, dataURL]);
+            setCapturedImage(dataURL);
+
+            console.log("Foto escolhida:", dataURL);
+          };
+          reader.readAsDataURL(file);
+        }
+      }}
+    />
           {capturedImagesList.length > 0 && (
             <button className="avancarButton" onClick={handleAvancar}>
               <svg
