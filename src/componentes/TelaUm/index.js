@@ -4,6 +4,8 @@ import axios from 'axios';
 import Previsao from "../Previsão";
 import "./style.css";
 
+import semConteudo from "../img/botoes/PlanetDesaturado.svg";
+
 function TelaUm(){
   const [posts, setPosts] = useState([]);
   
@@ -54,21 +56,33 @@ function TelaUm(){
   };
   return (
     <div>
-      <ul>
-      {posts.map((post) => (
-        <div key={post._id} className="fotos4">
-          <div id="cxLixo">
-          <img className="lixo" src={post.image} />
+      {/* <Previsao /> */}
+      {posts.length > 0 ? (
+        posts.map((post) => (
+          <div key={post._id} className="postagemC">
+            <div id="fotoPerfil">
+            </div>
+            <div id="cxLixo">
+              <img className="lixo" src={post.image} />
+            </div>
+            <div id="cxInformacoes">
+              {post.location && (
+                <h6 className="localizacoes">
+                  Localização: {post.address}
+                </h6>
+              )}
+              <h6 className="endereco">Descrição: {post.description}</h6>
+            </div>
           </div>
-          <div id="cxInfo">
-          {post.location && (
-              <h6 className="localizacoes">Localização: {post.address}</h6>
-            )}
-            <h6 className="endereco">Descrição: {post.description}</h6>
+        ))
+      ) : (
+        <div id="cxTodosItensSem">
+          <p>Não há postes concluídos no momento.</p>
+          <div id="cxSemConteudo">
+            <img src={semConteudo} alt="Imagem Adicional" />
           </div>
         </div>
-      ))}
-      </ul>
+      )}
       <Navbar />
     </div>
   );
