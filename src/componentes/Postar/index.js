@@ -226,5 +226,4 @@ const Postar = () => {
     </div>
   );
 };
-
 export default Postar;

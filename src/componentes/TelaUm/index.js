@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Navbar from "../navbar";
 import axios from 'axios';
 import Previsao from "../Previsão";
+import "./style.css";
 
 function TelaUm(){
   const [posts, setPosts] = useState([]);

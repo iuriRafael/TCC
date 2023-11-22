@@ -1,0 +1,261 @@
+body {
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+  }
+  #data{
+    font-weight: 650;
+    color: #31344e;
+  
+  }
+  .endereco{
+    margin: 1rem;
+  }
+  .bi-filter-left {
+    color: #4f5285;
+    font-size: 45px;
+  }
+  #filterOptions{
+    background-color: #e5d9ff;
+    padding: 0.4em;
+    width: 11.5rem;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    text-align: center;
+    color: #31344e;
+    font-weight: 650;
+    font-size: 0.85rem;
+    margin-right: 5px;
+  }
+  
+  .optionPost:hover{
+    border: none;
+    background-color: #31344e;
+  }
+  #cxFiltro {
+    margin:1rem 1rem -2rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  #btnFiltro {
+    background: none;
+    text-align: left;
+  }
+  .menssagemBtn {
+    background-color: #4f5285;
+    padding-left: 1.5rem;
+    color: #fff;
+    display: none;
+  }
+  
+  .maisBtn:hover .menssagemBtn {
+    display: block;
+  }
+  
+  .maisBtn:not(:hover) .menssagemBtn {
+    display: none;
+  }
+  
+  .postagem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    margin: 1rem; 
+    background-color: rgb(243, 243, 243);
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 10px 20px -6px;
+    width: 100%; 
+    max-width: 400px; 
+  }
+  
+  #cxPostagens{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 30px;
+  }
+  #cxLixo {
+    width: 100%;
+    height: 300px; 
+  }
+  
+  .lixo {
+    width: 100%;
+    max-width: 95vw;
+  
+    border-radius: 8px;
+    height: 280px;
+  }
+  
+  .localizacoes {
+    text-align: left;
+    
+  }
+  .endereco {
+    text-align: left;
+  }
+  .botoes-postagem {
+    display: flex;
+    justify-content: space-around;
+    
+  }
+  
+  .localizacao {
+    background-color: #4f5285;
+    align-items: center;
+    display: flex;
+    justify-content: space-evenly;
+    color: #fff;
+    border: 2px dotted #aaa4f2;
+    border-radius: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-out;
+  }
+  
+  .botoes-postagem > button {
+  }
+  .localizacao:hover {
+    background-color: #31344e;
+    transition: background-color 0.3s ease-in;
+  }
+  
+  .concluir {
+    width: 30vw;
+    background-color: #aaa4f2;
+    align-items: center;
+    display: flex;
+    justify-content: space-evenly;
+    color: #fff;
+    border: 2px dotted #aaa4f2;
+    border-radius: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-out;
+  }
+  .concluir:hover {
+    background-color: #e5d9ff;
+    transition: background-color 0.3s ease-in;
+  }
+  #cxInformacoes .localizacoes,
+  #cxInformacoes .endereco {
+    text-align: left;
+  }
+  
+  .localizacao,
+  .concluir {
+    margin: 0 5px;
+    width: 10rem;
+    padding: 1.8vh 0;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  
+  .localizacao:focus,
+  .concluir:focus {
+    outline: none;
+  }
+  
+  #espaco {
+    height: 10vh;
+    margin-top: 1rem;
+  }
+  
+  #userIcon {
+    background-color: #aaa4f2;
+    width: 32px;
+    height: 32px;
+    padding: .4em;
+    border-radius: 50%;
+  }
+  #nomeUser{
+    color: #31344e;
+  }
+  
+  #fotoPerfil {
+    margin-right: 60%;
+    margin-bottom: 0.2rem;
+    display: flex;
+    justify-content:start;
+    margin-top: 5px;
+    margin-left: 10px;
+  }
+  
+  
+  /*css logout*/
+  .Btn {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition-duration: 0.3s;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+    background-color: rgb(255, 65, 65);
+  }
+  
+  /* plus sign */
+  .sign {
+    width: 100%;
+    transition-duration: .3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .sign svg {
+    width: 17px;
+  }
+  
+  .sign svg path {
+    fill: white;
+  }
+  /* text */
+  .text {
+    position: absolute;
+    right: 0%;
+    width: 0%;
+    opacity: 0;
+    color: white;
+    font-size: 0.85em;
+    font-weight: 600;
+    transition-duration: 0.3s;
+  }
+  /* hover effect on button width */
+  .Btn:hover {
+    width: 7rem;
+    border-radius: 40px;
+    transition-duration: .3s;
+  }
+  
+  .Btn:hover .sign {
+    width: 30%;
+    transition-duration: .3s;
+    padding-left: 20px;
+  }
+  /* hover effect button's text */
+  .Btn:hover .text {
+    opacity: 1;
+    width: 60%;
+    transition-duration: .3s;
+    padding-right: 10px;
+  }
+  /* button click effect*/
+  .Btn:active {
+    transform: translate(2px ,2px);
+  }

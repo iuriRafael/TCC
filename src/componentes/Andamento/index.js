@@ -22,7 +22,7 @@ function Andamento() {
 
     //http://localhost:3000/posts/user/${userId}
     axios
-      .get(`hhttp://localhost:3000/posts/user/${userId}`) 
+      .get(`https://mapeamentolixo.onrender.com/posts/user/${userId}`) 
       .then(async (response) => {
         const Postagens = await Promise.all(
           response.data.map(async (post) => {
@@ -59,12 +59,8 @@ function Andamento() {
     }
   };
 
-  
-
-
   return (
     <div>
-      {/* <Previsao /> */}
       <div>
         {publications.length > 0 ? (
           publications.map((publication) => (
