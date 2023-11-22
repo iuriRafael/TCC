@@ -36,7 +36,7 @@ const Login = () => {
         senha,
       }); 
       // const response = await axios.post("https://mapeamentolixo.onrender.com/auth/login", {
-      //   email,
+      //   email, //http://localhost:3000
       //   senha,
       // });
       if (response.status === 200) {

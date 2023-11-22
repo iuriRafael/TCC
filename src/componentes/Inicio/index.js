@@ -281,7 +281,7 @@ function Inicio() {
                     </button>
                   </Link>
                   {sessionStorage.getItem("email") ===
-                    "kannemann@gmail.com" && (
+                    "cleanmap76@gmail.com" && (
                     <button
                       className="concluir"
                       onClick={() =>

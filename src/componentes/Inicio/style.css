@@ -86,14 +86,18 @@ body {
 }
 #cxLixo {
   width: 100%;
-  height: 300px;
-  overflow: hidden;
+    max-width: 500px; /* Defina a largura máxima desejada para o contêiner */
+    height: 300px;
+    overflow: hidden;
+    position: relative;
 }
 
 .lixo {
   width: 100%;
-  height: 100%;
-  object-fit: cover
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .localizacoes {
@@ -121,8 +125,7 @@ body {
   transition: background-color 0.3s ease-out;
 }
 
-.botoes-postagem > button {
-}
+
 .localizacao:hover {
   background-color: #31344e;
   transition: background-color 0.3s ease-in;
