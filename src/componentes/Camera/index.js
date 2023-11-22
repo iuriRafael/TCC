@@ -80,7 +80,7 @@ function CameraPage() {
     const inputElement = document.createElement("input");
     inputElement.type = "file";
     inputElement.accept = "image/*";
-    inputElement.capture = "camera";
+
 
     inputElement.onchange = (event) => {
       const file = event.target.files[0];

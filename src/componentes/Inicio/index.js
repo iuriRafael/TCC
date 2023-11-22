@@ -42,22 +42,23 @@ function Inicio() {
             longitude: post.location.coordinates[0],
           });
 
+          const userName = post.userName;
+
           return {
             ...post,
             address,
             email: post.email,
             image: post.image, //https://mapeamentolixo.onrender.com/${post.image}
-            createdAt: post.createdAt
+            createdAt: post.createdAt,
+            userName: userName
           };
         })
       );
 
       setPostagens(updatedPostagens);
 
-      sessionStorage.setItem(
-        "postCoordinates",
-        JSON.stringify(postCoordinates)
-      );
+      sessionStorage.setItem("postCoordinates",JSON.stringify(postCoordinates));
+      
     } catch (error) {
       console.error("Erro ao buscar publicações:", error);
     }

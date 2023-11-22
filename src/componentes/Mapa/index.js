@@ -3,12 +3,22 @@ import Navbar from "../navbar";
 import './mapa.css';
 import Previsao from "../Previsão";
 import axios from 'axios';
+
+import { useNavigate } from 'react-router-dom';
+
+
+
+
 function Mapa() {
   const [map, setMap] = useState(null);
   const [lat, setLat] = useState(null);
   const [lng, setLng] = useState(null);
 
+  const navigate = useNavigate();
+  
+
   const postCoordinates = JSON.parse(sessionStorage.getItem("postCoordinates")) || [];
+
 
   useEffect(() => {
     
@@ -41,18 +51,32 @@ function Mapa() {
         setMap(mapInstance);
 
         postCoordinates.forEach((coordenada, index) => {
-          new window.google.maps.Marker({
+          const marker = new window.google.maps.Marker({
             position: { lat: coordenada.latitude, lng: coordenada.longitude },
             map: mapInstance,
             title: `Post ${index + 1}`,
+            postInfo: postCoordinates[index],
+          });
+
+          marker.addListener("click", () => {
+            // Redirecionar para a tela Início com a postagem correspondente
+            redirectToInicio(marker.postInfo);
           });
         });
 
+        
       } else {
         map.setCenter({ lat, lng });
       }
     }
   }, [lat, lng, map, postCoordinates]);
+
+  const redirectToInicio = (postInfo) => {
+    // Passar a postagem correspondente para a tela Início
+    sessionStorage.setItem("selectedPost", JSON.stringify(postInfo));
+    navigate('/Inicio');
+  };
+  
 
   return (
     <div id="bodyMapa">
