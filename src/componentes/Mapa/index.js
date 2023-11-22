@@ -3,22 +3,13 @@ import Navbar from "../navbar";
 import './mapa.css';
 import Previsao from "../Previsão";
 import axios from 'axios';
-
 import { useNavigate } from 'react-router-dom';
-
-
-
-
 function Mapa() {
   const [map, setMap] = useState(null);
   const [lat, setLat] = useState(null);
   const [lng, setLng] = useState(null);
-
   const navigate = useNavigate();
-  
-
   const postCoordinates = JSON.parse(sessionStorage.getItem("postCoordinates")) || [];
-
 
   useEffect(() => {
     

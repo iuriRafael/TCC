@@ -1,5 +1,6 @@
+
 #btnVoltar , .btnVoltar{
-  margin: 2.5rem 0 0 1rem;
+  margin: 2rem;
   color:#000000;
 }
 #btnVoltar:hover , .btnVoltar:hover{
@@ -12,6 +13,7 @@
   flex-direction: column;
   align-items: center;
   margin-top: 20px;
+  margin: auto;
 }
 
 .video-container {
@@ -26,14 +28,18 @@ video {
 
 .captured-image {
   width: 20rem;
-  margin: 10px;
+  max-width: 100%;
+  height: 12rem; /* Set a fixed height */
+  display: block;
 }
 
-#imgCap{
-  border-radius: 5px;
+/* #imgCap{
   width: 100%;
+} */
+#cxImgBatida {
+  width: 100%;
+  height: 100%;
 }
-/* #cxImgBatida {} */
 .canvas {
   display: none;
 }
@@ -86,10 +92,13 @@ video {
 #cxImgBatida {
   position: relative;
   display: inline-block;
-  margin: 10px;
+  margin: 1px;
   border-radius: 8px;
   overflow: hidden; /* Para garantir que o botão não ultrapasse os limites da imagem */
   cursor: pointer; /* Adiciona um cursor indicando que é clicável */
+  display: flex; /* Adiciona display flex para centralizar verticalmente */
+  align-items: center; /* Centraliza verticalmente */
+  justify-content: center;
 }
 
 .captured-image {
@@ -101,7 +110,7 @@ video {
 .remove-button {
   position: absolute;
   top: 5px; /* Ajuste vertical */
-  right: 5px; /* Ajuste horizontal */
+  right: 20px; /* Ajuste horizontal */
   background-color: #d9534f;
   color: white;
   border: none;

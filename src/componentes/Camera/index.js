@@ -25,7 +25,11 @@ function CameraPage() {
     const accessCamera = async () => {
       try {
         const stream = await navigator.mediaDevices.getUserMedia({
-          video: { facingMode: "environment" },
+          video: { 
+            facingMode: "environment",
+      
+            
+          },
         });
         const videoElement = videoRef.current;
         if (videoElement) {
@@ -62,6 +66,7 @@ function CameraPage() {
         canvasElement.width,
         canvasElement.height
       );
+      context.quality = 1.0;
 
       const dataURL = canvasElement.toDataURL("image/jpeg");
 
