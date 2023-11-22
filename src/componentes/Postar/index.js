@@ -60,6 +60,7 @@ const Postar = () => {
       });
 
       setShowSuccessModal(true);
+      localStorage.removeItem("capturedImages");
 
       setTimeout(() => {
         setShowSuccessModal(false);

@@ -25,11 +25,11 @@ function Inicio() {
     console.log("Chamando a função fetchPostagens");
     try {
       const response = await axios.get(
-        "https://mapeamentolixo.onrender.com/posts/list"
+        "http://localhost:3000/posts/list"
         //https://mapeamentolixo.onrender.com/posts/list
       );
       const postCoordinates = [];
-      
+
       const updatedPostagens = await Promise.all(
         response.data.map(async (post) => {
           const address = await getReverseGeocoding(
@@ -50,15 +50,17 @@ function Inicio() {
             email: post.email,
             image: post.image, //https://mapeamentolixo.onrender.com/${post.image}
             createdAt: post.createdAt,
-            userName: userName
+            userName: userName,
           };
         })
       );
 
       setPostagens(updatedPostagens);
 
-      sessionStorage.setItem("postCoordinates",JSON.stringify(postCoordinates));
-      
+      sessionStorage.setItem(
+        "postCoordinates",
+        JSON.stringify(postCoordinates)
+      );
     } catch (error) {
       console.error("Erro ao buscar publicações:", error);
     }
@@ -115,7 +117,6 @@ function Inicio() {
 
       console.log(response.data);
       const email = response.data.email;
-      
     } catch (error) {
       console.error("Erro ao concluir o post:", error);
     }
@@ -162,8 +163,14 @@ function Inicio() {
   }
 
   function formatDate(date) {
-    const options = { day: 'numeric', month: 'numeric', year: 'numeric',  hour: 'numeric', minute: 'numeric' };
-    return new Date(date).toLocaleDateString('pt-BR', options);
+    const options = {
+      day: "numeric",
+      month: "numeric",
+      year: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+    };
+    return new Date(date).toLocaleDateString("pt-BR", options);
   }
 
   return (
@@ -245,7 +252,7 @@ function Inicio() {
           {postagens.length > 0 ? (
             postagens.map((post) => (
               <div key={post._id} className="postagem">
-                <p>Data de criação: {formatDate(post.createdAt)}</p>
+                <p id="data">Data de publicação: {formatDate(post.createdAt)}</p>
                 <div id="cxLixo">
                   <img className="lixo" src={post.image} alt="Lixo" />
                 </div>

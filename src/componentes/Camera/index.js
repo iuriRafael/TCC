@@ -39,7 +39,6 @@ function CameraPage() {
     accessCamera();
   }, []);
 
-
   const [capturedImagesList, setCapturedImagesList] = useState(() => {
     const savedImages = localStorage.getItem("capturedImages");
     return savedImages ? JSON.parse(savedImages) : [];

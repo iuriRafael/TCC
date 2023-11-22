@@ -78,7 +78,7 @@ const Cadastro = () => {
         localStorage.setItem('nome', nome);
 
         console.log('Usuário cadastrado com sucesso');
-        navigate('/Inicio');
+        navigate('/Login');
       } else {
         console.log('Erro ao cadastrar usuário:', response.data.error);
       }

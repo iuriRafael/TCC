@@ -22,7 +22,7 @@ function Andamento() {
 
     //http://localhost:3000/posts/user/${userId}
     axios
-      .get(`https://mapeamentolixo.onrender.com/posts/user/${userId}`) 
+      .get(`hhttp://localhost:3000/posts/user/${userId}`) 
       .then(async (response) => {
         const Postagens = await Promise.all(
           response.data.map(async (post) => {

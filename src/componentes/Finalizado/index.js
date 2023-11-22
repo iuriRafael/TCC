@@ -6,7 +6,6 @@ import axios from "axios";
 import Previsao from "../Previsão";
 import userIcon from "../img/botoes/do-utilizador.png";
 
-
 function Finalizado() {
   const [posts, setPosts] = useState([]);
   const [selectedOption, setSelectedOption] = useState("opcao1");
@@ -56,8 +55,6 @@ function Finalizado() {
       return "Endereço não encontrado";
     }
   };
-
-
   return (
     <div>
       {/* <Previsao /> */}
